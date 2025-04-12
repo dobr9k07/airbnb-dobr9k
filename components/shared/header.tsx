@@ -15,7 +15,7 @@ interface Props {
 
 export const Header: React.FC<Props> = ({ className }) => {
   return (
-    <header className={cn(" border-b", className)}>
+    <header className={cn(" border-b sticky top-0 z-100  bg-white", className)}>
       <Container>
         <nav className="w-full border-b">
           <div className="flex items-center  justify-between container mx-auto px-1 lg:px-10 py-5">
