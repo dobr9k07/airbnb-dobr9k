@@ -2,9 +2,11 @@ import {
   CategoryCarousel,
   Container,
   DialogFilter,
+  HomeButtonSwitch,
   ListingCardWithCarousel,
   MiniBaner,
 } from "@/components/shared";
+
 import { cardItem } from "@/lib/cardItem";
 
 export default function Home() {
@@ -36,7 +38,7 @@ export default function Home() {
         ))}
       </Container>
 
-      
+      <HomeButtonSwitch />
     </>
   );
 }
