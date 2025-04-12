@@ -37,12 +37,10 @@ export const HomeButtonSwitch: React.FC<Props> = ({ className }) => {
     <>
       <Container
         id="top-container"
-        className="flex items-center justify-center flex-col"
+        className="flex items-center justify-center flex-col gap-2"
       >
         <Title text={"Продовжити огляд категорії «ВАУ-помешкання»"} size="xl" />
-        <Button
-          className=" w-45 h-12 bg-slate-950 text-primary-foreground hover:cursor-pointer hover:scale-110 hover:bg-slate-950"
-        >
+        <Button className=" w-45 h-12 bg-slate-950 text-primary-foreground hover:cursor-pointer hover:scale-110 hover:bg-slate-950">
           Показати більше
         </Button>
       </Container>
@@ -53,7 +51,7 @@ export const HomeButtonSwitch: React.FC<Props> = ({ className }) => {
           className="flex items-center justify-center sticky bottom-10 z-50"
         >
           <Button
-            className="bg-slate-950 text-primary-foreground  rounded-full hover:cursor-pointer hover:scale-110 hover:bg-slate-950"
+            className="bg-slate-950 text-primary-foreground rounded-full hover:cursor-pointer hover:scale-110 hover:bg-slate-950"
             size={"lg"}
           >
             Показати мапу <FaRegMap />
