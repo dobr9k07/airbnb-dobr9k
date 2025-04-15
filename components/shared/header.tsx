@@ -10,13 +10,14 @@ import { ToggleGroupHeader } from "./toggle-group-header";
 import { Button } from "../ui/button";
 
 interface Props {
+  isHomePage?: boolean;
   className?: string;
 }
 
-export const Header: React.FC<Props> = ({ className }) => {
+export const Header: React.FC<Props> = ({ isHomePage = true, className }) => {
   return (
-    <header className={cn(" border-b sticky top-0 z-100  bg-white", className)}>
-      <Container>
+    <header>
+      <Container className={cn("sticky top-0 z-100", className)}>
         <nav className="w-full border-b">
           <div className="flex items-center justify-between container mx-auto px-1 lg:px-10 py-5">
             {/* Ліва частина */}
@@ -30,20 +31,33 @@ export const Header: React.FC<Props> = ({ className }) => {
               </div>
             </Link>
 
-            <div className="flex justify-end items-center w-[500px]">
-              <ToggleGroupHeader />
-            </div>
+            {isHomePage ? (
+              <>
+                <div className="flex justify-end items-center w-[500px]">
+                  <ToggleGroupHeader />
+                </div>
 
-            <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4">
+                  <Link href="/host/homes">
+                    <Button
+                      variant={"ghost"}
+                      className="rounded-full cursor-pointer text-sm"
+                    >
+                      Запропонувати помешкання на Airbnb
+                    </Button>
+                  </Link>
+                  {/* Права частина */}
+                  <UserNav />
+                </div>
+              </>
+            ) : (
               <Button
-                variant={"ghost"}
-                className="rounded-full cursor-pointer text-sm"
+                size={"lg"}
+                className="rounded-full text-[16px] font-medium pl-4 pr-4"
               >
-                Запропонувати помешкання на Airbnb
+                Airbnb старт
               </Button>
-              {/* Права частина */}
-              <UserNav />
-            </div>
+            )}
           </div>
         </nav>
       </Container>

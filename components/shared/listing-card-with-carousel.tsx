@@ -24,9 +24,10 @@ export const ListingCardWithCarousel: React.FC<Props> = ({
   className,
 }) => {
   return (
-    <Link href="#" className="group w-85 max-w-sm cursor-pointer">
+    <div className="group w-85 max-w-sm cursor-pointer">
       <div className="relative aspect-square overflow-hidden rounded-xl">
         <CategoryCarousel
+          id={id}
           isCard={true}
           className="w-full h-full"
           imageUrls={imageUrls}
@@ -43,21 +44,23 @@ export const ListingCardWithCarousel: React.FC<Props> = ({
         </div>
       </div>
 
-      <div className="mt-3 flex justify-between items-start text-sm">
-        <div>
-          <h3 className="font-medium text-base">{location}</h3>
-          <p className="text-muted-foreground">{date}</p>
-          <p className="mt-1">
-            <span className="font-medium">{price}</span>
-            <span className="text-muted-foreground"> / за 5 ночей</span>
-          </p>
-        </div>
+      <Link href={`/rooms/${id}`}>
+        <div className="mt-3 flex justify-between items-start text-sm">
+          <div>
+            <h3 className="font-medium text-base">{location}</h3>
+            <p className="text-muted-foreground">{date}</p>
+            <p className="mt-1">
+              <span className="font-medium">{price}</span>
+              <span className="text-muted-foreground"> / за 5 ночей</span>
+            </p>
+          </div>
 
-        <div className="flex items-center gap-1 text-sm">
-          <Star className="w-4 h-4 fill-black text-black" />
-          <span>{rating.toFixed(2)}</span>
+          <div className="flex items-center gap-1 text-sm">
+            <Star className="w-4 h-4 fill-black text-black" />
+            <span>{rating.toFixed(2)}</span>
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };

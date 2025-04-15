@@ -1,3 +1,4 @@
+"use client";
 import {
   CarouselContent,
   CarouselItem,
@@ -9,20 +10,22 @@ import { carouselCategoryItems } from "@/lib/carouselCategoryItems";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
 interface Props {
+  id?: number;
   isCard: boolean;
   imageUrls?: string[];
   className?: string;
 }
 
 export const CarouselInnerContent: React.FC<Props> = ({
+  id,
   isCard,
   imageUrls,
   className,
 }) => {
   const { canScrollPrev, canScrollNext } = useCarousel();
+
   return (
     <>
       {!isCard ? (
@@ -57,27 +60,27 @@ export const CarouselInnerContent: React.FC<Props> = ({
           {canScrollPrev && (
             <CarouselPrevious className="cursor-pointer absolute left-2 top-1/2 -translate-y-1/2 z-10" />
           )}
-          {canScrollNext && (
-            <CarouselNext className="cursor-pointer" />
-          )}
+          {canScrollNext && <CarouselNext className="cursor-pointer" />}
         </>
       ) : (
         <>
-          <CarouselContent>
-            {imageUrls?.map((url, index) => (
-              <CarouselItem key={index}>
-                <div className="relative w-full aspect-square">
-                  <Image
-                    src={url}
-                    alt={`Image ${index}`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 400px"
-                    className="object-cover transition-transform duration-300 "
-                  />
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
+          <Link href={`/rooms/${id}`}>
+            <CarouselContent>
+              {imageUrls?.map((url, index) => (
+                <CarouselItem key={index}>
+                  <div className="relative w-full aspect-square">
+                    <Image
+                      src={url}
+                      alt={`Image ${index}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 400px"
+                      className="object-cover transition-transform duration-300 "
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Link>
           {canScrollPrev && (
             <CarouselPrevious
               className="absolute left-2 top-1/2 -translate-y-1/2 z-10 
