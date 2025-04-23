@@ -12,3 +12,4 @@ export { MiniBaner } from "./mini-baner";
 export { ListingCard } from "./listing-card";
 export { ListingCardWithCarousel } from "./listing-card-with-carousel";
 export { HomeButtonSwitch } from "./home-button-switch";
+export { ComfortsItem } from "./comforts-item";
