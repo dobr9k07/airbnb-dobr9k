@@ -22,7 +22,7 @@ export default function Home() {
           opts={{ align: "start", slidesToScroll: 5 }}
         />
         <div className="flex gap-3">
-          <DialogFilter />
+          {/* <DialogFilter /> */}
           <MiniBaner title="Ціни охоплюють усі" />
         </div>
       </Container>
