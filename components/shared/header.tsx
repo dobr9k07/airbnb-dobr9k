@@ -4,10 +4,10 @@ import { Container } from "./container";
 import Link from "next/link";
 import Image from "next/image";
 
-import DesktopLogo from "../../public/airbnb-desktop.png";
+import DesktopLogo from "../../public/Logo.png";
 import { UserNav } from "./user-nav";
-import { ToggleGroupHeader } from "./toggle-group-header";
 import { Button } from "../ui/button";
+import { SearchInput } from "./search-input";
 
 interface Props {
   isHomePage?: boolean;
@@ -18,34 +18,28 @@ export const Header: React.FC<Props> = ({ isHomePage = true, className }) => {
   return (
     <header>
       <Container className={cn("sticky top-0 z-100", className)}>
-        <nav className="w-full border-b">
-          <div className="flex items-center justify-between container mx-auto px-1 lg:px-10 py-5">
+        <nav className="w-full ">
+          <div className="flex items-center justify-between container mx-auto lg:px-50">
             {/* Ліва частина */}
-            <Link href="/">
-              <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4">
+              <Link href="/">
                 <Image
                   src={DesktopLogo}
                   alt="DesktopLogo"
-                  className="w-32 hidden lg:block"
+                  className="w-30 mr-2 hidden lg:block text-amber-600"
                 />
-              </div>
-            </Link>
+              </Link>
+
+              <SearchInput />
+
+              <Button className="text-[16px] font-light rounded-[41.5px] h-[33px] ml-22px">
+                Пошук
+              </Button>
+            </div>
 
             {isHomePage ? (
               <>
-                <div className="flex justify-end items-center w-[500px]">
-                  <ToggleGroupHeader />
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <Link href="/host/homes">
-                    <Button
-                      variant={"ghost"}
-                      className="rounded-full cursor-pointer text-sm"
-                    >
-                      Запропонувати помешкання на Airbnb
-                    </Button>
-                  </Link>
+                <div className="flex items-center gap-1.5">
                   {/* Права частина */}
                   <UserNav />
                 </div>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Footer } from "@/components/shared";
+import { Footer, Header } from "@/components/shared";
 import { Inter } from "next/font/google";
 
 const inter = Inter({
@@ -21,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body>
+        <Header className="max-w-[1728px]" />
         {children}
         <Footer />
       </body>

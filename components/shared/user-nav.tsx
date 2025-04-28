@@ -4,11 +4,11 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { IoMdMenu } from "react-icons/io";
-import { PiUserCircleDuotone } from "react-icons/pi";
+import Image from "next/image";
+import UserDropDown from "../../public/User_alt_light.png";
+import MenuDropDown from "../../public/Variant2.png";
 
 interface Props {
   className?: string;
@@ -16,31 +16,56 @@ interface Props {
 
 export const UserNav: React.FC<Props> = ({ className }) => {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <div className="rounded-full border px-2 py-2 lg:px-4 lg:py-2 flex items-center gap-x-3 cursor-pointer hover:shadow-xl/20 transition-shadow duration-300">
-          <IoMdMenu className="w-6 h-6" />
-          <PiUserCircleDuotone className="h-8 w-8" />
-        </div>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[300px]">
-        <DropdownMenuGroup>
-          <DropdownMenuItem className="cursor-pointer">Увійти</DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer">
-            Зареєструватися
-          </DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem className="cursor-pointer">
-            Запропонувати помешкання на Airbnb
-          </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer">
-            Організувати враження
-          </DropdownMenuItem>
-          <DropdownMenuItem className="cursor-pointer">
-            Довідковий центр
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <>
+      {/*MenuDropDown*/}
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="rounded-[21px] h-10.5 w-16.5 lg:py-2 flex items-center justify-center cursor-pointer hover:bg-primary-white hover:transition-all duration-300">
+            <Image src={MenuDropDown} alt="UserLogo" />
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="w-[300px]">
+          <DropdownMenuGroup>
+            <DropdownMenuItem className="cursor-pointer">
+              Запропонувати помешкання на hata
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              Про нас
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              Підтримка
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      {/*UserDropDown*/}
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <div className="rounded-[21px] h-10.5 w-16.5 lg:px-4 lg:py-2 flex items-center justify-center cursor-pointer hover:bg-primary-white hover:transition-all duration-300">
+            <Image src={UserDropDown} alt="UserLogo" />
+          </div>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="end" className="w-[300px]">
+          <DropdownMenuGroup>
+            <DropdownMenuItem className="cursor-pointer">
+              Увійти
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              Повідомлення
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              Сповіщення
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              Подорожі
+            </DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer">
+              Обране
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
   );
 };

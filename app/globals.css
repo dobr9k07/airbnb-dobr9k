@@ -6,6 +6,7 @@
 @theme inline {
   /* Custom theme variables */
   --color-primary-hover: var(--primary-hover);
+  --color-primary-white: var(--primary-white);
 
 
   --color-background: var(--background);
@@ -58,6 +59,7 @@
   --primary: oklch(0.35 0.11 254.08);
   --primary-foreground: oklch(1 0 0);
   --primary-hover: oklch(0.6 0.1249 234.12);
+  --primary-white: oklch(0.91 0 0);
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
   --muted: oklch(0.967 0.001 286.375);

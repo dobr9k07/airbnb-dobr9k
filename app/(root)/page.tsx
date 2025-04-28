@@ -2,7 +2,6 @@ import {
   CategoryCarousel,
   Container,
   DialogFilter,
-  Header,
   HomeButtonSwitch,
   ListingCardWithCarousel,
   MiniBaner,
@@ -10,11 +9,9 @@ import {
 
 import { cardItem } from "@/lib/cardItem";
 
-
 export default function Home() {
   return (
     <>
-      <Header />
       <Container className="mt-10 flex justify-items-center items-center gap-16">
         <CategoryCarousel
           isCard={false}
