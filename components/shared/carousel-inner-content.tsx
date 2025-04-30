@@ -26,8 +26,6 @@ export const CarouselInnerContent: React.FC<Props> = ({
 }) => {
   const { canScrollPrev, canScrollNext } = useCarousel();
 
-
-
   return (
     <>
       {!isCard ? (

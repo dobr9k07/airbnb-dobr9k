@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import React from "react";
 import { Container } from "./container";
 import Link from "next/link";
@@ -16,8 +15,8 @@ interface Props {
 
 export const Header: React.FC<Props> = ({ isHomePage = true, className }) => {
   return (
-    <header>
-      <Container className={cn("sticky top-0 z-100", className)}>
+    <header className="sticky top-0 z-100 bg-white h-[100px]">
+      <Container className={className}>
         <nav className="w-full ">
           <div className="flex items-center justify-between container mx-auto lg:px-50">
             {/* Ліва частина */}
@@ -26,7 +25,7 @@ export const Header: React.FC<Props> = ({ isHomePage = true, className }) => {
                 <Image
                   src={DesktopLogo}
                   alt="DesktopLogo"
-                  className="w-30 mr-2 hidden lg:block text-amber-600"
+                  className="w-30 mr-2 hidden lg:block text-amber-600 border-1 border-amber-600"
                 />
               </Link>
 

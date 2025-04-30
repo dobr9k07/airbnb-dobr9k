@@ -28,17 +28,17 @@ const comfortItems = [
   "Сушильна машина",
   "Кондиціонер",
   "Опалення",
-  "Wi-Fi",
-  "Кухня",
-  "Пральна машина",
-  "Сушильна машина",
-  "Кондиціонер",
-  "Опалення",
+  "Wi-Fi1",
+  "Кухня2",
+  "Пральна машина3",
+  "Сушильна машина4",
+  "Кондиціонер5",
+  "Опалення6",
 ];
 
 export const DialogFilter: React.FC<Props> = ({ className }) => {
   return (
-    <Dialog defaultOpen>
+    <Dialog >
       <DialogTrigger asChild>
         <Button variant={"outline"} className="cursor-pointer">
           <IoFilterCircle /> Фільтри
