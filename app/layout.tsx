@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Footer, Header } from "@/components/shared";
 import { Inter } from "next/font/google";
+import { MAXWIDTH } from "@/lib/const-css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,9 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body>
-        <Header className="max-w-[1728px]" />
+        <Header className={`${MAXWIDTH} mx-auto`} />
         {children}
-        <Footer />
+        <Footer className="mx-auto"/>
       </body>
     </html>
   );

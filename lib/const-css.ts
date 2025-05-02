@@ -1,0 +1,1 @@
+export const MAXWIDTH = "max-w-[1728px]";

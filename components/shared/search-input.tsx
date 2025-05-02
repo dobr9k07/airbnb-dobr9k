@@ -6,7 +6,7 @@ import Link from "next/link";
 import React from "react";
 import { useClickAway } from "react-use";
 
-import searchLight from "../../public/Search_light.svg";
+import searchLight from "@/public/svg/Search_light.svg";
 
 interface Props {
   className?: string;

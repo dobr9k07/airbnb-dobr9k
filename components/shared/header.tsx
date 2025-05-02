@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import DesktopLogo from "../../public/Logo.png";
+
 import { UserNav } from "./user-nav";
 import { Button } from "../ui/button";
 import { SearchInput } from "./search-input";

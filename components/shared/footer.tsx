@@ -5,11 +5,11 @@ import Image from "next/image";
 import { Title } from "./title";
 import { companyItems, supportItems } from "@/lib/fotterItems";
 
-import DesktopLogo from "../../public/LogoWhite.svg";
-import IconTranslate from "../../public/iconTranslate.svg";
-import IconInstagram from "../../public/social/iconInstagram.svg";
-import IconFacebbok from "../../public/social/iconFacebook.svg";
-import IconTwitter from "../../public/social/iconTwitter.svg";
+import DesktopLogo from "@/public/svg/LogoWhite.svg";
+import IconTranslate from '@/public/svg/IconTranslate.svg';
+import IconInstagram from "@/public/social/iconInstagram.svg";
+import IconFacebbok from "@/public/social/iconFacebook.svg";
+import IconTwitter from "@/public/social/iconTwitter.svg";
 
 interface Props {
   className?: string;
