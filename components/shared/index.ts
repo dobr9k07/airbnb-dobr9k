@@ -15,3 +15,6 @@ export { HomeButtonSwitch } from "./home-button-switch";
 export { ComfortsItem } from "./comforts-item";
 export { SearchInput } from "./search-input";
 export { HeroBanner } from "./hero-banner";
+export { FilterHero } from "./filter-hero";
+export { CityBanner } from "./city-banner";
+export { CardCity } from "./card-city";
