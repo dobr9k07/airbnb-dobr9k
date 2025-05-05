@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.geo.Point;
+
 
 
 import java.math.BigDecimal;
@@ -28,11 +28,12 @@ public class Rental {
     @Size(max=200)
     private String description;
     @NotNull
-    private String location;
-    @NotNull
     @Column(precision = 19, scale = 2)
     private BigDecimal price_per_night;
     @ElementCollection
     private Set<String> features;
-
+    @NotNull
+    private BigDecimal latitude;
+    @NotNull
+    private BigDecimal longtitude;
 }

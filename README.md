@@ -3,4 +3,4 @@
 -[ ] Модель: налаштувати серізування POINT
 
 ### Діаграма БД
-![diagrama](./hatarent.drawio.png)
+![diagrama](./DB schema.png.drawio.png)
