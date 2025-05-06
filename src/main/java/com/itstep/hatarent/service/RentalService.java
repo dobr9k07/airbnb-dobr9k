@@ -16,6 +16,6 @@ public class RentalService {
 
     public List<RentalDto> getAllRentals() {
         List<Rental> rentals = rentalRepository.findAll();
-        return rentals.stream().map(entity -> new RentalDto(entity)).toList();
+        return rentals.stream().map(RentalDto::new).toList();
     }
 }
