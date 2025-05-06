@@ -23,8 +23,8 @@ export default function RootLayout({
     <html lang="en" className={inter.className}>
       <body>
         <Header className={`${MAXWIDTH} mx-auto`} />
-        {children}
-        <Footer className="mx-auto"/>
+        <main>{children}</main>
+        <Footer className="mx-auto" />
       </body>
     </html>
   );

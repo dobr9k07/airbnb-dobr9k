@@ -132,17 +132,60 @@
   }
   body {
     @apply bg-background text-foreground;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
   }
 }
 
 @layer components {
-  .custom-gradient {
+  .hero-gradient {
     background: linear-gradient(
       90.57deg,
       rgb(255, 246, 246) 0.114%,
       rgba(202, 196, 196, 0.48) 29.176%,
       rgba(153, 148, 148, 0) 99.836%
     );
+  }
+
+  .comment-gradient {
+    border-radius: 0px 110px 0px 110px;
+  }
+
+  .comment-gradient-1 {
+
+    .comment-gradient {
+      background: linear-gradient(
+        90.57deg,
+        rgb(239, 239, 239) 0.113%,
+        rgba(213,244,255,255) 49.994%
+      );
+    }
+  }
+
+  .comment-gradient-2 {
+    .comment-gradient {
+      background: linear-gradient(
+        270deg,
+        rgb(239, 239, 239),
+        rgba(255,224,195,255) 50%
+      );
+    }
+  }
+
+  .comment-gradient-3 {
+    .comment-gradient {
+      background: rgb(255, 249, 212);
+    }
+  }
+
+  .bg-center-class {
+    background: rgb(25, 246, 246);
+  }
+  .bg-left-class {
+    background: rgb(25, 246, 24);
+  }
+  .bg-right-class {
+    background: rgb(25, 26, 246);
   }
 }
 

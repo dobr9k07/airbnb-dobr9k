@@ -16,11 +16,11 @@ interface Props {
 export const HeroBanner: React.FC<Props> = ({ className }) => {
   return (
     <Container className={cn(`${MAXWIDTH}`, className)}>
-      <div className="w-full h-[769px] relative custom-gradient z-1">
+      <div className="w-full h-[769px] relative hero-gradient z-1">
         <Image
           src={ImageHero}
           alt="ImageHero"
-          className="w-full h-full object-cover mix-blend-overlay absolute z-10"
+          className="w-full h-full object-cover mix-blend-overlay absolute"
         />
         <div className="ml-65 pt-75 w-82.5 border-1 border-amber-500">
           <Title
