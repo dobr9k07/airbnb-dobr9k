@@ -26,7 +26,6 @@ dependencies {
 
 	implementation("org.flywaydb:flyway-core:11.8.0")
 	implementation("org.flywaydb:flyway-mysql:11.8.0")
-	//implementation("org.hibernate:hibernate-spatial:6.6.13.Final")
 
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
 
