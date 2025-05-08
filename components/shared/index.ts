@@ -19,3 +19,4 @@ export { FilterHero } from "./filter-hero";
 export { CityBanner } from "./city-banner";
 export { CardCity } from "./card-city";
 export * from "./carousel";
+export * from './blog';

@@ -3,10 +3,10 @@ import {
   Container,
   FilterHero,
   HeroBanner,
+  HeroBlog,
   Title,
 } from "@/components/shared";
 import { CarouselPagination } from "@/components/shared/carousel-pagination";
-
 
 export default function Home() {
   return (
@@ -15,21 +15,30 @@ export default function Home() {
 
       <FilterHero className="bg-white mt-[-55px] z-50 relative rounded-[38px] p-5.5 border-1 border-amber-400" />
 
-      <CityBanner />
+      <CityBanner className="mb-[82px]" />
 
       <Container>
-        <div className="flex flex-col w-full">
-          <Title
-            text={`Кожен відпочинок - це історія`}
-            size="lg"
-            
-          />
-          <p className="text-[25px] font-light mb-21.75">
-            Подивіться, &mdash; що кажуть наші гості.
-          </p>
+        <section>
+          <div className="flex flex-col w-full">
+            <Title text={`Кожен відпочинок - це історія`} size="lg" />
+            <p className="text-[25px] font-light mb-21.75">
+              Подивіться, &mdash; що кажуть наші гості.
+            </p>
 
-          <CarouselPagination />
-        </div>
+            <CarouselPagination />
+          </div>
+        </section>
+      </Container>
+
+      <Container>
+        <section>
+          <Title text={`Історії hata`} size="lg" className="mb-3.5" />
+          <p className="text-[25px] font-light mb-9.25">
+            Від новин до натхнення для подорожей — дізнавайтесь більше про світ
+            з hata
+          </p>
+          <HeroBlog className="w-full" />
+        </section>
       </Container>
     </>
   );
