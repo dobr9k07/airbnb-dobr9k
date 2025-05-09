@@ -1,18 +1,31 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { IBlogItem } from "@/lib/blogItem";
+import { cn } from "@/lib/utils";
 
 interface Props {
   className?: string;
   items: IBlogItem;
+  isBlogPage?: boolean;
 }
 
-export const CardBlog: React.FC<Props> = ({ items, className }) => {
+export const CardBlog: React.FC<Props> = ({ items, isBlogPage, className }) => {
   return (
-    <Card className="w-full max-w-[286px] border-none shadow-none gap-3 p-0">
+    <Card
+      className={cn(
+        "w-full flex flex-col border-none shadow-none gap-3 p-0 m-0",
+        isBlogPage ? "max-w-[385px] text-center" : "max-w-[286px] "
+      )}
+    >
       <div className="w-full aspect-square relative">
         <Image
           src={items.imageUrl}
@@ -22,20 +35,31 @@ export const CardBlog: React.FC<Props> = ({ items, className }) => {
         />
       </div>
       <CardHeader className="p-0">
+        {isBlogPage && (
+          <p className="text-xl font-semibold text-black">{items.tag}</p>
+        )}
         <CardTitle className="text-[25px] font-light text-black">
           {items.title}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
+        <p className="text-base font-extralight text-black">
+          {items.description}
+        </p>
+      </CardContent>
+      <div className="flex-grow"></div>
+      <CardFooter className={cn("p-0", isBlogPage && "flex justify-center")}>
         <Link href={"#"}>
           <Button
-            className="text-left text-[25px] font-normal text-black p-0 "
+            className={cn("text-black p-0",
+              isBlogPage ? "text-base font-extralight" : "text-[25px] font-normal"
+            )}
             variant={"link"}
           >
             Читайте далі
           </Button>
         </Link>
-      </CardContent>
+      </CardFooter>
     </Card>
   );
 };

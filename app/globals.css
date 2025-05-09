@@ -147,17 +147,17 @@
     );
   }
 
+  /* `/`page */
   .comment-gradient {
     border-radius: 0px 110px 0px 110px;
   }
 
   .comment-gradient-1 {
-
     .comment-gradient {
       background: linear-gradient(
         90.57deg,
         rgb(239, 239, 239) 0.113%,
-        rgba(213,244,255,255) 49.994%
+        rgba(213, 244, 255, 255) 49.994%
       );
     }
   }
@@ -167,7 +167,7 @@
       background: linear-gradient(
         270deg,
         rgb(239, 239, 239),
-        rgba(255,224,195,255) 50%
+        rgba(255, 224, 195, 255) 50%
       );
     }
   }
@@ -189,6 +189,14 @@
   }
 }
 
+/* `/blog` page*/
+.card-blog-banner {
+  border-radius: 0px 116px 0px 0px;
+
+  background: rgb(255, 255, 255);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
