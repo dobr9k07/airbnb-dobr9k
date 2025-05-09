@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Container } from "./container";
 import Link from "next/link";
@@ -8,15 +9,23 @@ import DesktopLogo from "../../public/Logo.png";
 import { UserNav } from "./user-nav";
 import { Button } from "../ui/button";
 import { SearchInput } from "./search-input";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
 
 interface Props {
-  isHomePage?: boolean;
   className?: string;
 }
 
-export const Header: React.FC<Props> = ({ isHomePage = true, className }) => {
+export const Header: React.FC<Props> = ({ className }) => {
+  const path = usePathname().slice(1);
+
   return (
-    <header className="sticky top-0 z-100 bg-white h-[100px]">
+    <header
+      className={cn(
+        "h-[100px]",
+        path === "" ? "sticky top-0 z-100 bg-white" : ""
+      )}
+    >
       <Container className={className}>
         <nav className="w-full ">
           <div className="flex items-center justify-between container mx-auto lg:px-50">
@@ -30,28 +39,31 @@ export const Header: React.FC<Props> = ({ isHomePage = true, className }) => {
                 />
               </Link>
 
-              <SearchInput />
-
-              <Button className="text-[16px] font-light rounded-[41.5px] h-[33px] ml-22px">
-                Пошук
-              </Button>
+              {path === "" ? (
+                <>
+                  <SearchInput placeholder="Виберіть місто" />
+                  <Button className="text-[16px] font-light rounded-[41.5px] h-[33px] ml-22px">
+                    Пошук
+                  </Button>
+                </>
+              ) : (
+                ""
+              )}
             </div>
 
-            {isHomePage ? (
-              <>
-                <div className="flex items-center gap-1.5">
-                  {/* Права частина */}
-                  <UserNav />
-                </div>
-              </>
-            ) : (
-              <Button
-                size={"lg"}
-                className="rounded-full text-[16px] font-medium pl-4 pr-4"
-              >
-                Airbnb старт
-              </Button>
-            )}
+            <div className="flex items-center gap-1.5">
+              {/* Права частина */}
+              {path === "" ? (
+                <UserNav />
+              ) : (
+                <Button
+                  className="text-[16px] font-light w-[280px] rounded-[41.5px] h-[33px] border-[0.25px]"
+                  variant={"outline"}
+                >
+                  Забронювати
+                </Button>
+              )}
+            </div>
           </div>
         </nav>
       </Container>

@@ -6,10 +6,13 @@ import Link from "next/link";
 import React from "react";
 import { useClickAway } from "react-use";
 
-import searchLight from "@/public/svg/Search_light.svg";
+import searchLight from "@/public/svg/Search_Light.svg";
+import searchBlack from "@/public/svg/Search_Black.svg";
 
 interface Props {
   className?: string;
+  placeholder: string;
+  isBlog?: boolean;
 }
 
 const citiesList = [
@@ -35,7 +38,11 @@ const citiesList = [
   },
 ];
 
-export const SearchInput: React.FC<Props> = ({ className }) => {
+export const SearchInput: React.FC<Props> = ({
+  placeholder,
+  isBlog = false,
+  className,
+}) => {
   const [focused, setFocused] = React.useState(false);
   const [cities, setСities] = React.useState(citiesList);
   const ref = React.useRef(null);
@@ -50,27 +57,39 @@ export const SearchInput: React.FC<Props> = ({ className }) => {
   };
   return (
     <>
-      {focused && (
-        <div className="fixed top-0 left-0 bottom-0 right-0 z-30" />
-      )}
+      {focused && <div className="fixed top-0 left-0 bottom-0 right-0 z-30" />}
       <div
         ref={ref}
         className={cn(
-          "flex rounded-[41.5px] flex-1 justify-between relative w-70 h-8.25 z-30 p-[0.25px] border-[0.25px] border-black hover:cursor-pointer hover:bg-[#E0E0E0]",
+          "flex rounded-[41.5px] flex-1 justify-between relative w-70 h-8.25 z-30 p-[0.25px]  hover:cursor-pointer hover:bg-[#E0E0E0]",
+          isBlog ? "" : "border-[0.25px] border-black",
           className
         )}
       >
-        <Image
-          src={searchLight}
-          alt={"search-light"}
-          width={14}
-          height={14}
-          className="absolute top-1/2 translate-y-[-50%] left-3 h-7 w-7"
-        />
+        {isBlog ? (
+          <Image
+            src={searchLight}
+            alt={"search-light"}
+            width={14}
+            height={14}
+            className="absolute top-1/2 translate-y-[-50%] left-3 h-7 w-7"
+          />
+        ) : (
+          <Image
+            src={searchBlack}
+            alt={"search-black"}
+            width={14}
+            height={14}
+            className="absolute top-1/2 translate-y-[-50%] left-3 h-7 w-7"
+          />
+        )}
         <input
           type="text"
-          placeholder="Виберіть місто"
-          className="w-full font-light text-[16px] text-black pl-[67px]"
+          placeholder={placeholder}
+          className={cn(
+            "w-full font-light pl-[67px]",
+            isBlog ? "text-white text-[20px]" : "text-black text-[16px]"
+          )}
           onFocus={() => setFocused(true)}
         />
 

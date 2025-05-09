@@ -1,2 +1,4 @@
 export { CardBlog } from "./card-blog";
 export { HeroBlog } from "./hero-blog";
+export { NavBlog } from "./nav-blog";
+export { BlogLink } from "./blog-link";
