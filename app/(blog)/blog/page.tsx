@@ -13,7 +13,7 @@ export default function BlogPage() {
 
       <Container className="mt-[313px] ">
         <section>
-          <HeroBlog className="w-full" isBlogPage={true} />
+          <HeroBlog className="w-full" items={blogItems} isBlogPage={true} />
         </section>
       </Container>
     </>

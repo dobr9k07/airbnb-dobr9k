@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { SearchInput } from "../search-input";
@@ -12,8 +12,8 @@ interface Props {
 
 export const NavBlog: React.FC<Props> = ({ className }) => {
   const pathname = usePathname();
-  const segments = pathname.split("/").filter(segment => segment !== "");
-  const lastSegment = segments[segments.length - 1]; 
+  const segments = pathname.split("/").filter((segment) => segment !== "");
+  const lastSegment = segments[segments.length - 1];
 
   return (
     <div
@@ -26,7 +26,7 @@ export const NavBlog: React.FC<Props> = ({ className }) => {
         <SearchInput placeholder="Пошук блогу" isBlog={true} />
       </div>
       <Title text="Історії hata" size="lg" className="text-white" />
-      <BlogLink isActive={lastSegment}/>
+      <BlogLink isActive={lastSegment} />
     </div>
   );
 };

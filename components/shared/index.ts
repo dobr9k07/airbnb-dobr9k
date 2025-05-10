@@ -18,5 +18,6 @@ export { HeroBanner } from "./hero-banner";
 export { FilterHero } from "./filter-hero";
 export { CityBanner } from "./city-banner";
 export { CardCity } from "./card-city";
+export { SubscribeInput } from "./subscribe-input";
 export * from "./carousel";
-export * from './blog';
+export * from "./blog";

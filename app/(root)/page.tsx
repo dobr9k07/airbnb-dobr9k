@@ -7,6 +7,7 @@ import {
   Title,
 } from "@/components/shared";
 import { CarouselPagination } from "@/components/shared/carousel-pagination";
+import { blogItems } from "@/lib/blogItem";
 
 export default function Home() {
   return (
@@ -37,7 +38,7 @@ export default function Home() {
             Від новин до натхнення для подорожей — дізнавайтесь більше про світ
             з hata
           </p>
-          <HeroBlog className="w-full" />
+          <HeroBlog className="w-full" items={blogItems}/>
         </section>
       </Container>
     </>

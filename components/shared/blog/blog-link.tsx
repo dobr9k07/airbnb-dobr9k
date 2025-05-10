@@ -15,7 +15,7 @@ interface Category {
     href: string;
   }
   
-  const BLOG_CATEGORIES: Category[] = [
+ export const BLOG_CATEGORIES: Category[] = [
     { id: "travel", name: "Подорожі", href: "/blog/travel" },
     { id: "design", name: "Дизайн", href: "/blog/design" },
     { id: "culture", name: "Культура", href: "/blog/culture" },
