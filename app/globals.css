@@ -178,15 +178,49 @@
     }
   }
 
-  .bg-center-class {
-    background: rgb(25, 246, 246);
+  .comment-gradient-left {
+    transition: comment-gradient 1s ease-in-out;
+    .comment-gradient {
+      background: linear-gradient(
+        90.57deg,
+        rgb(239, 239, 239) 0.113%,
+        rgba(213, 244, 255, 255) 49.994%
+      );
+    }
   }
-  .bg-left-class {
-    background: rgb(25, 246, 24);
+
+  .comment-gradient-right {
+    transition: comment-gradient 1s ease-in-out;
+    .comment-gradient {
+      background: linear-gradient(
+        270deg,
+        rgb(239, 239, 239),
+        rgba(255, 224, 195, 255) 50%
+      );
+    }
   }
-  .bg-right-class {
-    background: rgb(25, 26, 246);
-  }
+}
+
+.comment-gradient-hide {
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+  /* .comment-gradient {
+      background: linear-gradient(
+        90.57deg,
+        rgb(255, 249, 212) 0.113%,
+        rgba(255, 224, 195, 255) 49.994%
+      );
+    } */
+}
+
+.bg-center-class {
+  background: rgb(25, 246, 246);
+}
+.bg-left-class {
+  background: rgb(25, 246, 24);
+}
+.bg-right-class {
+  background: rgb(25, 26, 246);
 }
 
 /* `/blog` page*/

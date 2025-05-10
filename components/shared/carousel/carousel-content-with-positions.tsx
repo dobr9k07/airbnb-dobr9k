@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import { useCarousel } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
@@ -53,6 +53,10 @@ export const CarouselContentWithPositions: React.FC<{
             extraClass = "comment-gradient-1"; // клас для лівого слайду
           } else if (index === (selectedIndex + 1) % count) {
             extraClass = "comment-gradient-2"; // клас для правого слайду
+          } else if (index === (selectedIndex - 2 + count) % count) {
+            extraClass = "comment-gradient-left"; // клас для попереднього лівого слайду 
+          } else if (index === (selectedIndex + 2) % count) {
+            extraClass = "comment-gradient-right"; // клас для попереднього правого слайдів
           }
           // Без примусового приведення до any – отримуємо значення className
           const origClass = child.props.className || "";

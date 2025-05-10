@@ -30,7 +30,12 @@ export const HeroBlog: React.FC<Props> = ({
             ))}
           </div>
         ) : (
-          <div className="flex justify-center gap-5.5 w-full border-b-1 border-black pb-16.75">
+          <div
+            className={cn(
+              "flex justify-center gap-5.5 w-full",
+              isBlogPage && "border-b-1 border-black pb-16.75"
+            )}
+          >
             {blogItems.slice(0, 4).map((item) => (
               <CardBlog key={item.id} items={item} isBlogPage={isBlogPage} />
             ))}

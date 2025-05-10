@@ -30,7 +30,7 @@ export const CarouselPagination = () => {
 
   return (
     <div className="w-full">
-      <Carousel setApi={setApi} opts={{ loop: true, align: "center" }}>
+      <Carousel setApi={setApi} opts={{ loop: true, align: "center", }}>
         <CarouselContentWithPositions>
           {commentItem.map((item) => (
             <CarouselItem
