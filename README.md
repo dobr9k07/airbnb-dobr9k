@@ -1,6 +1,2 @@
-### TODO:
--[ ] БД: зменшити макс. розмір назви житла
--[ ] Модель: налаштувати серізування POINT
-
 ### Діаграма БД
-![diagrama](./DB schema.png.drawio.png)
+![diagrama](https://github.com/dobr9k07/airbnb-dobr9k/blob/backend-dev/DB%20schema.png?raw=true)
