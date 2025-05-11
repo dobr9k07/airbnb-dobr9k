@@ -6,6 +6,7 @@ interface ICompany {
 interface ISupport {
   id: number;
   value: string;
+  link: string;
 }
 
 export const companyItems: ICompany[] = [
@@ -51,21 +52,26 @@ export const supportItems: ISupport[] = [
   {
     id: 1,
     value: "Довідковий центр",
+    link: "/help",
   },
   {
     id: 2,
     value: "Протидія дискримінації",
+    link: "/help",
   },
   {
     id: 3,
     value: "Підтримка людей з інвалідністю",
+    link: "/help",
   },
   {
     id: 4,
     value: "Варіанти скасування бронювань",
+    link: "/help",
   },
   {
     id: 5,
     value: "Надіслати скаргу від сусідів",
+    link: "/help",
   },
 ];

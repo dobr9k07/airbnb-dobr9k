@@ -39,6 +39,9 @@ export const Header: React.FC<Props> = ({ className }) => {
                 />
               </Link>
 
+              {path === "help" ? <p className="text-2xl font-light text-black">Довідковий центр</p> : ""}
+              
+              
               {path === "" ? (
                 <>
                   <SearchInput placeholder="Виберіть місто" />
@@ -53,7 +56,7 @@ export const Header: React.FC<Props> = ({ className }) => {
 
             <div className="flex items-center gap-1.5">
               {/* Права частина */}
-              {path === "" ? (
+              {path === "" || path === "help" ? (
                 <UserNav />
               ) : (
                 <Button

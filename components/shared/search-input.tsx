@@ -88,7 +88,7 @@ export const SearchInput: React.FC<Props> = ({
           placeholder={placeholder}
           className={cn(
             "w-full font-light pl-[67px]",
-            isBlog ? "text-white text-[20px]" : "text-black text-[16px]"
+            isBlog ? "text-white text-[20px]" : "text-black text-[16px]",
           )}
           onFocus={() => setFocused(true)}
         />
