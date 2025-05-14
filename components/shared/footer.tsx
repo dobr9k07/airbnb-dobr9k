@@ -66,12 +66,15 @@ export const Footer: React.FC<Props> = ({ className }) => {
               <nav>
                 <ul>
                   {companyItems.map((item) => (
-                    <p
-                      key={item.id}
-                      className="text-white font-medium text-[25px] leading-[1.8] text-left"
-                    >
-                      {item.value}
-                    </p>
+                    <li key={item.id}>
+                      <Link
+                        href={item.link}
+                        key={item.id}
+                        className="text-white font-medium text-[25px] leading-[1.8] text-left"
+                      >
+                        {item.value}
+                      </Link>
+                    </li>
                   ))}
                 </ul>
               </nav>
@@ -85,15 +88,19 @@ export const Footer: React.FC<Props> = ({ className }) => {
                 className="text-white font-light mb-5.5 text-left leading-[35px]"
               />
 
-              {supportItems.map((item) => (
-                <Link
-                  key={item.id}
-                  href={item.link}
-                  className="text-white font-medium text-[25px] leading-[1.8] text-left"
-                >
-                  {item.value}
-                </Link>
-              ))}
+              <ul>
+                {supportItems.map((item) => (
+                  <li key={item.id}>
+                    <Link
+                      key={item.id}
+                      href={item.link}
+                      className="text-white font-medium text-[25px] leading-[1.8] text-left"
+                    >
+                      {item.value}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 

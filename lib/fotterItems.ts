@@ -1,6 +1,7 @@
 interface ICompany {
   id: number;
   value: string;
+  link: string;
 }
 
 interface ISupport {
@@ -13,38 +14,47 @@ export const companyItems: ICompany[] = [
   {
     id: 1,
     value: "Про нас",
+    link: "/about",
   },
   {
     id: 2,
     value: "Новини",
+    link: "/",
   },
   {
     id: 3,
     value: "Кар'єра",
+    link: "/",
   },
   {
     id: 4,
     value: "Для преси",
+    link: "/",
   },
   {
     id: 5,
     value: "Для бізнесу та груп",
+    link: "/",
   },
   {
     id: 6,
     value: "Нерухомість",
+    link: "/",
   },
   {
     id: 7,
     value: "Корпоративна відповідальність",
+    link: "/",
   },
   {
     id: 8,
     value: "Відносини з інвесторами",
+    link: "/",
   },
   {
     id: 9,
     value: "Вакансії",
+    link: "/",
   },
 ];
 

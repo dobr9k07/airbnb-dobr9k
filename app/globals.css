@@ -201,16 +201,13 @@
   }
 }
 
+.test {
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
 .comment-gradient-hide {
   opacity: 0;
   transition: all 0.5s ease-in-out;
-  /* .comment-gradient {
-      background: linear-gradient(
-        90.57deg,
-        rgb(255, 249, 212) 0.113%,
-        rgba(255, 224, 195, 255) 49.994%
-      );
-    } */
 }
 
 .bg-center-class {
