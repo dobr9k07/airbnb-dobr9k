@@ -1,11 +1,16 @@
-import { cartCityItems } from "@/lib/cartCityItem";
+import { cartCityItems, ICartCityItem } from "@/lib/cartCityItem";
 import React from "react";
 import { Container } from "./container";
 import { CardCity } from "./card-city";
 import { Button } from "../ui/button";
+import { cn } from "@/lib/utils";
+import { Title } from "./title";
+import Link from "next/link";
 
 interface Props {
   className?: string;
+  items: ICartCityItem[];
+  isCitiesPage?: boolean;
 }
 
 // Масив позицій у сітці відповідно до grid-area всіх div
@@ -17,28 +22,49 @@ const gridPositions = [
   "row-start-1 row-end-3 col-start-2 col-end-3", // div5: NewYork
 ];
 
-export const CityBanner: React.FC<Props> = ({ className }) => {
+export const CityBanner: React.FC<Props> = ({
+  items = cartCityItems,
+  isCitiesPage = false,
+  className,
+}) => {
   return (
-    <Container className={className}>
+    <Container className={cn("flex flex-col", className)}>
+      <Title
+        text={"Вибір, що відкриває світ"}
+        size="lg"
+        className="font-normal text-left pl-5.75"
+      />
+      <p className="w-105 font-light text-[25px] leading-[30px] text-left pl-5.75">
+        Для тебе, для друзів, для родини — апартаменти та бутик-готелі у 60+
+        містах по всьому світу.
+      </p>
       <div className="grid grid-cols-3 grid-rows-2 gap-x-18.25 gap-y-13 p-5.75 ">
-        {cartCityItems.map((item, index) => (
+        {items.map((item, index) => (
           <div
             key={item.id}
-            className={`flex flex-col justify-end ${gridPositions[index]}`}
+            className={cn(
+              "flex flex-col justify-end }",
+              index < gridPositions.length ? `${gridPositions[index]}` : ""
+            )}
           >
             <CardCity
               className="relative"
               imageUrl={item.imageUrl}
               name={item.name}
+              link={item.link}
             />
           </div>
         ))}
       </div>
-      <div className="w-full flex items-center justify-center">
-        <Button className="rounded-[38px] mt-[83px] h-17 text-[20px] font-light text-white leading-[24px] pl-[38px] pr-[38px] pt-[22px] pb-[22px]">
-          Переглянути всі міста
-        </Button>
-      </div>
+      {!isCitiesPage && (
+        <div className="w-full flex items-center justify-center">
+          <Link href="/cities">
+            <Button className="rounded-[38px] mt-[83px] h-17 text-[20px] font-light text-white leading-[24px] pl-[38px] pr-[38px] pt-[22px] pb-[22px]">
+              Переглянути всі міста
+            </Button>
+          </Link>
+        </div>
+      )}
     </Container>
   );
 };

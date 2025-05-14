@@ -8,6 +8,7 @@ import {
 } from "@/components/shared";
 import { CarouselPagination } from "@/components/shared/carousel-pagination";
 import { blogItems } from "@/lib/blogItem";
+import { cartCityItems } from "@/lib/cartCityItem";
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
 
       <FilterHero className="bg-white mt-[-55px] z-50 relative rounded-[38px] p-5.5 border-1 border-amber-400" />
 
-      <CityBanner className="mb-[82px]" />
+      <CityBanner className="mb-[82px]" items={cartCityItems.slice(0, 5)}/>
 
       <Container>
         <section>

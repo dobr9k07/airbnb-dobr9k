@@ -6,15 +6,21 @@ import Link from "next/link";
 interface Props {
   className?: string;
   imageUrl: string;
+  link: string;
   name: string;
 }
 
-export const CardCity: React.FC<Props> = ({ imageUrl, name, className }) => {
+export const CardCity: React.FC<Props> = ({
+  imageUrl,
+  name,
+  link,
+  className,
+}) => {
   return (
     <>
       {/* Обгортка для зображення. Використовуємо flex-1 для заповнення доступного простору */}
       <div className={className}>
-        <Link href="#" className="cursor-pointer">
+        <Link href={link} className="cursor-pointer">
           <Image
             src={imageUrl}
             alt={name}

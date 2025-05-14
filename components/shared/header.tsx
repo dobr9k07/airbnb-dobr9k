@@ -56,7 +56,7 @@ export const Header: React.FC<Props> = ({ className }) => {
 
             <div className="flex items-center gap-1.5">
               {/* Права частина */}
-              {path === "" || path === "help" || path === "about" ? (
+              {path === "" || path === "help" || path === "about" || path === "cities" ? (
                 <UserNav />
               ) : (
                 <Button
