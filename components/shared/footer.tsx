@@ -46,16 +46,16 @@ export const Footer: React.FC<Props> = ({ className }) => {
       )}
     >
       {!isBlogSlug ? (
-        <Container className="flex items-start justify-between flex-col container mx-auto lg:px-10 py-5 mt-10  border-1 border-amber-400">
+        <Container className="flex items-start justify-between flex-col container mx-auto lg:px-10 py-5 mt-10">
           {/* Логотип */}
           <Image
             src={DesktopLogo}
             alt="DesktopLogo"
-            className="w-30 ml-[-35px] mb-9.75 border-1 text-amber-600 "
+            className="w-30 ml-[-35px] mb-9.75"
           />
 
           {/* Блок з посиланнями */}
-          <div className="w-full flex items-start justify-between border-1 text-amber-600">
+          <div className="w-full flex items-start justify-between">
             {/*Компанія */}
             <div className="flex flex-col">
               <Title

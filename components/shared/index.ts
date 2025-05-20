@@ -22,3 +22,4 @@ export { SubscribeInput } from "./subscribe-input";
 export { AboutITems } from "./aboutItems";
 export * from "./carousel";
 export * from "./blog";
+export * from "./room";

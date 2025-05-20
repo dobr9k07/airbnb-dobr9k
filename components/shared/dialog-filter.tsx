@@ -38,7 +38,7 @@ const comfortItems = [
 
 export const DialogFilter: React.FC<Props> = ({ className }) => {
   return (
-    <Dialog >
+    <Dialog>
       <DialogTrigger asChild>
         <Button variant={"outline"} className="cursor-pointer">
           <IoFilterCircle /> Фільтри

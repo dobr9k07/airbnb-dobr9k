@@ -27,7 +27,7 @@ export const Header: React.FC<Props> = ({ className }) => {
       )}
     >
       <Container className={className}>
-        <nav className="w-full ">
+        <nav className="w-full">
           <div className="flex items-center justify-between container mx-auto lg:px-50">
             {/* Ліва частина */}
             <div className="flex items-center gap-4">
@@ -35,13 +35,18 @@ export const Header: React.FC<Props> = ({ className }) => {
                 <Image
                   src={DesktopLogo}
                   alt="DesktopLogo"
-                  className="w-30 mr-2 hidden lg:block text-amber-600 border-1 border-amber-600"
+                  className="w-30 mr-2 hidden lg:block"
                 />
               </Link>
 
-              {path === "help" ? <p className="text-2xl font-light text-black">Довідковий центр</p> : ""}
-              
-              
+              {path === "help" ? (
+                <p className="text-2xl font-light text-black">
+                  Довідковий центр
+                </p>
+              ) : (
+                ""
+              )}
+
               {path === "" ? (
                 <>
                   <SearchInput placeholder="Виберіть місто" />
@@ -56,7 +61,11 @@ export const Header: React.FC<Props> = ({ className }) => {
 
             <div className="flex items-center gap-1.5">
               {/* Права частина */}
-              {path === "" || path === "help" || path === "about" || path === "cities" ? (
+              {path === "" ||
+              path === "help" ||
+              path === "about" ||
+              path === "cities" ||
+              path === "rooms/1" ? (
                 <UserNav />
               ) : (
                 <Button

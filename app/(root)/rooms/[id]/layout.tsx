@@ -6,7 +6,7 @@ export default function RoomsLayout({
 }>) {
   return (
     <>
-      <main className="min-h-screen">{children}</main>
+      {children}
     </>
   );
 }
