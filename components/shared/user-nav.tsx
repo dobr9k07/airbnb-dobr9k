@@ -18,13 +18,13 @@ export const UserNav: React.FC<Props> = ({ className }) => {
   return (
     <>
       {/*MenuDropDown*/}
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+      <DropdownMenu >
+        <DropdownMenuTrigger asChild >
           <div className="rounded-[21px] h-10.5 w-16.5 lg:py-2 flex items-center justify-center cursor-pointer hover:bg-primary-white hover:transition-all duration-300">
             <Image src={MenuDropDown} alt="UserLogo" />
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-[300px]">
+        <DropdownMenuContent align="end" className="w-[300px] z-200">
           <DropdownMenuGroup>
             <DropdownMenuItem className="cursor-pointer">
               Запропонувати помешкання на hata
@@ -46,7 +46,7 @@ export const UserNav: React.FC<Props> = ({ className }) => {
             <Image src={UserDropDown} alt="UserLogo" />
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-[300px]">
+        <DropdownMenuContent align="end" className="w-[300px] z-200">
           <DropdownMenuGroup>
             <DropdownMenuItem className="cursor-pointer">
               Увійти

@@ -20,6 +20,8 @@ export { CityBanner } from "./city-banner";
 export { CardCity } from "./card-city";
 export { SubscribeInput } from "./subscribe-input";
 export { AboutITems } from "./aboutItems";
+export { PaginationPrimary } from "./pagination-primary";
 export * from "./carousel";
 export * from "./blog";
 export * from "./room";
+export * from "./form";

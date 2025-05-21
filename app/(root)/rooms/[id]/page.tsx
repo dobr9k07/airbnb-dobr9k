@@ -88,12 +88,14 @@ export default async function Room({
       <Container className="mb-[48px]">
         <div className="w-full flex flex-col items-start mt-11">
           <Title text={room.owner} size="xl" className="font-medium " />
-          <div className="flex items-center gap-1.75 text-lg font-light">
-            <IoStar color="yellow" className="h-4.5 w-4.5" />
-            <p>{room.rating.rating}/5</p>
-            <p>{rating[Math.trunc(room.rating.rating)]}</p>
-            <p className="underline">({room.reviews} відгуків)</p>
-          </div>
+          {room.rating && (
+            <div className="flex items-center gap-1.75 text-lg font-light">
+              <IoStar color="yellow" className="h-4.5 w-4.5" />
+              <p>{room.rating.rating}/5</p>
+              <p>{rating[Math.trunc(room.rating.rating)]}</p>
+              <p className="underline">({room.reviews} відгуків)</p>
+            </div>
+          )}
           <div className="flex flex-col gap-5.25 w-[995px] text-lg">
             <p>{room.location}</p>
             <p>{room.description}</p>
@@ -101,8 +103,8 @@ export default async function Room({
         </div>
       </Container>
 
-      <Container>
-        <div className="w-full">
+      <Container className={cn(MAXWIDTH, "sticky top-0 z-300 bg-white")}>
+        <div className="w-full pl-[135px]">
           <ul className="flex items-start gap-8 pt-[27px] pb-[27px]">
             {nav.map((item, index) => (
               <li key={index} className="text-lg">
@@ -204,7 +206,7 @@ export default async function Room({
       {/* Блок Відгуки*/}
       <Container className="mt-[53px]">
         <Title text="Відгуки" size="lg" className="font-medium mb-5.5" />
-        <ReviewBlock rating={room.rating} reviews={room.reviewsList ?? []} />
+        <ReviewBlock rating={room?.rating} reviews={room?.reviewsList} />
       </Container>
 
       <Container className={cn(MAXWIDTH, "border-2 border-b")}></Container>

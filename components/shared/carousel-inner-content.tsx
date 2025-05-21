@@ -65,7 +65,7 @@ export const CarouselInnerContent: React.FC<Props> = ({
       ) : (
         <>
           <Link href={`/rooms/${id}`}>
-            <CarouselContent>
+            <CarouselContent >
               {imageUrls?.map((url, index) => (
                 <CarouselItem key={index}>
                   <div className="relative w-full aspect-square">
@@ -74,7 +74,7 @@ export const CarouselInnerContent: React.FC<Props> = ({
                       alt={`Image ${index}`}
                       fill
                       sizes="(max-width: 768px) 100vw, 400px"
-                      className="object-cover transition-transform duration-300 "
+                      className="object-cover transition-transform duration-300 rounded-[34px]"
                     />
                   </div>
                 </CarouselItem>

@@ -65,6 +65,7 @@ export const Header: React.FC<Props> = ({ className }) => {
               path === "help" ||
               path === "about" ||
               path === "cities" ||
+              path === "cities/london" ||
               path === "rooms/1" ? (
                 <UserNav />
               ) : (
