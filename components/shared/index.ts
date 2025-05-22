@@ -21,6 +21,7 @@ export { CardCity } from "./card-city";
 export { SubscribeInput } from "./subscribe-input";
 export { AboutITems } from "./aboutItems";
 export { PaginationPrimary } from "./pagination-primary";
+export { DropdownMenuPrimaryInnerContent } from "./dropdown-menu-inner-content";
 export * from "./carousel";
 export * from "./blog";
 export * from "./room";

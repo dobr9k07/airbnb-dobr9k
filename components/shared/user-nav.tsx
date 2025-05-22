@@ -1,71 +1,196 @@
 import React from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import Image from "next/image";
+
 import UserDropDown from "../../public/User_alt_light.png";
 import MenuDropDown from "../../public/Variant2.png";
+// import LanguageDropDown from "../../public/svg/IconTranslate.svg";
+import LanguageDropDown from "../../public/Language.png";
+
+import {
+  DropdownMenuPrimaryInnerContent,
+  DropdownMenuSecondaryInnerContent,
+} from "./dropdown-menu-inner-content";
 
 interface Props {
   className?: string;
 }
 
+export interface IContent {
+  id: number;
+  title: string;
+}
+
+export interface ILanguage {
+  id: number;
+  language: string;
+  country: string;
+  cuts: string;
+}
+
+const dropdownBurger: IContent[] = [
+  {
+    id: 1,
+    title: "Повідомлення",
+  },
+  {
+    id: 2,
+    title: "Сповіщення",
+  },
+  {
+    id: 3,
+    title: "Запропонувати помешкання на hata",
+  },
+  {
+    id: 4,
+    title: "Подорожі",
+  },
+  {
+    id: 5,
+    title: "Обране",
+  },
+];
+
+const dropdownUser: IContent[] = [
+  {
+    id: 6,
+    title: "Увійти",
+  },
+  {
+    id: 7,
+    title: "Зареєструватися",
+  },
+  {
+    id: 8,
+    title: "Про нас ",
+  },
+  {
+    id: 9,
+    title: "Підтримка",
+  },
+];
+
+const dropdownLanguage: ILanguage[] = [
+  {
+    id: 10,
+    language: "Українська",
+    country: "Україна",
+    cuts: "UA",
+  },
+  {
+    id: 11,
+    language: "русский",
+    country: "error",
+    cuts: "error",
+  },
+  {
+    id: 12,
+    language: "English",
+    country: "United States",
+    cuts: "US",
+  },
+  {
+    id: 13,
+    language: "English",
+    country: "United Kingdom",
+    cuts: "UK",
+  },
+  {
+    id: 14,
+    language: "Polski",
+    country: "Polska",
+    cuts: "PL",
+  },
+  {
+    id: 15,
+    language: "Français",
+    country: "France",
+    cuts: "FR",
+  },
+];
+
+const dropdownCurency: ILanguage[] = [
+  {
+    id: 16,
+    language: "Українська гривня",
+    country: "UAN - (₴)",
+    cuts: "UAN",
+  },
+  {
+    id: 17,
+    language: "Євро",
+    country: "EUR - (€)",
+    cuts: "EUR",
+  },
+  {
+    id: 18,
+    language: "Американський долар",
+    country: "USD - ($)",
+    cuts: "USD",
+  },
+  {
+    id: 19,
+    language: "Польський злотий",
+    country: "PLN - (zł)",
+    cuts: "PLN",
+  },
+  {
+    id: 20,
+    language: "Єгипетський фунт",
+    country: "EGP - (E£)",
+    cuts: "EGP",
+  },
+  {
+    id: 21,
+    language: "Мексиканський песо",
+    country: "MXN - ($)",
+    cuts: "MXN",
+  },
+];
+
 export const UserNav: React.FC<Props> = ({ className }) => {
   return (
     <>
+      {/*CurencyDropDown*/}
+      <DropdownMenuSecondaryInnerContent
+        title="Виберіть мову"
+        menuItems={dropdownCurency}
+        srcImage={LanguageDropDown}
+        isCurency={true}
+        className="rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base font-light w-[525px]"
+      />
+
+      {/*LanguageDropDown*/}
+      <DropdownMenuSecondaryInnerContent
+        title="Виберіть мову"
+        menuItems={dropdownLanguage}
+        srcImage={LanguageDropDown}
+        className="rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base font-light w-[525px]"
+      />
+
       {/*MenuDropDown*/}
-      <DropdownMenu >
-        <DropdownMenuTrigger asChild >
-          <div className="rounded-[21px] h-10.5 w-16.5 lg:py-2 flex items-center justify-center cursor-pointer hover:bg-primary-white hover:transition-all duration-300">
-            <Image src={MenuDropDown} alt="UserLogo" />
-          </div>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-[300px] z-200">
-          <DropdownMenuGroup>
-            <DropdownMenuItem className="cursor-pointer">
-              Запропонувати помешкання на hata
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Про нас
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Підтримка
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <DropdownMenuPrimaryInnerContent
+        menuItems={dropdownBurger}
+        srcImage={MenuDropDown}
+        className="rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base font-light w-[350px]"
+      />
 
       {/*UserDropDown*/}
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <div className="rounded-[21px] h-10.5 w-16.5 lg:px-4 lg:py-2 flex items-center justify-center cursor-pointer hover:bg-primary-white hover:transition-all duration-300">
-            <Image src={UserDropDown} alt="UserLogo" />
-          </div>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-[300px] z-200">
-          <DropdownMenuGroup>
-            <DropdownMenuItem className="cursor-pointer">
-              Увійти
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Повідомлення
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Сповіщення
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Подорожі
-            </DropdownMenuItem>
-            <DropdownMenuItem className="cursor-pointer">
-              Обране
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <DropdownMenuPrimaryInnerContent
+        menuItems={dropdownUser}
+        srcImage={UserDropDown}
+        className="rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base w-[245px]"
+      />
     </>
   );
 };
+
+//  <p className="text-[25px] font-light leading-[30px] text-left text-white mr-3.25">
+//                 (₴) UAN
+//               </p>
+//               <Image
+//                 src={IconTranslate}
+//                 alt="IconTranslate"
+//                 className="w-5.5 h-5.5 text-white"
+//               />
+//               <p className="text-[25px] font-light leading-[30px] text-left text-white mr-9.75">
+//                 UA
+//               </p>

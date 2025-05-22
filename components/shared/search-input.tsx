@@ -19,22 +19,27 @@ const citiesList = [
   {
     id: 1,
     name: "Лондон",
+    link: "/cities/london"
   },
   {
     id: 2,
     name: "Дубай",
+    link: "/cities/dubai"
   },
   {
     id: 3,
     name: "Монреаль",
+    link: "/cities/monreal"
   },
   {
     id: 4,
-    name: "Анджелес",
+    name: "Лос Анджелес",
+    link: "/cities/los-angeles"
   },
   {
     id: 5,
-    name: "Йорк",
+    name: "Нью Йорк",
+    link: "/cities/new-york"
   },
 ];
 
@@ -46,6 +51,8 @@ export const SearchInput: React.FC<Props> = ({
   const [focused, setFocused] = React.useState(false);
   const [cities, setСities] = React.useState(citiesList);
   const ref = React.useRef(null);
+
+  console.log("cities", cities);
 
   useClickAway(ref, () => {
     setFocused(false);
@@ -101,7 +108,7 @@ export const SearchInput: React.FC<Props> = ({
             )}
           >
             {cities.map((city) => (
-              <Link key={city.id} href={"#"} onClick={onClickItem}>
+              <Link key={city.id} href={city.link} onClick={onClickItem}>
                 <div className="ml-3 pl-3 p-0.75 rounded-[21px] w-[calc(100%-148px)] cursor-pointer text-[16px] font-light transition-all duration-100 hover:bg-primary hover:text-white">
                   {city.name}
                 </div>

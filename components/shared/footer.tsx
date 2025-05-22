@@ -7,7 +7,6 @@ import { Title } from "./title";
 import { companyItems, supportItems } from "@/lib/fotterItems";
 
 import DesktopLogo from "@/public/svg/LogoWhite.svg";
-import IconTranslate from "@/public/svg/IconTranslate.svg";
 import IconInstagram from "@/public/social/iconInstagram.svg";
 import IconFacebbok from "@/public/social/iconFacebook.svg";
 import IconTwitter from "@/public/social/iconTwitter.svg";
@@ -111,17 +110,7 @@ export const Footer: React.FC<Props> = ({ className }) => {
             </p>
 
             <div className="flex items-end gap-2.75">
-              <p className="text-[25px] font-light leading-[30px] text-left text-white mr-3.25">
-                (₴) UAN
-              </p>
-              <Image
-                src={IconTranslate}
-                alt="IconTranslate"
-                className="w-5.5 h-5.5 text-white"
-              />
-              <p className="text-[25px] font-light leading-[30px] text-left text-white mr-9.75">
-                UA
-              </p>
+
 
               <div className="flex items-center gap-0.5">
                 <Image src={IconInstagram} alt="Instagram" />
