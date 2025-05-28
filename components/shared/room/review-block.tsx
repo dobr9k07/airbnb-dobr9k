@@ -4,18 +4,8 @@ import { Dot } from "lucide-react";
 import { ProgressStat } from "./progress-stat";
 import { Separator } from "@/components/ui/separator";
 import { CardCategoryRating, TCategoty } from "./card-category-rating";
-import { ReviewCard } from "./review-card";
-
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { ReviewDialog } from "./review-dialog";
+import { ReviewFragment } from "../review-fragment";
 
 interface Props {
   rating?: IRating;
@@ -33,7 +23,7 @@ export const ReviewBlock: React.FC<Props> = ({ rating, reviews }) => {
   return (
     <>
       {rating && reviews && (
-        <div className="flex flex-col w-full gap-3.5 ">
+        <div className="flex flex-col w-full gap-3.5">
           <div className="flex items-center text-2xl">
             <p>{rating.rating}/5</p>
             <Dot />
@@ -70,43 +60,11 @@ export const ReviewBlock: React.FC<Props> = ({ rating, reviews }) => {
               </React.Fragment>
             ))}
           </div>
-          <div className="flex flex-wrap justify-between">
-            {reviews.slice(0, 4).map((review) => (
-              <ReviewCard key={review.id} item={review} className="w-[560px]" />
-            ))}
-          </div>
-          <div className="flex mb-5">
-            {/* Почему??? */}
-            {/* <ReviewDialog totalCount={rating.reviews} reviews={reviews} /> */}
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button
-                  className="text-base font-light w-[280px] rounded-[41.5px] h-[33px] border-[0.25px]"
-                  variant={"outline"}
-                >
-                  {`Показати всі ${rating.reviews} відгуків`}
-                </Button>
-              </DialogTrigger>
 
-              <DialogContent className="min-w-xl max-h-[90vh] ">
-                <DialogHeader>
-                  <DialogTitle className="flex flex-col items-center justify-center">
-                    Відгуки
-                    <Separator className="my-4" />
-                  </DialogTitle>
-                </DialogHeader>
-                <ScrollArea className="h-[65vh] min-w-[550px] ">
-                  {reviews.map((review) => (
-                    <ReviewCard
-                      key={review.id}
-                      item={review}
-                      className="w-[560px]"
-                      isDialog={true}
-                    />
-                  ))}
-                </ScrollArea>
-              </DialogContent>
-            </Dialog>
+          <ReviewFragment reviews={reviews} />
+
+          <div className="flex mb-5">
+            <ReviewDialog totalCount={rating.reviews} reviews={reviews} />
           </div>
         </div>
       )}
