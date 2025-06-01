@@ -3,14 +3,20 @@ package com.itstep.hatarent.model;
 import com.itstep.hatarent.util.SqlSetJavaType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import java.util.Set;
 
 @Entity
-@Getter
 @Table(name = "profiles")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Profile {
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
   @NotNull

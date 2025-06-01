@@ -6,14 +6,18 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import lombok.Getter;
+import lombok.*;
 import org.hibernate.annotations.Type;
 
 @Entity
-@Getter
 @Table(name = "rentals")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Rental {
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
 
@@ -35,5 +39,8 @@ public class Rental {
     joinColumns = @JoinColumn(name = "rental_id"),
     inverseJoinColumns = @JoinColumn(name = "user_id")
   )
-  private Set<Rental> users;
+  private List<User> users;
+
+  @OneToMany
+  private List<Booking> bookings;
 }

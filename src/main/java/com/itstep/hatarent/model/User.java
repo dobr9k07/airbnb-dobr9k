@@ -3,14 +3,21 @@ package com.itstep.hatarent.model;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import jakarta.persistence.*;
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Getter
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(
-                           name = "users_email", columnNames = {"email"}))
+  name = "users_email", columnNames = {"email"}))
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class User {
   @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
 
@@ -21,10 +28,12 @@ public class User {
   @NotNull private LocalDateTime created_at;
   @NotNull private boolean is_admin;
 
+
   @ManyToMany
   @JoinTable(
     name = "usersRental",
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "rental_id"))
-  private Set<Rental> rentals;
+  private List<Rental> rentals;
+
 }

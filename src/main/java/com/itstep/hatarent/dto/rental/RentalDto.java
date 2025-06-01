@@ -1,4 +1,4 @@
-package com.itstep.hatarent.dto;
+package com.itstep.hatarent.dto.rental;
 
 import com.itstep.hatarent.model.Rental;
 import java.math.BigDecimal;

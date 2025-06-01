@@ -1,9 +1,8 @@
 package com.itstep.hatarent.controller;
 
-import com.itstep.hatarent.dto.ProfileDto;
-import com.itstep.hatarent.dto.RentalDto;
+import com.itstep.hatarent.dto.profile.ProfileDto;
 import com.itstep.hatarent.service.ProfileService;
-import com.itstep.hatarent.service.RentalService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +12,8 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/profile")
+@Tag(name = "Profile", description = "Запросы связанные с профилями пользователей")
+@RequestMapping("/api/profile")
 public class ProfileController {
   private ProfileService profileService;
 

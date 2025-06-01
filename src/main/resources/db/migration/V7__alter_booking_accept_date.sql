@@ -1,0 +1,1 @@
+ALTER TABLE hatarent.booking MODIFY COLUMN accepted_at timestamp NULL;
