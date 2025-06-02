@@ -17,7 +17,7 @@ export default function Home() {
 
       <FilterHero className="bg-white mt-[-55px] z-50 relative rounded-[38px] p-5.5 border-1 border-amber-400" />
 
-      <CityBanner className="mb-[82px]" items={cartCityItems.slice(0, 5)}/>
+      <CityBanner className="mb-[82px]" items={cartCityItems.slice(0, 5)} />
 
       <Container>
         <section>
@@ -39,7 +39,7 @@ export default function Home() {
             Від новин до натхнення для подорожей — дізнавайтесь більше про світ
             з hata
           </p>
-          <HeroBlog className="w-full" items={blogItems}/>
+          <HeroBlog className="w-full" items={blogItems} />
         </section>
       </Container>
     </>

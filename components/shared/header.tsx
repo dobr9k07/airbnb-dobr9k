@@ -28,7 +28,7 @@ export const Header: React.FC<Props> = ({ className }) => {
     >
       <Container className={className}>
         <nav className="w-full">
-          <div className="flex items-center justify-between container mx-auto lg:px-50">
+          <div className="flex items-center justify-between container mx-auto">
             {/* Ліва частина */}
             <div className="flex items-center gap-4">
               <Link href="/">
