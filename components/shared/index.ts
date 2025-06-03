@@ -27,3 +27,4 @@ export * from "./carousel";
 export * from "./blog";
 export * from "./room";
 export * from "./form";
+export * from "./map";

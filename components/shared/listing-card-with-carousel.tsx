@@ -25,7 +25,7 @@ export const ListingCardWithCarousel: React.FC<Props> = ({
   className,
 }) => {
   return (
-    <div className="group w-72 max-w-sm cursor-pointer">
+    <div className="group w-69.5 cursor-pointer">
       <div className="relative aspect-square overflow-hidden rounded-xl">
         <CategoryCarousel
           id={id}

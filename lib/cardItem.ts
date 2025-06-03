@@ -12,6 +12,8 @@ export interface ICardItem {
   rooms: IRoom[];
   rating?: IRating;
   reviewsList?: IReview[];
+  latitude: number;
+  longitude: number;
 }
 
 type RoomType = "single" | "double" | "suite" | "king";
@@ -139,7 +141,8 @@ export const cardItem: ICardItem[] = [
         guests: 2,
         price: 5700,
         square: 158,
-        imageUrl: "https://a0.muscache.com/im/pictures/miso/Hosting-5264493/original/def4a486-26a6-4555-8c05-4736a4ca262b.jpeg?im_w=720",
+        imageUrl:
+          "https://a0.muscache.com/im/pictures/miso/Hosting-5264493/original/def4a486-26a6-4555-8c05-4736a4ca262b.jpeg?im_w=720",
         comfort: [
           "Двоспльне ліжко",
           "Кондиціонер",
@@ -149,6 +152,8 @@ export const cardItem: ICardItem[] = [
         ],
       },
     ],
+    latitude: 51.507,
+    longitude: -0.1246,
   },
   {
     id: 1,
@@ -303,6 +308,8 @@ export const cardItem: ICardItem[] = [
         dateRegistration: "3 роки на hata",
       },
     ],
+    latitude: 51.5033,
+    longitude: -0.1196,
   },
   {
     id: 2,
@@ -396,6 +403,8 @@ export const cardItem: ICardItem[] = [
         dateRegistration: "4 роки на hata",
       },
     ],
+    latitude: 51.5055,
+    longitude: -0.0754,
   },
   {
     id: 3,
@@ -489,5 +498,7 @@ export const cardItem: ICardItem[] = [
         dateRegistration: "2 роки на hata",
       },
     ],
+    latitude: 51.5014,
+    longitude: -0.1419,
   },
 ];
