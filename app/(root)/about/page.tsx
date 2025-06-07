@@ -1,4 +1,10 @@
-import { AboutITems, Container, HeroBanner, Title } from "@/components/shared";
+import {
+  AboutITems,
+  AboutLayout,
+  Container,
+  HeroBanner,
+  Title,
+} from "@/components/shared";
 import { Button } from "@/components/ui/button";
 import { aboutItems } from "@/lib/aboutItem";
 import { MAXWIDTH } from "@/lib/const-css";
@@ -7,7 +13,7 @@ import Image from "next/image";
 
 export default function AboutPage() {
   return (
-    <>
+    <AboutLayout>
       <HeroBanner isAboutPage={true} />
       <AboutITems items={aboutItems.slice(0, 2)} />
       <Container className={`${MAXWIDTH} mx-auto mt-30.25 mb-6`}>
@@ -24,6 +30,6 @@ export default function AboutPage() {
           Переглянути вакансії
         </Button>
       </Container>
-    </>
+    </AboutLayout>
   );
 }

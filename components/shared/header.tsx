@@ -13,10 +13,11 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 interface Props {
+  is404?: boolean;
   className?: string;
 }
 
-export const Header: React.FC<Props> = ({ className }) => {
+export const Header: React.FC<Props> = ({ is404 = false, className }) => {
   const path = usePathname().slice(1);
 
   return (
@@ -47,7 +48,7 @@ export const Header: React.FC<Props> = ({ className }) => {
                 ""
               )}
 
-              {path === "" ? (
+              {path === "" || is404 ? (
                 <>
                   <SearchInput placeholder="Виберіть місто" />
                   <Button className="text-[16px] font-light rounded-[41.5px] h-[33px] ml-22px">
@@ -66,7 +67,8 @@ export const Header: React.FC<Props> = ({ className }) => {
               path === "about" ||
               path === "cities" ||
               path === "cities/london" ||
-              path === "rooms/1" ? (
+              path === "rooms/1" ||
+              is404 ? (
                 <UserNav />
               ) : (
                 <Button

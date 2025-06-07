@@ -16,12 +16,13 @@ import { SubscribeInput } from "./subscribe-input";
 import Link from "next/link";
 
 interface Props {
+  is404?: boolean;
   className?: string;
 }
 
 const FOTTER_BLOG_LINKS = ["Про нас", "Інстаграм", "Фейсбук", "Твіттер"];
 
-export const Footer: React.FC<Props> = ({ className }) => {
+export const Footer: React.FC<Props> = ({ is404 = false, className }) => {
   const pathname = usePathname();
   const segments = pathname.split("/").filter((segment) => segment !== "");
   let lastSegment = segments[segments.length - 1];
@@ -44,7 +45,7 @@ export const Footer: React.FC<Props> = ({ className }) => {
         className
       )}
     >
-      {!isBlogSlug ? (
+      {!isBlogSlug && !is404 ? (
         <Container className="flex items-start justify-between flex-col container mx-auto lg:px-10 py-5 mt-10">
           {/* Логотип */}
           <Image
@@ -110,8 +111,6 @@ export const Footer: React.FC<Props> = ({ className }) => {
             </p>
 
             <div className="flex items-end gap-2.75">
-
-
               <div className="flex items-center gap-0.5">
                 <Image src={IconInstagram} alt="Instagram" />
                 <Image src={IconFacebbok} alt="Facebbok" />

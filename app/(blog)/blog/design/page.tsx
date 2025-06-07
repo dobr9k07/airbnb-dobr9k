@@ -1,4 +1,4 @@
-import { Container, HeroBlog } from "@/components/shared";
+import { BlogSlugLayout, Container, HeroBlog, NavBlog } from "@/components/shared";
 import { BLOG_CATEGORIES } from "@/components/shared/blog/blog-link";
 import { blogItems } from "@/lib/blogItem";
 import { MAXWIDTH } from "@/lib/const-css";
@@ -9,7 +9,12 @@ export default function DesignPage() {
   const itemsList = blogItems.filter((item) => item.tag === tag?.name);
 
   return (
-    <>
+    <BlogSlugLayout>
+      <div className={`${MAXWIDTH} bg-primary mx-auto`}>
+        <Container>
+          <NavBlog />
+        </Container>
+      </div>
       <Container
         className={`${MAXWIDTH} h-[200px] max-h-[300px] mx-auto bg-primary`}
       ></Container>
@@ -23,6 +28,6 @@ export default function DesignPage() {
           />
         </section>
       </Container>
-    </>
+    </BlogSlugLayout>
   );
 }

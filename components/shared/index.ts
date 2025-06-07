@@ -28,3 +28,6 @@ export * from "./blog";
 export * from "./room";
 export * from "./form";
 export * from "./map";
+export * from "./headers";
+export * from "./footers";
+export * from "./layouts";

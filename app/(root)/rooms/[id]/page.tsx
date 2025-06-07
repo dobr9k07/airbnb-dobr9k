@@ -4,6 +4,7 @@ import {
   ConvenienceBlock,
   DescriptionBlockText,
   DescriptionImageBlock,
+  MainLayout,
   NavRoom,
   ReservationPolicy,
   ReviewBlock,
@@ -26,7 +27,7 @@ export default async function Room({
   }
 
   return (
-    <>
+    <MainLayout>
       {/* Блок опису*/}
       <Container className="max-w-[1390px]">
         <DescriptionImageBlock imageUrl={room.imageUrl} />
@@ -78,6 +79,6 @@ export default async function Room({
       <Container className="mt-[53px]">
         <ReservationPolicy />
       </Container>
-    </>
+    </MainLayout>
   );
 }

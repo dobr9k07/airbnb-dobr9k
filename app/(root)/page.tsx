@@ -4,6 +4,7 @@ import {
   FilterHero,
   HeroBanner,
   HeroBlog,
+  MainLayout,
   Title,
 } from "@/components/shared";
 import { CarouselPagination } from "@/components/shared/carousel-pagination";
@@ -12,7 +13,7 @@ import { cartCityItems } from "@/lib/cartCityItem";
 
 export default function Home() {
   return (
-    <>
+    <MainLayout isSticky={true}>
       <HeroBanner />
 
       <FilterHero className="bg-white mt-[-55px] z-50 relative rounded-[38px] p-5.5 border-1 border-amber-400" />
@@ -42,6 +43,6 @@ export default function Home() {
           <HeroBlog className="w-full" items={blogItems} />
         </section>
       </Container>
-    </>
+    </MainLayout>
   );
 }

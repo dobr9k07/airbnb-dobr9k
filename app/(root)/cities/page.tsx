@@ -1,6 +1,10 @@
-import { CityBanner } from "@/components/shared";
+import { CityBanner, MainLayout } from "@/components/shared";
 import { cartCityItems } from "@/lib/cartCityItem";
 
 export default function CitiesPage() {
-  return <CityBanner className="mt-11" items={cartCityItems} isCitiesPage={true}/>;
+  return (
+    <MainLayout>
+      <CityBanner className="mt-11" items={cartCityItems} isCitiesPage={true} />
+    </MainLayout>
+  );
 }
