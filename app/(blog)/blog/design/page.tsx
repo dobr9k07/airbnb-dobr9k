@@ -6,11 +6,7 @@ import { MAXWIDTH } from "@/lib/const-css";
 export default function DesignPage() {
   const tag = BLOG_CATEGORIES.find((item) => item.id === "design");
 
-  console.log("tag", tag);
-
   const itemsList = blogItems.filter((item) => item.tag === tag?.name);
-
-  console.log("itemsList", itemsList);
 
   return (
     <>

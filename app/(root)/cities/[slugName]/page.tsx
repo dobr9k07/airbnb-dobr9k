@@ -23,7 +23,7 @@ export default function Page() {
             />
           ))}
         </div>
-        <div className="w-3/12 h-[80vh]">
+        <div className="w-3/12 h-[60vh]">
           <Map />
         </div>
       </div>

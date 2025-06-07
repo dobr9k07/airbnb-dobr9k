@@ -47,7 +47,7 @@ const DropdownMenuPrimaryInnerContent: React.FC<PropsPrimary> = ({
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className={cn("w-[300px] z-200", className)}
+        className={cn("w-[300px] z-1000", className)}
       >
         <DropdownMenuGroup>
           {menuItems.map((item) => (
@@ -86,7 +86,7 @@ const DropdownMenuSecondaryInnerContent: React.FC<PropsSecondary> = ({
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className={cn("w-[300px] z-200", className)}
+        className={cn("w-[300px] z-1000", className)}
       >
         <DropdownMenuLabel className="pl-[30px]">{title}</DropdownMenuLabel>
         <DropdownMenuGroup className="grid grid-cols-2 ">

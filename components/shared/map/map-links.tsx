@@ -51,7 +51,7 @@ export const MapLinks: React.FC<Props> = ({ items, className }) => {
             <div className="text-center">
               <h3 className="font-semibold mb-2">{item.label}</h3>
               <Link href={`/rooms/${item.id}`}>
-                <Button size={'sm'}>Детальніше</Button>
+                <Button size={"sm"}>Детальніше</Button>
               </Link>
             </div>
           </Popup>

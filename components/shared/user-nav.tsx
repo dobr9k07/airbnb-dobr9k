@@ -151,7 +151,7 @@ export const UserNav: React.FC<Props> = ({ className }) => {
     <>
       {/*CurencyDropDown*/}
       <DropdownMenuSecondaryInnerContent
-        title="Виберіть мову"
+        title="Виберіть валюту"
         menuItems={dropdownCurency}
         srcImage={LanguageDropDown}
         isCurency={true}

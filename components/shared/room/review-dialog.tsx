@@ -30,7 +30,7 @@ export const ReviewDialog: React.FC<Props> = ({ totalCount, reviews }) => {
           </Button>
         </DialogTrigger>
 
-        <DialogContent className="min-w-xl max-h-[90vh] z-500">
+        <DialogContent className="min-w-xl max-h-[90vh] z-300 mt-7">
           <DialogHeader>
             <DialogTitle className="flex flex-col items-center justify-center">
               Відгуки

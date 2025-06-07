@@ -18,7 +18,7 @@ export interface ICardItem {
 
 type RoomType = "single" | "double" | "suite" | "king";
 
-interface IRoom {
+export interface IRoom {
   id: number;
   type: RoomType;
   bedrooms: number;

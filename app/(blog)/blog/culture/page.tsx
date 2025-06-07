@@ -6,11 +6,10 @@ import { MAXWIDTH } from "@/lib/const-css";
 export default function CulturePage() {
   const tag = BLOG_CATEGORIES.find((item) => item.id === "culture");
 
-  console.log("tag", tag);
+ 
 
   const itemsList = blogItems.filter((item) => item.tag === tag?.name);
 
-  console.log("itemsList", itemsList);
   return (
     <>
       <Container

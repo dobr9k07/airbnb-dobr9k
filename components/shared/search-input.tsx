@@ -52,7 +52,6 @@ export const SearchInput: React.FC<Props> = ({
   const [cities, setСities] = React.useState(citiesList);
   const ref = React.useRef(null);
 
-  console.log("cities", cities);
 
   useClickAway(ref, () => {
     setFocused(false);

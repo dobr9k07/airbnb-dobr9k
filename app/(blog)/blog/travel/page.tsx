@@ -6,11 +6,7 @@ import { MAXWIDTH } from "@/lib/const-css";
 export default function TravelPage() {
   const tag = BLOG_CATEGORIES.find((item) => item.id === "travel");
 
-  console.log("tag", tag);
-
   const itemsList = blogItems.filter((item) => item.tag === tag?.name);
-
-  console.log("itemsList", itemsList);
 
   return (
     <>
@@ -19,7 +15,12 @@ export default function TravelPage() {
       ></Container>
       <Container className="mt-[-150px]">
         <section>
-          <HeroBlog className="w-full" items={itemsList} isActiveButton={false} isBlogPage={true} />
+          <HeroBlog
+            className="w-full"
+            items={itemsList}
+            isActiveButton={false}
+            isBlogPage={true}
+          />
         </section>
       </Container>
     </>

@@ -9,6 +9,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 interface Props {
   className?: string;
   item: IReview;
@@ -60,19 +61,12 @@ export const ReviewCard: React.FC<Props> = ({
                 </div>
               </div>
             </div>
-
-            <p className="text-sm">
-              {expanded ? item.text : `${item.text.slice(0, 150)}...`}
-            </p>
+            <p className="text-sm text-hidden">{item.text}</p>
           </div>
           <PopoverTrigger asChild>
-            {item.text.length > 150 && (
-              <Button
-                variant="link"
-                className=" text-black text-lg"
-                // onClick={() => setExpanded(!expanded)}
-              >
-                {expanded ? "Показати менше" : "Показати більше"}
+            {item.text.length > 270 && (
+              <Button variant="link" className=" text-black text-lg">
+                Показати більше
               </Button>
             )}
           </PopoverTrigger>
@@ -117,8 +111,8 @@ export const ReviewCard: React.FC<Props> = ({
             </div>
           </div>
 
-          <p className="text-sm">
-            {expanded ? item.text : `${item.text.slice(0, 150)}...`}
+          <p className={cn("text-sm", expanded ? "" : "text-hidden")}>
+            {item.text}
           </p>
           {item.text.length > 150 && (
             <Button
