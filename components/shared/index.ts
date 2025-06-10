@@ -23,6 +23,8 @@ export { AboutITems } from "./aboutItems";
 export { PaginationPrimary } from "./pagination-primary";
 export { DropdownMenuPrimaryInnerContent } from "./dropdown-menu-inner-content";
 export { ReviewFragment } from "./review-fragment";
+export { NotFoundLeftSide } from "./not-found-left-side";
+export { NotFoundRightSide } from "./not-found-right-side";
 export * from "./carousel";
 export * from "./blog";
 export * from "./room";

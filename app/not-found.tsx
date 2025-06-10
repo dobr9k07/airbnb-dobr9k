@@ -1,11 +1,27 @@
-import { Footer, Header } from "@/components/shared";
+import {
+  Container,
+  NotFoundLayout,
+  NotFoundLeftSide,
+  NotFoundRightSide,
+} from "@/components/shared";
+
+import { MAXWIDTH } from "@/lib/const-css";
+import { cn } from "@/lib/utils";
 
 export default function NotFound() {
   return (
-    <>
-      <Header is404={true} className="mx-auto" />
-      <h1 className="text-3xl font-bold underline mx-auto">404</h1>
-      <Footer className="mx-auto" is404={true} />
-    </>
+    <NotFoundLayout>
+      <Container
+        className={cn(
+          "h-screen flex items-center justify-center bg-[url(/svg/IconPaterPrimary.svg)] bg-center",
+          MAXWIDTH
+        )}
+      >
+        <Container className="flex items-center justify-between ">
+          <NotFoundLeftSide />
+          <NotFoundRightSide />
+        </Container>
+      </Container>
+    </NotFoundLayout>
   );
 }
