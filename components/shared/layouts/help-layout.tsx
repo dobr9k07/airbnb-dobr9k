@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
-import { MainHeader } from "../headers";
-import { MainFooter } from "../footers";
+
+import { HelpFooter } from "../footers";
+import { HelpHeader } from "../headers/help-header";
 
 interface Props {
   children: ReactNode;
@@ -9,9 +10,9 @@ interface Props {
 export const HelpLayout: React.FC<Props> = ({ children }) => {
   return (
     <>
-      <MainHeader />
+      <HelpHeader />
       <main>{children}</main>
-      <MainFooter />
+      <HelpFooter />
     </>
   );
 };

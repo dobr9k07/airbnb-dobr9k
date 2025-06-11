@@ -3,7 +3,7 @@ import { Container } from "../container";
 import Link from "next/link";
 import Image from "next/image";
 
-import DesktopLogo from "../../../public/Logo.png";
+import DesktopLogo from "../../../public/Logo3.png";
 import { Button } from "@/components/ui/button";
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 
 export const BlogHeader: React.FC<Props> = ({ className }) => {
   return (
-    <header className="h-[100p] bg-white">
+    <header className="h-[110p] mb-5 bg-white">
       <Container className={className}>
         <nav className="w-full">
           <div className="flex items-center justify-between container mx-auto">
@@ -21,7 +21,7 @@ export const BlogHeader: React.FC<Props> = ({ className }) => {
               <Image
                 src={DesktopLogo}
                 alt="DesktopLogo"
-                className="w-30 mr-2 hidden lg:block"
+                className="w-25 hidden lg:block"
               />
             </Link>
 

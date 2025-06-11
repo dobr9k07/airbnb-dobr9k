@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
-import { MainHeader } from "../headers";
-import { MainFooter } from "../footers";
+import { AboutHeader } from "../headers";
+import { AboutFooter } from "../footers";
 
 interface Props {
   children: ReactNode;
@@ -9,9 +9,9 @@ interface Props {
 export const AboutLayout: React.FC<Props> = ({ children }) => {
   return (
     <>
-      <MainHeader />
+      <AboutHeader />
       <main>{children}</main>
-      <MainFooter />
+      <AboutFooter />
     </>
   );
 };

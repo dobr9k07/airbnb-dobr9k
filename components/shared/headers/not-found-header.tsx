@@ -7,7 +7,7 @@ import { SearchInput } from "../search-input";
 import { Button } from "@/components/ui/button";
 import { UserNav } from "../user-nav";
 
-import DesktopLogo from "../../../public/Logo.png";
+import DesktopLogo from "../../../public/Logo3.png";
 
 interface Props {
   isSticky?: boolean;
@@ -20,7 +20,7 @@ export const NotFoundHeader: React.FC<Props> = ({
 }) => {
   return (
     <header
-      className={cn("h-[100px]", isSticky ? "sticky top-0 z-100 bg-white" : "")}
+      className={cn("h-[110px]", isSticky ? "sticky top-0 z-100 bg-white" : "")}
     >
       <Container className={className}>
         <nav className="w-full">
@@ -31,7 +31,7 @@ export const NotFoundHeader: React.FC<Props> = ({
                 <Image
                   src={DesktopLogo}
                   alt="DesktopLogo"
-                  className="w-30 mr-2 hidden lg:block"
+                  className="w-25 hidden lg:block"
                 />
               </Link>
 

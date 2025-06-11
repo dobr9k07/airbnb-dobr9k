@@ -19,27 +19,27 @@ const citiesList = [
   {
     id: 1,
     name: "Лондон",
-    link: "/cities/london"
+    link: "/cities/london",
   },
   {
     id: 2,
     name: "Дубай",
-    link: "/cities/dubai"
+    link: "/cities/dubai",
   },
   {
     id: 3,
     name: "Монреаль",
-    link: "/cities/monreal"
+    link: "/cities/monreal",
   },
   {
     id: 4,
     name: "Лос Анджелес",
-    link: "/cities/los-angeles"
+    link: "/cities/los-angeles",
   },
   {
     id: 5,
     name: "Нью Йорк",
-    link: "/cities/new-york"
+    link: "/cities/new-york",
   },
 ];
 
@@ -51,7 +51,6 @@ export const SearchInput: React.FC<Props> = ({
   const [focused, setFocused] = React.useState(false);
   const [cities, setСities] = React.useState(citiesList);
   const ref = React.useRef(null);
-
 
   useClickAway(ref, () => {
     setFocused(false);
@@ -94,7 +93,7 @@ export const SearchInput: React.FC<Props> = ({
           placeholder={placeholder}
           className={cn(
             "w-full font-light pl-[67px]",
-            isBlog ? "text-white text-[20px]" : "text-black text-[16px]",
+            isBlog ? "text-white text-[20px]" : "text-black text-[16px]"
           )}
           onFocus={() => setFocused(true)}
         />
@@ -109,6 +108,73 @@ export const SearchInput: React.FC<Props> = ({
             {cities.map((city) => (
               <Link key={city.id} href={city.link} onClick={onClickItem}>
                 <div className="ml-3 pl-3 p-0.75 rounded-[21px] w-[calc(100%-148px)] cursor-pointer text-[16px] font-light transition-all duration-100 hover:bg-primary hover:text-white">
+                  {city.name}
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
+    </>
+  );
+};
+
+export const SearchInputHelp: React.FC<Props> = ({
+  placeholder,
+  className,
+}) => {
+  const [focused, setFocused] = React.useState(false);
+  const [cities, setСities] = React.useState(citiesList);
+  const ref = React.useRef(null);
+
+  useClickAway(ref, () => {
+    setFocused(false);
+  });
+
+  const onClickItem = () => {
+    setFocused(false);
+    setСities([]);
+  };
+
+  return (
+    <>
+      {focused && <div className="fixed inset-0 z-30" />}
+      <div
+        ref={ref}
+        className={cn(
+          "relative z-30 flex items-center w-[460px] h-[51px] rounded-full bg-[#E0E0E0] px-5",
+          "hover:cursor-pointer focus-within:ring-2 focus-within:ring-blue-500",
+          className
+        )}
+      >
+        <input
+          type="text"
+          placeholder={placeholder}
+          onFocus={() => setFocused(true)}
+          className="w-full bg-transparent outline-none text-xl font-normal placeholder-black placeholder:pl-8"
+        />
+
+        <Image
+          src={searchBlack}
+          alt="search"
+          width={36}
+          height={36}
+          className="ml-2"
+          onClick={() => setFocused(true)}
+        />
+
+        {cities.length > 0 && (
+          <div
+            className={cn(
+              "absolute left-0 w-full bg-white rounded-[20px] py-2 shadow-md transition-all duration-200 z-30",
+              focused
+                ? "visible opacity-100 top-14"
+                : "invisible opacity-0 top-12"
+            )}
+          >
+            {cities.map((city) => (
+              <Link key={city.id} href={city.link} onClick={onClickItem}>
+                <div className="ml-3 pl-3 py-2 rounded-[21px] w-[calc(100%-148px)] cursor-pointer text-sm font-light transition-all duration-100 hover:bg-primary hover:text-white">
                   {city.name}
                 </div>
               </Link>

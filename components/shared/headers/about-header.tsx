@@ -1,29 +1,24 @@
 import React from "react";
+
+import DesktopLogo from "../../../public/Logo3.png";
+import { cn } from "@/lib/utils";
 import { Container } from "../container";
 import Link from "next/link";
 import Image from "next/image";
-
-import DesktopLogo from "../../../public/Logo3.png";
-import { SearchInput } from "../search-input";
-import { Button } from "@/components/ui/button";
 import { UserNav } from "../user-nav";
-import { cn } from "@/lib/utils";
 
 interface Props {
   isSticky?: boolean;
   className?: string;
 }
 
-export const MainHeader: React.FC<Props> = ({
-  isSticky = false,
-  className,
-}) => {
+export const AboutHeader: React.FC<Props> = ({ isSticky, className }) => {
   return (
     <header
-      className={cn("h-[110px] mb-5", isSticky ? "sticky top-0 z-100 bg-white" : "")}
+      className={cn("h-[110px]", isSticky ? "sticky top-0 z-100 bg-white" : "")}
     >
       <Container className={className}>
-        <nav className="w-full ">
+        <nav className="w-full">
           <div className="flex items-center justify-between container mx-auto">
             {/* Ліва частина */}
             <div className="flex items-center gap-4">
@@ -35,10 +30,7 @@ export const MainHeader: React.FC<Props> = ({
                 />
               </Link>
 
-              <SearchInput placeholder="Виберіть місто" />
-              <Button className="text-[16px] font-light rounded-[41.5px] h-[33px] ml-22px">
-                Пошук
-              </Button>
+              <p className="text-2xl font-light">Довідковий центр</p>
             </div>
 
             <div className="flex items-center gap-1.5">

@@ -1,9 +1,5 @@
-import {
-  AboutLayout,
-  Container,
-  SearchInput,
-  Title,
-} from "@/components/shared";
+import { Container, HelpLayout, Title } from "@/components/shared";
+import { SearchInputHelp } from "@/components/shared/search-input";
 import { Button } from "@/components/ui/button";
 import { questionAnswerItems } from "@/lib/questionAnswerItems";
 
@@ -15,11 +11,14 @@ const kontaktList = [
 
 export default function HelpPage() {
   return (
-    <AboutLayout>
+    <HelpLayout>
       <Container>
         <div className="w-full flex flex-col items-center justify-center gap-5 ">
           <Title text="Потрібна допомога?" size="2xl" />
-          <SearchInput placeholder="Пошук потрібних статтей" />
+          <SearchInputHelp
+            placeholder="Пошук потрібних статтей"
+            className="mb-10.5"
+          />
 
           {/*questions*/}
           <section className="flex flex-col w-full gap-7.25">
@@ -54,6 +53,6 @@ export default function HelpPage() {
           </Button>
         </div>
       </Container>
-    </AboutLayout>
+    </HelpLayout>
   );
 }

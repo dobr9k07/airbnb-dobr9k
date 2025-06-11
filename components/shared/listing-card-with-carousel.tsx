@@ -12,6 +12,7 @@ interface Props {
   price: number;
   rating?: number;
   reviwes?: number;
+  isFavorite?: boolean;
   className?: string;
 }
 
@@ -22,6 +23,7 @@ export const ListingCardWithCarousel: React.FC<Props> = ({
   price,
   rating,
   reviwes,
+  isFavorite = false,
   className,
 }) => {
   return (
@@ -34,7 +36,7 @@ export const ListingCardWithCarousel: React.FC<Props> = ({
           imageUrls={imageUrls}
         />
         <div className="z-10 absolute top-3.75 right-6">
-          <LikeButton />
+          <LikeButton isFavorite={isFavorite} />
         </div>
       </div>
 

@@ -4,3 +4,4 @@ export { BlogSlugLayout } from "./blog-slug-layout";
 export { AboutLayout } from "./about-layout";
 export { HelpLayout } from "./help-layout";
 export { NotFoundLayout } from "./not-found-layout";
+export { AccountLayout } from "./account-layout";
