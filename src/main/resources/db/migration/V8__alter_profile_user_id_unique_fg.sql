@@ -1,0 +1,1 @@
+ALTER TABLE hatarent.profiles ADD CONSTRAINT user_id UNIQUE KEY (user_id);

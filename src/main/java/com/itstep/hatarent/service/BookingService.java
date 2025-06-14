@@ -24,25 +24,25 @@ public class BookingService {
   private RentalRepository rentalRepository;
 
 
-  public List<BookingDto> getAllBookings(){
-    return bookingRepository.findAll().stream().map(BookingDto::new).toList();
-  }
-
-  public Optional<List<BookingDto>> getBookingsByRentalId(Long id) {
-    return Optional.of(bookingRepository.findByRental_Id(id).stream().map(BookingDto::new).toList());
-  }
+//  public List<BookingDto> getAllBookings(){
+//    return bookingRepository.findAll().stream().map(BookingDto::new).toList();
+//  }
+//
+//  public Optional<List<BookingDto>> getBookingsByRentalId(Long id) {
+//    return Optional.of(bookingRepository.findByRental_Id(id).stream().map(BookingDto::new).toList());
+//  }
 
   public Optional<BookingDto> getBookingById(Long id) {
     return Optional.of(new BookingDto(bookingRepository.findById(id).orElseThrow()));
   }
 
   public void addBooking(CreateBookingDto booking) {
-    Booking new_booking = Booking.builder().user(userRepository.findById(booking.getGuest()).orElseThrow())
+    Booking entity = Booking.builder().user(userRepository.findById(booking.getGuest()).orElseThrow())
       .rental(rentalRepository.findById(booking.getRental()).orElseThrow())
       .startDate(booking.getStartDate())
       .duration(booking.getDuration())
       .build();
-    bookingRepository.save(new_booking);
+    bookingRepository.save(entity);
   }
 
   public void updateBookingById(Long id, UpdateBookingDto booking) {
