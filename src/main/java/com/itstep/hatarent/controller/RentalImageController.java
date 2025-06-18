@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class RentalImageController {
   private RentalImageService rentalImageService;
 
   @Operation(summary = "Get a rental image by its id")
-  @GetMapping("/{id}")
+  @GetMapping("")
   public List<RentalImageStripedDto> getRentalImagesByRentalId(Long id) {
     return rentalImageService.getRentalsImagesByRentalId(id);
   }

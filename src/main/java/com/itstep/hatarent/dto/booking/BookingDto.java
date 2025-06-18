@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class BookingDto {
 
-  private Long id;
   private Long guest;
   private Long rental;
   private LocalDate startDate;
@@ -20,7 +19,6 @@ public class BookingDto {
   private LocalDateTime createdAt;
 
   public BookingDto(Booking entity){
-    this.id = entity.getId();
     this.guest = entity.getUser().getId();
     this.rental = entity.getRental().getId();
     this.startDate = entity.getStartDate();

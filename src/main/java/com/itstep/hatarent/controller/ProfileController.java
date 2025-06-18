@@ -15,24 +15,24 @@ import org.springframework.web.bind.annotation.*;
 public class ProfileController {
   private ProfileService profileService;
 
-  @GetMapping("/{id}")
+  @GetMapping("")
   public ProfileDto getProfileById(Long id) {
-    return profileService.getprofileById(id).orElseThrow();
+    return profileService.getProfileById(id);
   }
 
   @PostMapping("")
-  public CreateProfileDto addProfileById(CreateProfileDto profile) {
+  public CreateProfileDto addProfile(@RequestBody CreateProfileDto profile) {
     profileService.addProfile(profile);
     return profile;
   }
 
-  @PutMapping("/{id}")
-  public Long updateProfileById(Long id, UpdateProfileDto profile) {
+  @PutMapping("")
+  public Long updateProfileById(Long id, @RequestBody UpdateProfileDto profile) {
     profileService.updateProfileById(id, profile);
     return id;
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("")
   public Long deleteProfileById(Long id) {
     profileService.deleteProfileById(id);
     return id;

@@ -18,6 +18,7 @@ public class ProfileDto {
 
   public ProfileDto(Profile entity) {
     this.picture_path = entity.getPicture_path();
+    this.user = entity.getUser().getId();
     this.name = entity.getName();
     this.surname = entity.getSurname();
     this.about = entity.getAbout();

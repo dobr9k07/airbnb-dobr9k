@@ -7,12 +7,8 @@ import com.itstep.hatarent.model.Booking;
 import com.itstep.hatarent.repository.BookingRepository;
 import com.itstep.hatarent.repository.RentalRepository;
 import com.itstep.hatarent.repository.UserRepository;
-import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class BookingService {
@@ -23,17 +19,8 @@ public class BookingService {
   @Autowired
   private RentalRepository rentalRepository;
 
-
-//  public List<BookingDto> getAllBookings(){
-//    return bookingRepository.findAll().stream().map(BookingDto::new).toList();
-//  }
-//
-//  public Optional<List<BookingDto>> getBookingsByRentalId(Long id) {
-//    return Optional.of(bookingRepository.findByRental_Id(id).stream().map(BookingDto::new).toList());
-//  }
-
-  public Optional<BookingDto> getBookingById(Long id) {
-    return Optional.of(new BookingDto(bookingRepository.findById(id).orElseThrow()));
+  public BookingDto getBookingById(Long id) {
+    return new BookingDto(bookingRepository.findById(id).orElseThrow());
   }
 
   public void addBooking(CreateBookingDto booking) {

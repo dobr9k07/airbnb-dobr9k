@@ -15,24 +15,24 @@ import org.springframework.web.bind.annotation.*;
 public class BookingController {
   private BookingService bookingService;
 
-  @GetMapping("/{id}")
+  @GetMapping("")
   public BookingDto getBookingById(Long id) {
-    return bookingService.getBookingById(id).orElseThrow();
+    return bookingService.getBookingById(id);
   }
 
   @PostMapping("")
-  public CreateBookingDto addBookingById(CreateBookingDto booking) {
+  public CreateBookingDto addBookingById(@RequestBody CreateBookingDto booking) {
     bookingService.addBooking(booking);
     return booking;
   }
 
-  @PutMapping("/{id}")
-  public Long updateBookingById(Long id, UpdateBookingDto booking) {
+  @PutMapping("")
+  public Long updateBookingById(Long id, @RequestBody UpdateBookingDto booking) {
     bookingService.updateBookingById(id, booking);
     return id;
   }
 
-  @DeleteMapping("/{id}")
+  @DeleteMapping("")
   public Long deleteBookingById(Long id) {
     bookingService.deleteBookingById(id);
     return id;

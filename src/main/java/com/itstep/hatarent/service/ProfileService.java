@@ -10,8 +10,6 @@ import com.itstep.hatarent.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class ProfileService {
   @Autowired
@@ -19,8 +17,8 @@ public class ProfileService {
   @Autowired
   private UserRepository userRepository;
   
-  public Optional<ProfileDto> getprofileById(Long id) {
-    return Optional.of(new ProfileDto(profileRepository.findById(id).orElseThrow()));
+  public ProfileDto getProfileById(Long id) {
+    return new ProfileDto(profileRepository.findById(id).orElseThrow());
   }
 
   public void addProfile(CreateProfileDto profile) {
