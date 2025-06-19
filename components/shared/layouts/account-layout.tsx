@@ -1,11 +1,16 @@
-import { AccountFooter } from "../footers";
+import React, { ReactNode } from "react";
 import { AccountHeader } from "../headers";
+import { AccountFooter } from "../footers";
 
-export const AccountLayout = ({ children }: { children: React.ReactNode }) => {
+interface Props {
+  children?: ReactNode;
+}
+
+export const AccountLayout: React.FC<Props> = ({ children }) => {
   return (
     <>
-      <AccountHeader isSticky={true} />
-      {children}
+      <AccountHeader />
+      <main>{children}</main>
       <AccountFooter />
     </>
   );

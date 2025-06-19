@@ -10,7 +10,7 @@ export const BlogLayout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <BlogHeader />
-      {children}
+      <main>{children}</main>
       <BlogFooter />
     </>
   );

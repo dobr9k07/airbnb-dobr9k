@@ -5,3 +5,4 @@ export { NotFoundFooter } from "./not-found-footer";
 export { AccountFooter } from "./account-footer";
 export { AboutFooter } from "./about-footer";
 export { HelpFooter } from "./help-footer";
+export { CheckoutFooter } from "./checkout-footer";

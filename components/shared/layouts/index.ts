@@ -5,3 +5,4 @@ export { AboutLayout } from "./about-layout";
 export { HelpLayout } from "./help-layout";
 export { NotFoundLayout } from "./not-found-layout";
 export { AccountLayout } from "./account-layout";
+export { CheckoutLayout } from "./checkout-layout";
