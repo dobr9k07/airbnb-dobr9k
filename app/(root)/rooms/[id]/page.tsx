@@ -20,7 +20,6 @@ export default async function Room({
 }: {
   params: Promise<{ id: string }>;
 }) {
-
   const { id } = await params;
   const room = cardItem.find((room) => room.id === Number(id));
 
@@ -37,6 +36,7 @@ export default async function Room({
 
       <Container className="mb-[48px]">
         <DescriptionBlockText
+          className="w-full mt-11"
           owner={room.owner}
           isRating={room.rating ? true : false}
           raiting={room.rating?.rating ?? 0}
