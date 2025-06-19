@@ -16,10 +16,12 @@ import { cn } from "@/lib/utils";
 import { notFound } from "next/navigation";
 
 export default async function Room({
-  params: { id },
+  params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+
+  const { id } = await params;
   const room = cardItem.find((room) => room.id === Number(id));
 
   if (!room) {
