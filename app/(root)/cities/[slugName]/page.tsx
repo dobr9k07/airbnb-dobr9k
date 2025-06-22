@@ -4,7 +4,8 @@ import {
   MainLayout,
   PaginationPrimary,
 } from "@/components/shared";
-import { Map } from "@/components/shared/map/map";
+import { Map } from "@/components/shared/map";
+// import { Map } from "@/components/shared/map/map";
 import { cardItem } from "@/lib/cardItem";
 
 export default function Page() {
@@ -12,7 +13,7 @@ export default function Page() {
     <MainLayout>
       <Container>
         <div className="flex justify-between">
-          <div className="w-9/12 flex justify-center gap-5 flex-wrap mb-17.5">
+          <div className="w-9/12 flex gap-5 flex-wrap mb-17.5">
             {cardItem.map((item) => (
               <ListingCardWithCarousel
                 key={item.id}

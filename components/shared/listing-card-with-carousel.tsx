@@ -13,7 +13,6 @@ interface Props {
   rating?: number;
   reviwes?: number;
   isFavorite?: boolean;
-  className?: string;
 }
 
 export const ListingCardWithCarousel: React.FC<Props> = ({
@@ -24,7 +23,6 @@ export const ListingCardWithCarousel: React.FC<Props> = ({
   rating,
   reviwes,
   isFavorite = false,
-  className,
 }) => {
   return (
     <div className="group w-69.5 cursor-pointer">

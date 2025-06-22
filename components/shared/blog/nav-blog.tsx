@@ -23,7 +23,11 @@ export const NavBlog: React.FC<Props> = ({ className }) => {
       )}
     >
       <div className="w-max flex-1">
-        <SearchInput placeholder="Пошук блогу" isBlog={true} />
+        <SearchInput
+          placeholder="Пошук блогу"
+          isBlog={true}
+          className="w-[280px] h-8"
+        />
       </div>
       <Title text="Історії hata" size="lg" className="text-white" />
       <BlogLink isActive={lastSegment} />

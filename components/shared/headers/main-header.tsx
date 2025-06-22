@@ -4,10 +4,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 import DesktopLogo from "../../../public/Logo3.png";
-import { SearchInput } from "../search-input";
+
 import { Button } from "@/components/ui/button";
 import { UserNav } from "../user-nav";
 import { cn } from "@/lib/utils";
+import { SearchInput } from "../search-input";
 
 interface Props {
   isSticky?: boolean;
@@ -20,7 +21,10 @@ export const MainHeader: React.FC<Props> = ({
 }) => {
   return (
     <header
-      className={cn("h-[110px] mb-5", isSticky ? "sticky top-0 z-100 bg-white" : "")}
+      className={cn(
+        "h-[110px] mb-5",
+        isSticky ? "sticky top-0 z-100 bg-white" : ""
+      )}
     >
       <Container className={className}>
         <nav className="w-full ">
@@ -35,7 +39,11 @@ export const MainHeader: React.FC<Props> = ({
                 />
               </Link>
 
-              <SearchInput placeholder="Виберіть місто" />
+              <SearchInput
+                placeholder="Виберіть місто"
+                className="w-[280px] h-8"
+              />
+
               <Button className="text-[16px] font-light rounded-[41.5px] h-[33px] ml-22px">
                 Пошук
               </Button>

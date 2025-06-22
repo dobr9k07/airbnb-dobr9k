@@ -17,7 +17,7 @@ export default function HelpPage() {
           <Title text="Потрібна допомога?" size="2xl" />
           <SearchInputHelp
             placeholder="Пошук потрібних статтей"
-            className="mb-10.5"
+            className="w-[460px] h-[51px] mb-10.5"
           />
 
           {/*questions*/}
