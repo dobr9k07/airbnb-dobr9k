@@ -1,5 +1,3 @@
-import { ICardItem } from "@/lib/cardItem";
-import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
 import { Heart } from "lucide-react";
@@ -23,7 +21,6 @@ export const ListingCard: React.FC<Props> = ({
   stickers,
   date,
   price,
-  className,
 }) => {
   return (
     <div className="flex flex-col border border-amber-950">
@@ -35,7 +32,7 @@ export const ListingCard: React.FC<Props> = ({
           className="rounded-lg h-full object-cover"
         /> */}
 
-        <CardCarousel isCard={true} cardItem={imageUrl} />
+        <CardCarousel isCard={true} cardItem={imageUrl} id={id} />
 
         <div className="z-10 absolute top-2 right-2">
           <Button
