@@ -5,6 +5,11 @@ import { Container } from "./container";
 import { SearchInput } from "./search-input";
 import { Button } from "../ui/button";
 import { CountButton } from "./count-button";
+import { z } from "zod";
+import { FormProvider, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { DateRangePicker } from "./date-range-picker";
+import { MoveRight } from "lucide-react";
 
 interface Props {
   className?: string;
@@ -20,16 +25,63 @@ export const FilterHero: React.FC<Props> = ({ className }) => {
     });
   };
 
+  const schema = z.object({
+    dateRange: z.object({
+      from: z.date({ required_error: "Оберіть початкову дату" }),
+      to: z.date({ required_error: "Оберіть кінцеву дату" }),
+    }),
+  });
+
+  type FormValues = z.infer<typeof schema>;
+
+  const methods = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      dateRange: {
+        from: undefined,
+        to: undefined,
+      },
+    },
+  });
+
+  const onSubmit = (data: FormValues) => {
+    console.log("Вибрані дати:", data.dateRange);
+  };
+
   return (
     <Container className={className}>
-      <div className="w-full flex flex-col gap-3.5">
-        <div className="w-[1210px] h-[83px] bg-primary-white rounded-full flex items-center gap-5 px-5">
+      <FormProvider {...methods}>
+        <form
+          onSubmit={methods.handleSubmit(onSubmit)}
+          className="w-[1210px] h-[83px] bg-primary-white rounded-full flex items-center justify-between gap-5 px-8"
+        >
           <SearchInput
             placeholder="Виберіть місто"
             className="w-89 h-17"
             isHover={true}
           />
-          <div className="flex gap-2.5 items-center border-2 border-primary">
+
+          <div className="h-5 bg-black w-[0.25px]"></div>
+
+          <DateRangePicker
+            name="dateRange"
+            className="w-[285px] h-17"
+            content={
+              <>
+                <span className="text-xl font-light text-black group-hover:text-white">
+                  Заїзд
+                </span>
+                <MoveRight width={17} height={17} color="#000000" />
+                <span className="text-xl font-light text-black group-hover:text-white">
+                  Виїзд
+                </span>
+              </>
+            }
+          />
+
+          <div className="h-5 bg-black w-[0.25px]"></div>
+
+          <div className="h-full flex gap-2.5 items-center">
             <svg
               width="26"
               height="26"
@@ -64,11 +116,14 @@ export const FilterHero: React.FC<Props> = ({ className }) => {
               onClick={onClickCountButton}
             />
           </div>
-          <Button className="w-34 h-17 text-xl font-light rounded-full">
+          <Button
+            className="w-34 h-17 text-xl font-light rounded-full"
+            type="submit"
+          >
             Пошук
           </Button>
-        </div>
-      </div>
+        </form>
+      </FormProvider>
     </Container>
   );
 };

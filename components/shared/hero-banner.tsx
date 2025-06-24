@@ -3,13 +3,14 @@ import { cn } from "@/lib/utils";
 
 import { Container } from "./container";
 import Image from "next/image";
-
-import ImageHero from "@/public/imageHeroCms.png";
-import AboutHero from "@/public/about/aboutHero.png";
 import vector from "@/public/svg/Vector 150.svg";
 import IconPlaceholder from "@/public/svg/IconPlaceholder.svg";
 import { MAXWIDTH } from "@/lib/const-css";
 import { Title } from "./title";
+import { HeroBannerItems } from "@/lib/heroBaner";
+
+import AboutHero from "@/public/about/aboutHero.png";
+import { ChangeImageTimer } from "./change-image-timer";
 
 interface Props {
   className?: string;
@@ -24,23 +25,25 @@ export const HeroBanner: React.FC<Props> = ({
     <Container className={cn(`${MAXWIDTH}`, className)}>
       {!isAboutPage ? (
         <div className="w-full h-[769px] relative hero-gradient z-1">
-          <Image
-            src={ImageHero}
-            alt="ImageHero"
-            className="w-full h-full object-cover mix-blend-overlay absolute"
+          <ChangeImageTimer
+            imageUrls={HeroBannerItems.map((item) => item.imageUrl)}
           />
-          <div className="ml-65 pt-75 w-82.5">
+
+          <div className="absolute ml-65 w-82.5 h-full flex flex-col justify-center">
             <Title
               text={"Cучасне житло з готельним комфортом"}
               size="xl"
               className="font-medium text-black"
             />
-            <div className="flex items-center mt-[193px] gap-2">
-              <Image src={IconPlaceholder} alt="star" width={33} height={33} />
-              <p className="font-normal text-xs leading-[15px] text-left">
-                Sonder The Winfield | Лос-Анджелес
-              </p>
-            </div>
+            <p className="text-2xl font-normal text-black">
+              де б ти не був. Тепер разом із <b>hata</b>
+            </p>
+          </div>
+          <div className="absolute bottom-18 left-65 flex items-center gap-2">
+            <Image src={IconPlaceholder} alt="star" width={33} height={33} />
+            <p className="font-normal text-xs">
+              Sonder The Winfield | Лос-Анджелес
+            </p>
           </div>
         </div>
       ) : (
@@ -49,7 +52,6 @@ export const HeroBanner: React.FC<Props> = ({
             src={AboutHero}
             alt="ImageHero"
             className="w-full object-cover"
-            layout="responsive"
           />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-white gap-6">
             <Title
@@ -58,18 +60,13 @@ export const HeroBanner: React.FC<Props> = ({
               size="3xl"
             ></Title>
             <p className="text-center text-xl font-medium">
-              У нашим маємо місію переосмислити гостинність, створюючи виняткові
-              умови для проживання всюди.
+              У hata ми маємо місію переосмислити гостинність, забезпечуючи
+              виняткові умови для проживання всюди.
             </p>
           </div>
 
           <div className="absolute bottom-0 left-0 w-full overflow-hidden pointer-events-none">
-            <Image
-              src={vector}
-              alt="Vector"
-              className="w-full h-auto"
-              layout="responsive"
-            />
+            <Image src={vector} alt="Vector" className="w-full h-auto" />
           </div>
         </div>
       )}

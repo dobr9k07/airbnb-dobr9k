@@ -31,8 +31,8 @@ export const CountButton: React.FC<CountButtonProps> = ({
 
       <b
         className={cn(
-          "text-center",
-          size === "sm" ? "text-sm w-6" : "text-md w-8"
+          "text-center font-light",
+          size === "sm" ? "text-xl w-6" : "text-md w-8"
         )}
       >
         {value}
