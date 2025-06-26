@@ -11,13 +11,13 @@ import { MAXWIDTH } from "@/lib/const-css";
 export default function BlogPage() {
   return (
     <BlogLayout>
-      <div className={`${MAXWIDTH} bg-primary mx-auto`}>
+      <Container className={`${MAXWIDTH} bg-primary mx-auto`}>
         <Container>
           <NavBlog />
         </Container>
-      </div>
+      </Container>
       <Container
-        className={`${MAXWIDTH} h-[300px] max-h-[500px] mx-auto bg-primary`}
+        className={`${MAXWIDTH} h-[500px] max-h-[500px] mx-auto bg-primary`}
       >
         <BlogBanner item={blogItems[0]} />
       </Container>

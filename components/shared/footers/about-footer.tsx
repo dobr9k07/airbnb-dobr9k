@@ -7,10 +7,8 @@ import { companyItems, supportItems } from "@/lib/fotterItems";
 import Link from "next/link";
 
 import DesktopLogo from "@/public/svg/LogoWhite.svg";
-import IconInstagram from "@/public/social/iconInstagram.svg";
-import IconFacebbok from "@/public/social/iconFacebook.svg";
-import IconTwitter from "@/public/social/iconTwitter.svg";
 import { cn } from "@/lib/utils";
+import { SocialLinks } from "../social-links";
 interface Props {
   className?: string;
 }
@@ -88,11 +86,7 @@ export const AboutFooter: React.FC<Props> = ({ className }) => {
           </p>
 
           <div className="flex items-end gap-2.75">
-            <div className="flex items-center gap-0.5">
-              <Image src={IconInstagram} alt="Instagram" />
-              <Image src={IconFacebbok} alt="Facebbok" />
-              <Image src={IconTwitter} alt="Twitter" />
-            </div>
+            <SocialLinks />
           </div>
         </div>
       </Container>

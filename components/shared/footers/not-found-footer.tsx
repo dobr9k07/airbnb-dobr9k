@@ -1,15 +1,13 @@
 import React from "react";
 import { Container } from "../container";
 import { SubscribeInput } from "../subscribe-input";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { MAXWIDTH } from "@/lib/const-css";
+import { FooterLinks } from "../footer-links";
 
 interface Props {
   className?: string;
 }
-
-const FOTTER_BLOG_LINKS = ["Про нас", "Інстаграм", "Фейсбук", "Твіттер"];
 
 export const NotFoundFooter: React.FC<Props> = ({ className }) => {
   return (
@@ -23,17 +21,7 @@ export const NotFoundFooter: React.FC<Props> = ({ className }) => {
             </p>
             <SubscribeInput />
           </div>
-          <div className="flex gap-8.75 text-white">
-            {FOTTER_BLOG_LINKS.map((item, index) => (
-              <Link
-                key={index}
-                href={"/"}
-                className="text-base font-normal hover:scale-110 hover:font-medium duration-200 ease-out"
-              >
-                {item}
-              </Link>
-            ))}
-          </div>
+          <FooterLinks className="text-white" />
         </Container>
       </Container>
     </footer>

@@ -8,19 +8,18 @@ interface Props {
   isActive?: string;
 }
 
-
 interface Category {
-    id: string;
-    name: string;
-    href: string;
-  }
-  
- export const BLOG_CATEGORIES: Category[] = [
-    { id: "travel", name: "Подорожі", href: "/blog/travel" },
-    { id: "design", name: "Дизайн", href: "/blog/design" },
-    { id: "culture", name: "Культура", href: "/blog/culture" },
-    { id: "news", name: "Новини", href: "/blog/news" },
-  ];
+  id: string;
+  name: string;
+  href: string;
+}
+
+export const BLOG_CATEGORIES: Category[] = [
+  { id: "travel", name: "Подорожі", href: "/blog/travel" },
+  { id: "design", name: "Дизайн", href: "/blog/design" },
+  { id: "culture", name: "Культура", href: "/blog/culture" },
+  { id: "news", name: "Новини", href: "/blog/news" },
+];
 
 export const BlogLink: React.FC<Props> = ({ isActive, className }) => {
   return (
@@ -30,7 +29,7 @@ export const BlogLink: React.FC<Props> = ({ isActive, className }) => {
           key={category.id}
           href={category.href}
           className={cn(
-            "text-[20px] font-extralight text-white hover:underline",
+            "text-xl font-extralight text-white hover:underline",
             isActive === category.id ? "underline" : "no-underline"
           )}
         >

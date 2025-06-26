@@ -11,6 +11,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { IBlogItem } from "@/lib/blogItem";
 import { cn } from "@/lib/utils";
+import { BLOG_CATEGORIES } from "./blog-link";
+import { notFound } from "next/navigation";
 
 interface Props {
   className?: string;
@@ -18,7 +20,18 @@ interface Props {
   isBlogPage?: boolean;
 }
 
-export const CardBlog: React.FC<Props> = ({ items, isBlogPage, className }) => {
+export const CardBlog: React.FC<Props> = ({ items, isBlogPage }) => {
+  const BLOG_CATEGORIES_MAP = new Map(
+    BLOG_CATEGORIES.map((cat) => [cat.name, cat])
+  );
+
+  const tag = BLOG_CATEGORIES_MAP.get(items.tag);
+
+  if (!tag) {
+    return notFound();
+  }
+  const pathLink = `${tag.href}/${items.id}`;
+
   return (
     <Card
       className={cn(
@@ -49,10 +62,13 @@ export const CardBlog: React.FC<Props> = ({ items, isBlogPage, className }) => {
       </CardContent>
       <div className="flex-grow"></div>
       <CardFooter className={cn("p-0", isBlogPage && "flex justify-center")}>
-        <Link href={"#"}>
+        <Link href={pathLink}>
           <Button
-            className={cn("text-black p-0",
-              isBlogPage ? "text-base font-extralight" : "text-[25px] font-normal"
+            className={cn(
+              "text-black p-0",
+              isBlogPage
+                ? "text-base font-extralight"
+                : "text-[25px] font-normal"
             )}
             variant={"link"}
           >

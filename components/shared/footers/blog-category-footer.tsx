@@ -1,20 +1,21 @@
 import { MAXWIDTH } from "@/lib/const-css";
 import React from "react";
 import { Container } from "../container";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Title } from "../title";
 import { companyItems, supportItems } from "@/lib/fotterItems";
 import Link from "next/link";
 
 import DesktopLogo from "@/public/svg/LogoWhite.svg";
-import { cn } from "@/lib/utils";
+
 import { SocialLinks } from "../social-links";
 
 interface Props {
   className?: string;
 }
 
-export const MainFooter: React.FC<Props> = ({ className }) => {
+export const BlogCategoryFooter: React.FC<Props> = ({ className }) => {
   return (
     <footer className={` ${MAXWIDTH} bg-primary mx-auto`}>
       <Container

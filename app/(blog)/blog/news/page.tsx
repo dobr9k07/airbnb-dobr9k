@@ -1,7 +1,9 @@
 import { BlogSlugLayout, Container, NavBlog } from "@/components/shared";
 import { MAXWIDTH } from "@/lib/const-css";
+import { notFound } from "next/navigation";
 
 export default function NewsPage() {
+  notFound();
   return (
     <BlogSlugLayout>
       <div className={`${MAXWIDTH} bg-primary mx-auto`}>
@@ -9,7 +11,7 @@ export default function NewsPage() {
           <NavBlog />
         </Container>
       </div>
-      <h1 className="text-2xl font-bold">Travel Blog</h1>;
+      <h1 className="text-2xl font-bold">Travel Blog</h1>
     </BlogSlugLayout>
   );
 }

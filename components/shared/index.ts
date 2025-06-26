@@ -1,9 +1,5 @@
-import { ChangeImageTimer } from "./change-image-timer";
-import { DateRangePicker } from "./date-range-picker";
 export { Container } from "./container";
 export { Title } from "./title";
-export { Header } from "./header";
-export { Footer } from "./footer";
 export { UserNav } from "./user-nav";
 export { ToggleGroupHeader } from "./toggle-group-header";
 export { CategoryCarousel } from "./category-carousel";
@@ -38,6 +34,8 @@ export { CountIconButton } from "./count-icon-button";
 export { CountButton } from "./count-button";
 export { DateRangePicker } from "./date-range-picker";
 export { ChangeImageTimer } from "./change-image-timer";
+export { SocialLinks } from "./social-links";
+export { FooterLinks } from "./footer-links";
 export * from "./carousel";
 export * from "./blog";
 export * from "./room";
