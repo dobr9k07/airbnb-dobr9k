@@ -1,18 +1,20 @@
 package com.itstep.hatarent.util;
 
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
-import org.hibernate.usertype.UserType;
 import org.hibernate.type.SqlTypes;
+import org.hibernate.usertype.UserType;
 
 import java.io.Serializable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 
-// TODO: Перевірити/переробити. Не впевнений у правильності цієї імплементацї, але поки працює чудово
-public class SqlSetJavaType implements UserType<HashSet> {
+public class SqlSetJavaType implements UserType<Set<String>> {
 
   @Override
   public int getSqlType() {
@@ -20,29 +22,29 @@ public class SqlSetJavaType implements UserType<HashSet> {
   }
 
   @Override
-  public Class<HashSet> returnedClass() {
-    return HashSet.class;
+  public Class returnedClass() {
+    return Set.class;
   }
 
   @Override
-  public boolean equals(HashSet x, HashSet y) {
+  public boolean equals(Set x, Set y) {
     return Objects.equals(x, y);
   }
 
   @Override
-  public int hashCode(HashSet x) {
+  public int hashCode(Set x) {
     return x != null ? x.hashCode() : 0;
   }
 
   @Override
-  public HashSet nullSafeGet(ResultSet rs, int position, SharedSessionContractImplementor session, Object owner) throws SQLException {
+  public Set<String> nullSafeGet(ResultSet rs, int position, SharedSessionContractImplementor session, Object owner) throws SQLException {
     String value = rs.getString(position);
-    if (value == null || value.isEmpty()) return new HashSet<>();
-    return new HashSet<>(Arrays.asList(value.split(",")));
+    if (value == null || value.isEmpty()) return new HashSet<String>();
+    return new HashSet<String>(Arrays.asList(value.split(",")));
   }
 
   @Override
-  public void nullSafeSet(PreparedStatement st, HashSet value, int index, SharedSessionContractImplementor session) throws SQLException {
+  public void nullSafeSet(PreparedStatement st, Set<String> value, int index, SharedSessionContractImplementor session) throws SQLException {
     if (value == null || value.isEmpty()) {
       st.setNull(index, SqlTypes.VARCHAR);
     } else {
@@ -52,8 +54,8 @@ public class SqlSetJavaType implements UserType<HashSet> {
   }
 
   @Override
-  public HashSet deepCopy(HashSet value) {
-    return value != null ? new HashSet<>(value) : null;
+  public Set<String> deepCopy(Set<String> value) {
+    return value != null ? new HashSet<String>(value) : null;
   }
 
   @Override
@@ -62,14 +64,14 @@ public class SqlSetJavaType implements UserType<HashSet> {
   }
 
   @Override
-  public Serializable disassemble(HashSet value) {
+  public Serializable disassemble(Set<String> value) {
     return value != null ? String.join(",", value) : null;
   }
 
   @Override
-  public HashSet assemble(Serializable cached, Object owner) {
-    if (cached == null) return new HashSet<>();
-    return new HashSet<>(Arrays.asList(((String) cached).split(",")));
+  public Set<String> assemble(Serializable cached, Object owner) {
+    if (cached == null) return new HashSet<String>();
+    return new HashSet<String>(Arrays.asList(((String) cached).split(",")));
   }
 }
 

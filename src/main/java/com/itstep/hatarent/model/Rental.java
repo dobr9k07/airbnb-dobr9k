@@ -4,13 +4,16 @@ import com.itstep.hatarent.util.SqlSetJavaType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
+
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import lombok.*;
-import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "rentals")
@@ -32,6 +35,9 @@ public class Rental {
   @NotNull private BigDecimal latitude;
   @Column(precision = 9, scale = 6)
   @NotNull private BigDecimal longitude;
+  @Column(columnDefinition = "json")
+  private Set<String> images;
+
 
   @ManyToMany
   @JoinTable(

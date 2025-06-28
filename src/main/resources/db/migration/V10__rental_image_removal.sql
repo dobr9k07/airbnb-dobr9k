@@ -1,0 +1,1 @@
+DROP TABLE hatarent.rental_image;

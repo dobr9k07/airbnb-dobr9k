@@ -1,24 +1,23 @@
 package com.itstep.hatarent;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import com.itstep.hatarent.model.*;
+import com.itstep.hatarent.model.Booking;
+import com.itstep.hatarent.model.Profile;
+import com.itstep.hatarent.model.Rental;
+import com.itstep.hatarent.model.User;
+import com.itstep.hatarent.repository.BookingRepository;
+import com.itstep.hatarent.repository.ProfileRepository;
+import com.itstep.hatarent.repository.RentalRepository;
+import com.itstep.hatarent.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.itstep.hatarent.repository.BookingRepository;
-import com.itstep.hatarent.repository.ProfileRepository;
-import com.itstep.hatarent.repository.RentalImageRepository;
-import com.itstep.hatarent.repository.RentalRepository;
-import com.itstep.hatarent.repository.UserRepository;
-
-import jakarta.transaction.Transactional;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 @Component
 @org.springframework.context.annotation.Profile("dev")
@@ -28,8 +27,6 @@ public class TestDBInitializer implements CommandLineRunner {
   private BookingRepository bookingRepository;
   @Autowired
   private ProfileRepository profileRepository;
-  @Autowired
-  private RentalImageRepository rentalImageRepository;
   @Autowired
   private RentalRepository rentalRepository; 
   @Autowired
@@ -110,7 +107,6 @@ public class TestDBInitializer implements CommandLineRunner {
       .startDate(LocalDate.now().plusDays(1))
       .duration(5)
       .accepted_at(LocalDateTime.now())
-      .createdAt(LocalDateTime.now())
       .build());
 
     bookingRepository.save(Booking.builder()
@@ -119,7 +115,6 @@ public class TestDBInitializer implements CommandLineRunner {
       .startDate(LocalDate.now().plusDays(3))
       .duration(3)
       .accepted_at(LocalDateTime.now())
-      .createdAt(LocalDateTime.now())
       .build());
 
     System.out.println("📦 Тестові дані завантажено!");

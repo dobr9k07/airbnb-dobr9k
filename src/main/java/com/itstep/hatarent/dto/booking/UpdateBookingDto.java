@@ -1,6 +1,5 @@
 package com.itstep.hatarent.dto.booking;
 
-import com.itstep.hatarent.model.Booking;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

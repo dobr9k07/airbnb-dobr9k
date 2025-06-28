@@ -11,8 +11,7 @@ import java.util.Set;
 
 @Data
 @NoArgsConstructor
-public class RentalDto {
-  private Long id;
+public class UpdateRentalDto {
   private String name;
   private String description;
   private BigDecimal price_per_night;
@@ -20,8 +19,7 @@ public class RentalDto {
   private Location location;
   private Set<String> images;
 
-  public RentalDto(Rental entity) {
-    this.id = entity.getId();
+  public UpdateRentalDto(Rental entity) {
     this.name = entity.getName();
     this.description = entity.getDescription();
     this.price_per_night = entity.getPrice_per_night();

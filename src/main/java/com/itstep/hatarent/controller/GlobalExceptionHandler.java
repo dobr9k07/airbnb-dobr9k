@@ -1,0 +1,27 @@
+package com.itstep.hatarent.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.nio.file.NoSuchFileException;
+import java.util.NoSuchElementException;
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+  @ExceptionHandler(value = NoSuchElementException.class)
+  public ResponseEntity<String> noSuchElementException(NoSuchElementException ex) {
+    return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler(value = NoSuchFileException.class)
+  public ResponseEntity<String> noSuchFileException(NoSuchFileException ex) {
+    return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+  }
+
+  @ExceptionHandler(value = Exception.class)
+  public ResponseEntity<String> genericException(Exception ex) {
+    return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+  }
+}

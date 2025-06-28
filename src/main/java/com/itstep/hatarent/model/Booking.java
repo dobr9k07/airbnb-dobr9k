@@ -1,9 +1,11 @@
 package com.itstep.hatarent.model;
 
-import com.itstep.hatarent.dto.booking.BookingDto;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -38,6 +40,6 @@ public class Booking {
   private LocalDateTime accepted_at;
 
   @NotNull
-  private LocalDateTime createdAt = LocalDateTime.now();
+  private final LocalDateTime createdAt = LocalDateTime.now();
 
 }
