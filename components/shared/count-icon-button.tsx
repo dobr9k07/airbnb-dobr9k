@@ -18,7 +18,7 @@ export const CountIconButton: React.FC<IconButtonProps> = ({
 }) => {
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       disabled={disabled}
       type="button"
       onClick={onClick}
@@ -26,13 +26,13 @@ export const CountIconButton: React.FC<IconButtonProps> = ({
         "p-0 hover:bg-primary hover:text-white disabled:bg-white disabled:border-gray-400 disabled:text-gray-400",
         size === "sm"
           ? "w-[27px] h-[27px] rounded-full"
-          : "w-[38px] h-[38px] rounded-md"
+          : "w-[27px] h-[27px] rounded-full"
       )}
     >
       {type === "plus" ? (
-        <Plus className={size === "sm" ? "h-3" : "h-4"} cursor={"pointer"} />
+        <Plus className={size === "sm" ? "h-3" : "h-2"} cursor={"pointer"} />
       ) : (
-        <Minus className={size === "sm" ? "h-3" : "h-4"} cursor={"pointer"} />
+        <Minus className={size === "sm" ? "h-3" : "h-2"} cursor={"pointer"} />
       )}
     </Button>
   );
