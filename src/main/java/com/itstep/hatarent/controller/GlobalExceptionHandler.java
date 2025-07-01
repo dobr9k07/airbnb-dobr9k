@@ -1,5 +1,6 @@
 package com.itstep.hatarent.controller;
 
+import org.apache.coyote.BadRequestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,17 +11,22 @@ import java.util.NoSuchElementException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-  @ExceptionHandler(value = NoSuchElementException.class)
+  @ExceptionHandler(NoSuchElementException.class)
   public ResponseEntity<String> noSuchElementException(NoSuchElementException ex) {
     return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
   }
 
-  @ExceptionHandler(value = NoSuchFileException.class)
+  @ExceptionHandler(NoSuchFileException.class)
   public ResponseEntity<String> noSuchFileException(NoSuchFileException ex) {
     return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
   }
 
-  @ExceptionHandler(value = Exception.class)
+  @ExceptionHandler(BadRequestException.class)
+  public ResponseEntity<String> wrongRequestException(Exception ex){
+    return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(Exception.class)
   public ResponseEntity<String> genericException(Exception ex) {
     return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
   }

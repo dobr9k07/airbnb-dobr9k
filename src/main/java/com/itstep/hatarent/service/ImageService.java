@@ -1,5 +1,6 @@
 package com.itstep.hatarent.service;
 
+import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -8,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -33,6 +35,10 @@ public class ImageService {
 
     if (!imagePath.startsWith(imagesDirectory)) {
       throw new SecurityException("Access denied");
+    }
+
+    if(!Objects.requireNonNull(image.getContentType()).startsWith("image/")) {
+      throw new BadRequestException("Not an image");
     }
 
     Files.write(imagePath, image.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
