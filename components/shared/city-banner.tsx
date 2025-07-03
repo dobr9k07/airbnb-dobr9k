@@ -58,11 +58,12 @@ export const CityBanner: React.FC<Props> = ({
       </div>
       {!isCitiesPage && (
         <div className="w-full flex items-center justify-center">
-          <Link href="/cities">
-            <Button className="rounded-[38px] mt-[83px] h-17 text-[20px] font-light text-white leading-[24px] pl-[38px] pr-[38px] pt-[22px] pb-[22px]">
-              Переглянути всі міста
-            </Button>
-          </Link>
+          <Button
+            asChild
+            className="rounded-[38px] mt-[83px] h-17 text-[20px] font-light text-white leading-[24px] pl-[38px] pr-[38px] pt-[22px] pb-[22px]"
+          >
+            <Link href="/cities">Переглянути всі міста</Link>
+          </Button>
         </div>
       )}
     </Container>

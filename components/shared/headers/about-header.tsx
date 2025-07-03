@@ -15,7 +15,7 @@ interface Props {
 export const AboutHeader: React.FC<Props> = ({ isSticky, className }) => {
   return (
     <header
-      className={cn("h-[110px]", isSticky ? "sticky top-0 z-100 bg-white" : "")}
+      className={cn("h-[120px]", isSticky ? "sticky top-0 z-100 bg-white" : "")}
     >
       <Container className={className}>
         <nav className="w-full">

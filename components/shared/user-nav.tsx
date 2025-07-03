@@ -33,7 +33,7 @@ const dropdownBurger: IContent[] = [
   },
   {
     id: 2,
-    title: "Сповіщення",
+    title: "Налаштування акаунта та повідмлень",
   },
   {
     id: 3,
@@ -182,15 +182,3 @@ export const UserNav: React.FC<Props> = ({ className }) => {
     </>
   );
 };
-
-//  <p className="text-[25px] font-light leading-[30px] text-left text-white mr-3.25">
-//                 (₴) UAN
-//               </p>
-//               <Image
-//                 src={IconTranslate}
-//                 alt="IconTranslate"
-//                 className="w-5.5 h-5.5 text-white"
-//               />
-//               <p className="text-[25px] font-light leading-[30px] text-left text-white mr-9.75">
-//                 UA
-//               </p>

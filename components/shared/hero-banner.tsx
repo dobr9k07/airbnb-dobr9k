@@ -27,6 +27,7 @@ export const HeroBanner: React.FC<Props> = ({
         <div className="w-full h-[769px] relative hero-gradient z-1">
           <ChangeImageTimer
             imageUrls={HeroBannerItems.map((item) => item.imageUrl)}
+            time={5000}
           />
 
           <div className="absolute ml-65 w-82.5 h-full flex flex-col justify-center">

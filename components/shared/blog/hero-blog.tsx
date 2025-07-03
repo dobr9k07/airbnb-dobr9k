@@ -46,11 +46,14 @@ export const HeroBlog: React.FC<Props> = ({
           </div>
         )}
         {isActiveButton && (
-          <Link href={"/blog"}>
-            <Button className="rounded-[38px] h-17 text-xl font-light text-white leading-[24px] pl-[38px] pr-[38px]">
+          <Button
+            asChild
+            className="rounded-[38px] h-17 text-xl font-light text-white leading-[24px] pl-[38px] pr-[38px]"
+          >
+            <Link href={"/blog"}>
               {isBlogPage ? "Переглянути ще" : "Читати далі"}
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         )}
       </div>
     </>

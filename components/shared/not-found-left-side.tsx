@@ -11,15 +11,16 @@ export const NotFoundLeftSide: React.FC = () => {
       <Title
         text="Сторінка, яку ви шукаєте, не існує або посилання може бути пошкоджене. Поверніться на головну сторінку або перезавантажте."
         size="md"
-        className="font-light"
+        className="font-light text-justify "
       />
       <div className="w-full flex items-center justify-between mt-9.25">
-        <Link href={"/"}>
-          <Button className="rounded-2xl h-8.25 w-[192px] text-base text-white font-light leading-[19px]">
-            На головну
-          </Button>
-        </Link>
-        <Button className="rounded-2xl h-8.25 w-[192px] text-base text-white font-light leading-[19px]">
+        <Button
+          asChild
+          className="rounded-2xl h-8.25 text-base text-white font-light px-13"
+        >
+          <Link href={"/"}>На головну</Link>
+        </Button>
+        <Button className="rounded-2xl h-8.25 text-base text-white font-light px-6.5">
           Перезавантажити
         </Button>
       </div>

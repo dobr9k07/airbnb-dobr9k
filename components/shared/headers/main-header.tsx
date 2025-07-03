@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Container } from "../container";
 import Link from "next/link";
@@ -22,7 +24,7 @@ export const MainHeader: React.FC<Props> = ({
   return (
     <header
       className={cn(
-        "h-[110px] mb-5",
+        "h-[120px]",
         isSticky ? "sticky top-0 z-100 bg-white" : ""
       )}
     >

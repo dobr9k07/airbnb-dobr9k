@@ -7,3 +7,4 @@ export { AboutFooter } from "./about-footer";
 export { HelpFooter } from "./help-footer";
 export { CheckoutFooter } from "./checkout-footer";
 export { BlogCategoryFooter } from "./blog-category-footer";
+export { AuthFooter } from "./auth-footer";

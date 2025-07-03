@@ -23,7 +23,7 @@ export const CountIconButton: React.FC<IconButtonProps> = ({
       type="button"
       onClick={onClick}
       className={cn(
-        "p-0 hover:bg-primary hover:text-white disabled:bg-white disabled:border-gray-400 disabled:text-gray-400",
+        "p-0 hover:bg-primary hover:text-white disabled:border-gray-400 disabled:text-gray-400",
         size === "sm"
           ? "w-[27px] h-[27px] rounded-full"
           : "w-[27px] h-[27px] rounded-full"

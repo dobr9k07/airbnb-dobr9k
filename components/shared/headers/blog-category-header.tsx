@@ -12,7 +12,7 @@ interface Props {
 
 export const BlogCategoryHeader: React.FC<Props> = ({ className }) => {
   return (
-    <header className="h-[110p] mb-5 bg-white">
+    <header className="h-[120p] mb-5 bg-white">
       <Container className={className}>
         <nav className="w-full">
           <div className="flex items-center justify-between container mx-auto">
@@ -27,10 +27,10 @@ export const BlogCategoryHeader: React.FC<Props> = ({ className }) => {
 
             {/* Права частина */}
             <Button
+              asChild
               className="text-[16px] font-light w-[280px] rounded-[41.5px] h-[33px] border-[0.25px]"
-              variant={"outline"}
             >
-              Забронювати
+              <Link href="/">Забронювати</Link>
             </Button>
           </div>
         </nav>

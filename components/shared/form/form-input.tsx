@@ -9,6 +9,7 @@ import { RequiredSymbol } from "../required-symbol";
 import { ErrorText } from "../error-text";
 
 import { useFormContext } from "react-hook-form";
+import { cn } from "@/lib/utils";
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
@@ -39,7 +40,7 @@ export const FormInput: React.FC<Props> = ({
   return (
     <div className={className}>
       {label && (
-        <Label className="text-2xl font-normal m-1.25">
+        <Label className={cn("text-2xl font-normal m-1.25", className)}>
           {label} {required && <RequiredSymbol />}
         </Label>
       )}

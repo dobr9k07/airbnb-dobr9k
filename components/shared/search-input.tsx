@@ -1,10 +1,9 @@
 "use client";
-
-import { cn } from "@/lib/utils";
-
-import Link from "next/link";
 import React from "react";
-import { useClickAway } from "react-use";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+import { useClickAway, useDebounce } from "react-use";
+import { SearchIcon } from "./svg-components";
 
 interface Props {
   className?: string;
@@ -48,6 +47,7 @@ const SearchInput: React.FC<Props> = ({
   className,
 }) => {
   const [focused, setFocused] = React.useState(false);
+  const [searchQuery, setSearchQuery] = React.useState("");
   const [cities, setСities] = React.useState(citiesList);
   const ref = React.useRef(null);
 
@@ -55,7 +55,23 @@ const SearchInput: React.FC<Props> = ({
     setFocused(false);
   });
 
-  const onClickItem = () => {
+  useDebounce(
+    () => {
+      if (searchQuery.trim() === "") {
+        setСities(citiesList);
+      } else {
+        const filteredCities = citiesList.filter((city) =>
+          city.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+        setСities(filteredCities);
+      }
+    },
+    250,
+    [searchQuery]
+  );
+
+  const onClickItem = (city: string) => {
+    setSearchQuery(city);
     setFocused(false);
     setСities(citiesList);
   };
@@ -72,48 +88,29 @@ const SearchInput: React.FC<Props> = ({
       )}
     >
       {isBlog ? (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
-          viewBox="0 0 28 28"
-          fill="none"
-          className="mr-3 text-white group-black:text-white"
-        >
-          <circle cx="12.8335" cy="12.8333" r="7" stroke="currentColor" />
-          <path
-            d="M23.3335 23.3333L19.8335 19.8333"
-            stroke="currentColor"
-            strokeLinecap="round"
-          />
-        </svg>
+        <SearchIcon
+          width={28}
+          height={28}
+          className="text-white group-black:text-white"
+        />
       ) : (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="28"
-          height="28"
-          viewBox="0 0 28 28"
-          fill="none"
+        <SearchIcon
+          width={28}
+          height={28}
           className={cn(
-            "mr-3",
             isHover
               ? "text-black group-hover:text-white"
               : "text-black group-focus-within:text-white"
           )}
-        >
-          <circle cx="12.8335" cy="12.8333" r="7" stroke="currentColor" />
-          <path
-            d="M23.3335 23.3333L19.8335 19.8333"
-            stroke="currentColor"
-            strokeLinecap="round"
-          />
-        </svg>
+        />
       )}
 
       {/* Поле вводу */}
       <input
         type="text"
         placeholder={placeholder}
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
         className={cn(
           " w-full bg-transparent outline-none text-white focus-within:placeholder-white focus-within:text-white",
           isBlog
@@ -128,19 +125,20 @@ const SearchInput: React.FC<Props> = ({
       {cities.length > 0 && (
         <div
           className={cn(
-            "absolute left-0 w-full bg-white rounded-[20px] py-2 shadow-md transition-all duration-200 z-30",
+            "absolute left-0 w-full bg-white rounded-[20px] mt-4 shadow-md transition-all duration-200 z-30",
             focused
               ? "visible opacity-100 top-14"
               : "invisible opacity-0 top-12"
           )}
         >
           {cities.map((city) => (
-            // <Link key={city.id} href={city.link} onClick={onClickItem}>
-            <Link key={city.id} href={"#"} onClick={onClickItem}>
-              <div className="mx-3 px-3 py-2 rounded-[21px] cursor-pointer text-sm font-light transition-all duration-100 hover:bg-primary hover:text-white">
-                {city.name}
-              </div>
-            </Link>
+            <div
+              key={city.id}
+              onClick={() => onClickItem(city.name)}
+              className="mx-3 px-3 py-2 rounded-[21px] cursor-pointer text-sm font-light transition-all duration-100 hover:bg-primary hover:text-white"
+            >
+              {city.name}
+            </div>
           ))}
         </div>
       )}
@@ -150,17 +148,11 @@ const SearchInput: React.FC<Props> = ({
 
 const SearchInputHelp: React.FC<Props> = ({ placeholder, className }) => {
   const [focused, setFocused] = React.useState(false);
-  const [cities, setСities] = React.useState(citiesList);
   const ref = React.useRef(null);
 
   useClickAway(ref, () => {
     setFocused(false);
   });
-
-  const onClickItem = () => {
-    setFocused(false);
-    setСities([]);
-  };
 
   return (
     <>
@@ -180,41 +172,12 @@ const SearchInputHelp: React.FC<Props> = ({ placeholder, className }) => {
           className="w-full bg-transparent outline-none text-xl font-normal placeholder-black placeholder:pl-8"
         />
 
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="36"
-          height="36"
-          viewBox="0 0 28 28"
-          fill="none"
-          className="mr-3 text-black"
+        <SearchIcon
+          width={36}
+          height={36}
+          className="text-black"
           onClick={() => setFocused(true)}
-        >
-          <circle cx="12.8335" cy="12.8333" r="7" stroke="currentColor" />
-          <path
-            d="M23.3335 23.3333L19.8335 19.8333"
-            stroke="currentColor"
-            strokeLinecap="round"
-          />
-        </svg>
-
-        {cities.length > 0 && (
-          <div
-            className={cn(
-              "absolute left-0 w-full bg-white rounded-[20px] py-2 shadow-md transition-all duration-200 z-30",
-              focused
-                ? "visible opacity-100 top-14"
-                : "invisible opacity-0 top-12"
-            )}
-          >
-            {cities.map((city) => (
-              <Link key={city.id} href={city.link} onClick={onClickItem}>
-                <div className="ml-3 pl-3 py-2 rounded-[21px] w-[calc(100%-148px)] cursor-pointer text-sm font-light transition-all duration-100 hover:bg-primary hover:text-white">
-                  {city.name}
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
+        />
       </div>
     </>
   );
@@ -243,21 +206,11 @@ const SearchSecondInput: React.FC<Props> = ({ placeholder, className }) => {
         className
       )}
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="28"
-        height="28"
-        viewBox="0 0 28 28"
-        fill="none"
-        className={cn("mr-3 text-black group-focus-within:text-white")}
-      >
-        <circle cx="12.8335" cy="12.8333" r="7" stroke="currentColor" />
-        <path
-          d="M23.3335 23.3333L19.8335 19.8333"
-          stroke="currentColor"
-          strokeLinecap="round"
-        />
-      </svg>
+      <SearchIcon
+        width={28}
+        height={28}
+        className=" text-black group-focus-within:text-white"
+      />
 
       {/* Поле вводу */}
       <input
