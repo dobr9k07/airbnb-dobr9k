@@ -2,24 +2,12 @@ import React from "react";
 import { Container } from "../container";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { BLOG_CATEGORIES } from "@/constans/blog-categories";
 
 interface Props {
   className?: string;
   isActive?: string;
 }
-
-interface Category {
-  id: string;
-  name: string;
-  href: string;
-}
-
-export const BLOG_CATEGORIES: Category[] = [
-  { id: "travel", name: "Подорожі", href: "/blog/travel" },
-  { id: "design", name: "Дизайн", href: "/blog/design" },
-  { id: "culture", name: "Культура", href: "/blog/culture" },
-  { id: "news", name: "Новини", href: "/blog/news" },
-];
 
 export const BlogLink: React.FC<Props> = ({ isActive, className }) => {
   return (

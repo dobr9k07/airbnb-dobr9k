@@ -1,7 +1,7 @@
 import { Container, HelpLayout, Title } from "@/components/shared";
 import { SearchInputHelp } from "@/components/shared/search-input";
 import { Button } from "@/components/ui/button";
-import { questionAnswerItems } from "@/lib/questionAnswerItems";
+import { questionAnswerItems } from "@/lib/item/questionAnswerItems";
 
 const kontaktList = [
   "Служба підтримки: працює цілодобово, доступна через додаток або за телефоном.",

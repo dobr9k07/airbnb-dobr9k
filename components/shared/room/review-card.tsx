@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { IReview } from "@/lib/cardItem";
+import { IReview } from "@/lib/item/cardItem";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Container } from "./container";
-import { SearchInput } from "./search-input";
+import { SearchInputBlog } from "./search-input";
 import { Button } from "../ui/button";
 import { z } from "zod";
 import { Controller, FormProvider, useForm } from "react-hook-form";
@@ -55,7 +55,8 @@ export const FilterHero: React.FC<Props> = ({ className }) => {
           onSubmit={methods.handleSubmit(onSubmit)}
           className="w-[1210px] h-[83px] bg-primary-white rounded-full flex items-center justify-between gap-5 px-8"
         >
-          <SearchInput
+          {/* Пошук доопрацювати*/}
+          <SearchInputBlog
             placeholder="Виберіть місто"
             className="w-89 h-17"
             isHover={true}

@@ -1,4 +1,4 @@
-import { IRoom } from "@/lib/cardItem";
+import { IRoom } from "@/lib/item/cardItem";
 import React from "react";
 
 interface Props {

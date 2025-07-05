@@ -1,6 +1,6 @@
 import React from "react";
 import { Title } from "./title";
-import { IRoom } from "@/lib/cardItem";
+import { IRoom } from "@/lib/item/cardItem";
 import { RoomDetails } from "./room-details";
 import { RoomComforts } from "./room-comforts";
 import { cn } from "@/lib/utils";

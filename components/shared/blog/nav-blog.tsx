@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import React from "react";
-import { SearchInput } from "../search-input";
+import { SearchInputBlog } from "../search-input";
 import { Title } from "../title";
 import { BlogLink } from "./blog-link";
 import { usePathname } from "next/navigation";
@@ -23,7 +23,7 @@ export const NavBlog: React.FC<Props> = ({ className }) => {
       )}
     >
       <div className="w-max flex-1">
-        <SearchInput
+        <SearchInputBlog
           placeholder="Пошук блогу"
           isBlog={true}
           className="w-[280px] h-8"

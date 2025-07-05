@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { IReview } from "@/lib/cardItem";
+import { IReview } from "@/lib/item/cardItem";
 import { ReviewCard } from "./review-card";
 
 interface Props {
@@ -20,7 +20,7 @@ interface Props {
 export const ReviewDialog: React.FC<Props> = ({ totalCount, reviews }) => {
   return (
     <>
-      <Dialog >
+      <Dialog>
         <DialogTrigger asChild>
           <Button
             className="text-base font-light w-[280px] rounded-[41.5px] h-[33px] border-[0.25px]"

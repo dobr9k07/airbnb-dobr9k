@@ -1,17 +1,26 @@
-import React, { Fragment } from "react";
+"use client";
+import React, { Fragment, RefObject } from "react";
 import { Title } from "../title";
-import { IRoom } from "@/lib/cardItem";
+import { IRoom } from "@/lib/item/cardItem";
 import { Separator } from "@/components/ui/separator";
 import { RoomCard } from "./room-card";
+import { useCategoryIntersection } from "@/hooks";
 
 interface Props {
+  title: string;
+  categoryId: number;
   rooms: IRoom[];
-  className?: string;
 }
 
-export const AvailabilityBlock: React.FC<Props> = ({ rooms, className }) => {
+export const AvailabilityBlock: React.FC<Props> = ({
+  title,
+  categoryId,
+  rooms,
+}) => {
+  const ref = useCategoryIntersection(categoryId);
+
   return (
-    <>
+    <section id={title} ref={ref as RefObject<HTMLDivElement>}>
       <Title text="Наявність і тарифи" size="lg" className="font-medium" />
       <div className="flex flex-col items-end justify-between">
         <div className="h-8.25 w-[500px]"></div>
@@ -30,6 +39,6 @@ export const AvailabilityBlock: React.FC<Props> = ({ rooms, className }) => {
           </Fragment>
         ))}
       </div>
-    </>
+    </section>
   );
 };

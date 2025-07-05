@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Title } from "../../title";
-import { IBlogItem, IBlogQAItem } from "@/lib/blogItem";
+import { IBlogItem, IBlogQAItem } from "@/lib/item/blogItem";
 
 // Типи для варіантів рендерингу
 type BlogContentVariant = "culture" | "design";

@@ -1,5 +1,5 @@
 import { BlogSlugLayout, Container, NavBlog } from "@/components/shared";
-import { MAXWIDTH } from "@/lib/const-css";
+import { MAXWIDTH } from "@/constans/const-css";
 import { notFound } from "next/navigation";
 
 export default function NewsPage() {

@@ -1,4 +1,4 @@
-import { cartCityItems, ICartCityItem } from "@/lib/cartCityItem";
+import { cartCityItems, ICartCityItem } from "@/lib/item/cartCityItem";
 import React from "react";
 import { Container } from "./container";
 import { CardCity } from "./card-city";

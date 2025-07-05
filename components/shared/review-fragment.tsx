@@ -1,6 +1,6 @@
 import React from "react";
 import { ReviewCard } from "./room";
-import { IReview } from "@/lib/cardItem";
+import { IReview } from "@/lib/item/cardItem";
 
 interface Props {
   className?: string;

@@ -34,7 +34,7 @@ export const DescriptionBlockText: React.FC<Props> = ({
   className,
 }) => {
   return (
-    <div className={cn("flex flex-col items-start ", className)}>
+    <section className={cn("flex flex-col items-start ", className)}>
       {description ? (
         <Title text={owner} size="xl" className="font-medium" />
       ) : (
@@ -57,6 +57,6 @@ export const DescriptionBlockText: React.FC<Props> = ({
         <p>{location}</p>
         {description && <p>{description}</p>}
       </div>
-    </div>
+    </section>
   );
 };

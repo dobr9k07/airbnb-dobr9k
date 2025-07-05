@@ -1,18 +1,27 @@
-import { IRating, IReview } from "@/lib/cardItem";
-import React from "react";
+"use client";
+import { IRating, IReview } from "@/lib/item/cardItem";
+import React, { RefObject } from "react";
 import { Dot } from "lucide-react";
 import { ProgressStat } from "./progress-stat";
 import { Separator } from "@/components/ui/separator";
 import { CardCategoryRating, TCategoty } from "./card-category-rating";
 import { ReviewDialog } from "./review-dialog";
 import { ReviewFragment } from "../review-fragment";
+import { useCategoryIntersection } from "@/hooks";
 
 interface Props {
+  title: string;
+  categoryId: number;
   rating?: IRating;
   reviews?: IReview[];
 }
 
-export const ReviewBlock: React.FC<Props> = ({ rating, reviews }) => {
+export const ReviewBlock: React.FC<Props> = ({
+  title,
+  categoryId,
+  rating,
+  reviews,
+}) => {
   const categories: { name: TCategoty; label: string }[] = [
     { name: "cleanliness", label: "Чистота" },
     { name: "accuracy", label: "Точність" },
@@ -20,10 +29,15 @@ export const ReviewBlock: React.FC<Props> = ({ rating, reviews }) => {
     { name: "priceQuality", label: "Ціна/Якість" },
   ];
 
+  const ref = useCategoryIntersection(categoryId);
   return (
-    <>
+    <section>
       {rating && reviews && (
-        <div className="flex flex-col w-full gap-3.5">
+        <div
+          className="flex flex-col w-full gap-3.5"
+          id={title}
+          ref={ref as RefObject<HTMLDivElement>}
+        >
           <div className="flex items-center text-2xl">
             <p>{rating.rating}/5</p>
             <Dot />
@@ -68,6 +82,6 @@ export const ReviewBlock: React.FC<Props> = ({ rating, reviews }) => {
           </div>
         </div>
       )}
-    </>
+    </section>
   );
 };

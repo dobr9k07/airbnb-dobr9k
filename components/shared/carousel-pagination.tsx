@@ -7,7 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { commentItem } from "@/lib/commentItem";
+import { commentItem } from "@/lib/item/commentItem";
 import { CarouselContentWithPositions } from "./carousel/carousel-content-with-positions";
 import { cn } from "@/lib/utils";
 
@@ -30,7 +30,7 @@ export const CarouselPagination = () => {
 
   return (
     <div className="w-full">
-      <Carousel setApi={setApi} opts={{ loop: true, align: "center", }}>
+      <Carousel setApi={setApi} opts={{ loop: true, align: "center" }}>
         <CarouselContentWithPositions>
           {commentItem.map((item) => (
             <CarouselItem

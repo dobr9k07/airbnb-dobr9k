@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "../container";
 import { SubscribeInput } from "../subscribe-input";
 import { cn } from "@/lib/utils";
-import { MAXWIDTH } from "@/lib/const-css";
+import { MAXWIDTH } from "@/constans/const-css";
 import { FooterLinks } from "../footer-links";
 
 interface Props {

@@ -1,8 +1,7 @@
-import { IBlogItem } from "@/lib/blogItem";
+import { IBlogItem } from "@/lib/item/blogItem";
 import React from "react";
-import { BlogBannerHero } from "./blog-banner-hero";
 import { BlogBannerSlug } from "./blog-slug";
-
+import { BlogBannerCarousel } from "../blog-banner-carousel";
 
 interface Props {
   className?: string;
@@ -18,6 +17,6 @@ export const BlogBanner: React.FC<Props> = ({
   return isBlogSlug ? (
     <BlogBannerSlug item={item} className={className} />
   ) : (
-    <BlogBannerHero item={item} />
+    <BlogBannerCarousel />
   );
 };

@@ -29,7 +29,6 @@ export const ListingCardWithCarousel: React.FC<Props> = ({
       <div className="relative aspect-square overflow-hidden rounded-xl">
         <CategoryCarousel
           id={id}
-          isCard={true}
           className="w-full h-full"
           imageUrls={imageUrls}
         />

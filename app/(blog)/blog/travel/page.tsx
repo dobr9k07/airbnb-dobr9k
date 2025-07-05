@@ -5,8 +5,8 @@ import {
   NavBlog,
 } from "@/components/shared";
 import { BLOG_CATEGORIES } from "@/components/shared/blog/blog-link";
-import { blogItems } from "@/lib/blogItem";
-import { MAXWIDTH } from "@/lib/const-css";
+import { blogItems } from "@/lib/item/blogItem";
+import { MAXWIDTH } from "@/constans/const-css";
 
 export default function TravelPage() {
   const tag = BLOG_CATEGORIES.find((item) => item.id === "travel");

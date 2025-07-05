@@ -6,8 +6,8 @@ import {
   Title,
 } from "@/components/shared";
 import { Button } from "@/components/ui/button";
-import { aboutItems } from "@/lib/aboutItem";
-import { MAXWIDTH } from "@/lib/const-css";
+import { aboutItems } from "@/lib/item/aboutItem";
+import { MAXWIDTH } from "@/constans/const-css";
 import image from "@/public/about/imageAbout_1.png";
 import Image from "next/image";
 

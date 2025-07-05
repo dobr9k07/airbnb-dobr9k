@@ -3,7 +3,7 @@ import React from "react";
 import { Title } from "../title";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { IRoom } from "@/lib/cardItem";
+import { IRoom } from "@/lib/item/cardItem";
 import { RoomInfo } from "../room-info";
 
 interface Props {

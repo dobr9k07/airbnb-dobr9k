@@ -4,6 +4,9 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useClickAway, useDebounce } from "react-use";
 import { SearchIcon } from "./svg-components";
+import { cartCityItems } from "@/lib/item/cartCityItem";
+import { blogItems } from "@/lib/item/blogItem";
+import { generateBlogPathLink } from "@/lib/generate-Blog-PathLink";
 
 interface Props {
   className?: string;
@@ -12,35 +15,113 @@ interface Props {
   isHover?: boolean;
 }
 
-const citiesList = [
-  {
-    id: 1,
-    name: "Лондон",
-    link: "/cities/london",
-  },
-  {
-    id: 2,
-    name: "Дубай",
-    link: "/cities/dubai",
-  },
-  {
-    id: 3,
-    name: "Монреаль",
-    link: "/cities/monreal",
-  },
-  {
-    id: 4,
-    name: "Лос Анджелес",
-    link: "/cities/los-angeles",
-  },
-  {
-    id: 5,
-    name: "Нью Йорк",
-    link: "/cities/new-york",
-  },
-];
+interface SearchInputProps extends Props {
+  value: string;
+  onChange: (value: string) => void;
+  onSelect?: (city: string) => void;
+}
 
-const SearchInput: React.FC<Props> = ({
+const SearchInput: React.FC<SearchInputProps> = ({
+  value,
+  onChange,
+  onSelect,
+  placeholder,
+  isBlog = false,
+  isHover = false,
+  className,
+}) => {
+  const [focused, setFocused] = React.useState(false);
+  const [cities, setСities] = React.useState(cartCityItems);
+  const ref = React.useRef(null);
+
+  useClickAway(ref, () => {
+    setFocused(false);
+  });
+
+  useDebounce(
+    () => {
+      if (!value || value.trim() === "") {
+        setСities(cartCityItems);
+      } else {
+        const filteredCities = cartCityItems.filter((city) =>
+          city.name.toLowerCase().includes(value.toLowerCase())
+        );
+        setСities(filteredCities);
+      }
+    },
+    250,
+    [value]
+  );
+
+  const onClickItem = (city: string) => {
+    onChange(city);
+    setFocused(false);
+    setСities(cartCityItems);
+    onSelect?.(city);
+  };
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "relative z-30 flex items-center px-5 rounded-full group",
+        "hover:cursor-pointer focus-within:ring-2 focus-within:bg-primary",
+        isBlog ? "bg-transparent" : "bg-[#E0E0E0]",
+        isHover && "hover:bg-primary",
+        className
+      )}
+    >
+      <SearchIcon
+        width={28}
+        height={28}
+        className={cn(
+          isHover
+            ? "text-black group-hover:text-white"
+            : "text-black group-focus-within:text-white"
+        )}
+        onClick={() => setFocused(true)}
+      />
+
+      {/* Поле вводу */}
+      <input
+        type="text"
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className={cn(
+          "w-full bg-transparent outline-none text-black text-base  focus-within:placeholder-white focus-within:text-white",
+          isHover && "text-xl font-light group-hover:placeholder-white"
+        )}
+        onFocus={() => setFocused(true)}
+      />
+
+      {/* Випадаючий список міст */}
+      {cities.length > 0 && (
+        <div
+          className={cn(
+            "overflow-y-auto max-h-[200px] absolute left-0 w-full bg-white rounded-[20px] mt-4 shadow-md transition-all duration-200 z-30",
+            focused ? "visible opacity-100 top-6" : "invisible opacity-0 top-6"
+          )}
+        >
+          {cities.map((city) => (
+            <div
+              key={city.id}
+              onClick={() => onClickItem(city.name)}
+              className="m-3 px-3 py-2 rounded-[21px] cursor-pointer text-sm font-light transition-all duration-100 hover:bg-primary hover:text-white"
+            >
+              {city.name}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+{
+  /* Переробити список під блог */
+}
+const SearchInputBlog: React.FC<Props> = ({
   placeholder,
   isBlog = false,
   isHover = false,
@@ -48,7 +129,7 @@ const SearchInput: React.FC<Props> = ({
 }) => {
   const [focused, setFocused] = React.useState(false);
   const [searchQuery, setSearchQuery] = React.useState("");
-  const [cities, setСities] = React.useState(citiesList);
+  const [blogs, setBlogs] = React.useState(blogItems);
   const ref = React.useRef(null);
 
   useClickAway(ref, () => {
@@ -58,23 +139,17 @@ const SearchInput: React.FC<Props> = ({
   useDebounce(
     () => {
       if (searchQuery.trim() === "") {
-        setСities(citiesList);
+        setBlogs(blogItems);
       } else {
-        const filteredCities = citiesList.filter((city) =>
-          city.name.toLowerCase().includes(searchQuery.toLowerCase())
+        const filteredCities = blogItems.filter((blog) =>
+          blog.title.toLowerCase().includes(searchQuery.toLowerCase())
         );
-        setСities(filteredCities);
+        setBlogs(filteredCities);
       }
     },
     250,
     [searchQuery]
   );
-
-  const onClickItem = (city: string) => {
-    setSearchQuery(city);
-    setFocused(false);
-    setСities(citiesList);
-  };
 
   return (
     <div
@@ -122,22 +197,21 @@ const SearchInput: React.FC<Props> = ({
       />
 
       {/* Випадаючий список міст */}
-      {cities.length > 0 && (
+      {blogs.length > 0 && (
         <div
           className={cn(
-            "absolute left-0 w-full bg-white rounded-[20px] mt-4 shadow-md transition-all duration-200 z-30",
-            focused
-              ? "visible opacity-100 top-14"
-              : "invisible opacity-0 top-12"
+            "custom-scroll overflow-y-auto max-h-[200px] absolute left-0 w-full bg-white rounded-[20px] mt-4 shadow-md transition-all duration-200 z-30",
+            focused ? "visible opacity-100 top-6" : "invisible opacity-0 top-6"
           )}
         >
-          {cities.map((city) => (
+          {blogs.map((blog) => (
             <div
-              key={city.id}
-              onClick={() => onClickItem(city.name)}
-              className="mx-3 px-3 py-2 rounded-[21px] cursor-pointer text-sm font-light transition-all duration-100 hover:bg-primary hover:text-white"
+              key={blog.id}
+              className="m-3 px-3 py-2 rounded-[21px] cursor-pointer text-sm font-light transition-all duration-100 hover:bg-primary hover:text-white"
             >
-              {city.name}
+              <Link href={generateBlogPathLink(blog.id, blog.tag)}>
+                {blog.title}
+              </Link>
             </div>
           ))}
         </div>
@@ -185,7 +259,7 @@ const SearchInputHelp: React.FC<Props> = ({ placeholder, className }) => {
 
 const SearchSecondInput: React.FC<Props> = ({ placeholder, className }) => {
   const [focused, setFocused] = React.useState(false);
-  const [cities, setСities] = React.useState(citiesList);
+  const [cities, setСities] = React.useState(cartCityItems);
   const ref = React.useRef(null);
 
   useClickAway(ref, () => {
@@ -194,7 +268,7 @@ const SearchSecondInput: React.FC<Props> = ({ placeholder, className }) => {
 
   const onClickItem = () => {
     setFocused(false);
-    setСities(citiesList);
+    setСities(cartCityItems);
   };
 
   return (
@@ -246,4 +320,4 @@ const SearchSecondInput: React.FC<Props> = ({ placeholder, className }) => {
   );
 };
 
-export { SearchInput, SearchInputHelp, SearchSecondInput };
+export { SearchInput, SearchInputBlog, SearchInputHelp, SearchSecondInput };

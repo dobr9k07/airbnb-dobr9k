@@ -129,7 +129,7 @@ export const blogItems: IBlogItem[] = [
     description:
       "З відкриттям нашого нового напрямку, Канн, у нас виникає спокуса провести весь …",
     imageUrl: "/blog/image02.png",
-    imageBanner: "",
+    imageBanner: "/blog/image02.png",
   },
   {
     id: 3,
@@ -138,7 +138,7 @@ export const blogItems: IBlogItem[] = [
     description:
       "Червень вже не за горами, тому ознайомтеся з нашими найкращими …",
     imageUrl: "/blog/image03.png",
-    imageBanner: "",
+    imageBanner: "/blog/image03.png",
   },
   {
     id: 4,
@@ -147,7 +147,7 @@ export const blogItems: IBlogItem[] = [
     description:
       "hata їде до Флоренції цієї весни — і ми вважаємо, що вам варто приєднатися…",
     imageUrl: "/blog/image04.png",
-    imageBanner: "",
+    imageBanner: "/blog/image04.png",
   },
   {
     id: 5,
@@ -156,7 +156,7 @@ export const blogItems: IBlogItem[] = [
     description:
       "Готуєтеся до весняного чи осіннього дня перегонів? У нас є hata для вас…",
     imageUrl: "/blog/image05.png",
-    imageBanner: "",
+    imageBanner: "/blog/image05.png",
   },
   {
     id: 6,
@@ -165,7 +165,7 @@ export const blogItems: IBlogItem[] = [
     description:
       "hata Spotlight – це серія, присвячена деяким з наших улюблених (і талановитих!) гостей. У …",
     imageUrl: "/blog/image06.png",
-    imageBanner: "",
+    imageBanner: "/blog/image06.png",
   },
   {
     id: 7,
@@ -174,7 +174,7 @@ export const blogItems: IBlogItem[] = [
     description:
       "Щоб відсвяткувати запуск Sonder Rose у нашому новому місці призначення – Роттердамі, ми витрачаємо…",
     imageUrl: "/blog/image07.png",
-    imageBanner: "",
+    imageBanner: "/blog/image07.png",
   },
   {
     id: 8,
@@ -183,7 +183,7 @@ export const blogItems: IBlogItem[] = [
     description:
       "hata їде до Флоренції цієї весни — і ми вважаємо, що вам варто приєднатися…",
     imageUrl: "/blog/image08.png",
-    imageBanner: "",
+    imageBanner: "/blog/image08.png",
   },
   {
     id: 9,
@@ -192,7 +192,7 @@ export const blogItems: IBlogItem[] = [
     description:
       "З відкриттям нашого нового напрямку, Канн, у нас виникає спокуса провести весь …",
     imageUrl: "/blog/image09.png",
-    imageBanner: "",
+    imageBanner: "/blog/image09.png",
   },
   {
     id: 10,
@@ -201,7 +201,7 @@ export const blogItems: IBlogItem[] = [
     description:
       "Апарт-готель Sonder Royal Garden Apartments в Единбурзі розширився на 11 нових апартаментів, готових до бронювання. Ми раді зростати в самому серці цього історичного міста.",
     imageUrl: "/blog/image10.png",
-    imageBanner: "",
+    imageBanner: "/blog/image10.png",
   },
   {
     id: 11,
@@ -210,7 +210,7 @@ export const blogItems: IBlogItem[] = [
     description:
       "Познайомтеся з нашим старшим креативним продюсером Отем Вуд та талановитим ...",
     imageUrl: "/blog/image11.png",
-    imageBanner: "",
+    imageBanner: "/blog/image11.png",
   },
   {
     id: 12,
@@ -219,7 +219,7 @@ export const blogItems: IBlogItem[] = [
     description:
       "Наша команда дизайнерів ділиться порадами щодо створення затишного та гостинного простору вдома цієї зими.",
     imageUrl: "/blog/image12.png",
-    imageBanner: "",
+    imageBanner: "/blog/image12.png",
   },
   {
     id: 13,
@@ -228,7 +228,7 @@ export const blogItems: IBlogItem[] = [
     description:
       "Те, що ви застрягли вдома, не означає, що ви не можете відчути святковий дух! Ось три поради від наших дизайнерів, як зустріти свята, не встаючи з дивана.",
     imageUrl: "/blog/image13.png",
-    imageBanner: "",
+    imageBanner: "/blog/image13.png",
   },
   {
     id: 14,
@@ -237,7 +237,7 @@ export const blogItems: IBlogItem[] = [
     description:
       "Барбекю, кавуни та біг через розбризкувачі. Ми всі хочемо витратити якомога більше…",
     imageUrl: "/blog/image14.png",
-    imageBanner: "",
+    imageBanner: "/blog/image14.png",
   },
   {
     id: 15,
@@ -245,7 +245,7 @@ export const blogItems: IBlogItem[] = [
     title: "Як створити (і підтримувати) власні мікроджунглі",
     description: "Кімнатні рослини, які зроблять ваш дім трохи кращим.",
     imageUrl: "/blog/image15.png",
-    imageBanner: "",
+    imageBanner: "/blog/image15.png",
   },
   {
     id: 16,

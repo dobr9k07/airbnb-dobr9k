@@ -1,5 +1,5 @@
 import { CityBanner, MainLayout } from "@/components/shared";
-import { cartCityItems } from "@/lib/cartCityItem";
+import { cartCityItems } from "@/lib/item/cartCityItem";
 
 export default function CitiesPage() {
   return (

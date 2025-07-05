@@ -1,4 +1,4 @@
-import { IBlogItem } from "@/lib/blogItem";
+import { IBlogItem } from "@/lib/item/blogItem";
 import Image from "next/image";
 import React from "react";
 import { Title } from "../title";

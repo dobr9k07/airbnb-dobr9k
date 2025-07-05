@@ -9,10 +9,9 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { IBlogItem } from "@/lib/blogItem";
+import { IBlogItem } from "@/lib/item/blogItem";
 import { cn } from "@/lib/utils";
-import { BLOG_CATEGORIES } from "./blog-link";
-import { notFound } from "next/navigation";
+import { generateBlogPathLink } from "@/lib/generate-Blog-PathLink";
 
 interface Props {
   className?: string;
@@ -21,16 +20,18 @@ interface Props {
 }
 
 export const CardBlog: React.FC<Props> = ({ items, isBlogPage }) => {
-  const BLOG_CATEGORIES_MAP = new Map(
-    BLOG_CATEGORIES.map((cat) => [cat.name, cat])
-  );
+  // const BLOG_CATEGORIES_MAP = new Map(
+  //   BLOG_CATEGORIES.map((cat) => [cat.name, cat])
+  // );
 
-  const tag = BLOG_CATEGORIES_MAP.get(items.tag);
+  // const tag = BLOG_CATEGORIES_MAP.get(items.tag);
 
-  if (!tag) {
-    return notFound();
-  }
-  const pathLink = `${tag.href}/${items.id}`;
+  // if (!tag) {
+  //   return notFound();
+  // }
+  // const pathLink = `${tag.href}/${items.id}`;
+
+  const pathLink = generateBlogPathLink(items.id, items.tag);
 
   return (
     <Card
@@ -62,19 +63,16 @@ export const CardBlog: React.FC<Props> = ({ items, isBlogPage }) => {
       </CardContent>
       <div className="flex-grow"></div>
       <CardFooter className={cn("p-0", isBlogPage && "flex justify-center")}>
-        <Link href={pathLink}>
-          <Button
-            className={cn(
-              "text-black p-0",
-              isBlogPage
-                ? "text-base font-extralight"
-                : "text-[25px] font-normal"
-            )}
-            variant={"link"}
-          >
-            Читайте далі
-          </Button>
-        </Link>
+        <Button
+          asChild
+          className={cn(
+            "text-black p-0",
+            isBlogPage ? "text-base font-extralight" : "text-[25px] font-normal"
+          )}
+          variant={"link"}
+        >
+          <Link href={pathLink}>Читайте далі</Link>
+        </Button>
       </CardFooter>
     </Card>
   );

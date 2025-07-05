@@ -9,4 +9,5 @@ export { DescriptionBlockText } from "./description-block-text";
 export { NavRoom } from "./nav-room";
 export { RoomCard } from "./room-card";
 export { ConvenienceBlock } from "./convenience-block";
-export { AvailabilityBlock} from "./availability-block";
+export { AvailabilityBlock } from "./availability-block";
+export { RoomBody } from "./room-body";

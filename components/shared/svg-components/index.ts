@@ -1,2 +1,2 @@
-export {SearchIcon} from "./search-icon";
-export {GuestsIcon} from "./guests-icon";
+export { SearchIcon } from "./search-icon";
+export { GuestsIcon } from "./guests-icon";

@@ -6,8 +6,8 @@ import {
   Container,
   NavBlog,
 } from "@/components/shared";
-import { blogItems } from "@/lib/blogItem";
-import { MAXWIDTH } from "@/lib/const-css";
+import { blogItems } from "@/lib/item/blogItem";
+import { MAXWIDTH } from "@/constans/const-css";
 import { notFound } from "next/navigation";
 
 export default async function BlogDesignePage({
@@ -18,7 +18,7 @@ export default async function BlogDesignePage({
   const { id } = await params;
   const blog = blogItems.find((item) => item.id === Number(id));
 
-  if (!blog) {
+  if (!blog?.textContent) {
     return notFound();
   }
 

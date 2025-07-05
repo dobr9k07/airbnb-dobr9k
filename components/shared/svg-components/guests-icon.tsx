@@ -1,15 +1,8 @@
 import { cn } from "@/lib/utils";
 import React from "react";
+import PropsSvg from "./svg-props";
 
-interface Props {
-  width?: number;
-  height?: number;
-  className?: string;
-  color?: string;
-  onClick?: () => void;
-}
-
-export const GuestsIcon: React.FC<Props> = ({
+export const GuestsIcon: React.FC<PropsSvg> = ({
   width = 26,
   height = 26,
   className,

@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Separator } from "@/components/ui/separator";
-import { cardItem } from "@/lib/cardItem";
+import { cardItem } from "@/lib/item/cardItem";
 import Image from "next/image";
 
 const paymentMethods = [

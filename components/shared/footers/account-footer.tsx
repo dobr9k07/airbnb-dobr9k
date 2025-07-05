@@ -1,7 +1,7 @@
 import React from "react";
 import { Container } from "../container";
 import { cn } from "@/lib/utils";
-import { MAXWIDTH } from "@/lib/const-css";
+import { MAXWIDTH } from "@/constans/const-css";
 import { SubscribeInput } from "../subscribe-input";
 import { FooterLinks } from "../footer-links";
 

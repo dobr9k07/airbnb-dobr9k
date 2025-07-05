@@ -5,7 +5,7 @@ import {
   NotFoundRightSide,
 } from "@/components/shared";
 
-import { MAXWIDTH } from "@/lib/const-css";
+import { MAXWIDTH } from "@/constans/const-css";
 import { cn } from "@/lib/utils";
 
 export default function NotFound() {

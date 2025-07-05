@@ -14,7 +14,7 @@ import Link from "next/link";
 import IconChat from "../../../public/svg/IconChat.svg";
 import IconTravel from "../../../public/svg/IconTravel.svg";
 
-import { cardItem } from "@/lib/cardItem";
+import { cardItem } from "@/lib/item/cardItem";
 import { Heart } from "lucide-react";
 export default function AccountPage() {
   return (

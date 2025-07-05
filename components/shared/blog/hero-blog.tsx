@@ -1,4 +1,4 @@
-import { IBlogItem } from "@/lib/blogItem";
+import { IBlogItem } from "@/lib/item/blogItem";
 import React from "react";
 import { CardBlog } from "./card-blog";
 import { cn } from "@/lib/utils";

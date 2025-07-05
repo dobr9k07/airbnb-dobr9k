@@ -7,7 +7,7 @@ import {
 } from "@/components/shared";
 import { Map } from "@/components/shared/map";
 
-import { cardItem } from "@/lib/cardItem";
+import { cardItem } from "@/lib/item/cardItem";
 
 export default function Page() {
   return (

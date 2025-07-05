@@ -1,10 +1,13 @@
+"use client";
+import { useCategoryIntersection } from "@/hooks";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import React from "react";
+import React, { RefObject } from "react";
 
 interface Props {
+  title: string;
+  categoryId: number;
   imageUrl: string[];
-  className?: string;
 }
 
 const gridPositions2 = [
@@ -29,11 +32,18 @@ const imgSizes: ISizes = {
 };
 
 export const DescriptionImageBlock: React.FC<Props> = ({
+  title,
+  categoryId,
   imageUrl,
-  className,
 }) => {
+  const ref = useCategoryIntersection(categoryId);
+
   return (
-    <div className="grid grid-cols-3 grid-rows-2 gap-x-3 gap-y-4.5 mt-2.75 container">
+    <section
+      className="grid grid-cols-3 grid-rows-2 gap-x-3 gap-y-4.5 mt-2.75 container"
+      ref={ref as RefObject<HTMLDivElement>}
+      id={title}
+    >
       {imageUrl.map((imageUrl, index) => (
         <div key={imageUrl} className={cn("flex", gridPositions2[index])}>
           <Image
@@ -45,6 +55,6 @@ export const DescriptionImageBlock: React.FC<Props> = ({
           />
         </div>
       ))}
-    </div>
+    </section>
   );
 };

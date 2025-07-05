@@ -1,9 +1,9 @@
-import { MAXWIDTH } from "@/lib/const-css";
+import { MAXWIDTH } from "@/constans/const-css";
 import React from "react";
 import { Container } from "../container";
 import Image from "next/image";
 import { Title } from "../title";
-import { companyItems, supportItems } from "@/lib/fotterItems";
+import { companyItems, supportItems } from "@/lib/item/fotterItems";
 import Link from "next/link";
 
 import DesktopLogo from "@/public/svg/LogoWhite.svg";

@@ -3,7 +3,7 @@ import { Container } from "../container";
 import { SubscribeInput } from "../subscribe-input";
 import { FooterLinks } from "../footer-links";
 import { cn } from "@/lib/utils";
-import { MAXWIDTH } from "@/lib/const-css";
+import { MAXWIDTH } from "@/constans/const-css";
 
 interface Props {
   className?: string;

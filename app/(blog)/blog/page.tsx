@@ -5,8 +5,8 @@ import {
   BlogLayout,
   NavBlog,
 } from "@/components/shared";
-import { blogItems } from "@/lib/blogItem";
-import { MAXWIDTH } from "@/lib/const-css";
+import { blogItems } from "@/lib/item/blogItem";
+import { MAXWIDTH } from "@/constans/const-css";
 
 export default function BlogPage() {
   return (
@@ -17,9 +17,11 @@ export default function BlogPage() {
         </Container>
       </Container>
       <Container
-        className={`${MAXWIDTH} h-[500px] max-h-[500px] mx-auto bg-primary`}
+        className={`${MAXWIDTH} h-[500px] max-h-[500px] mx-auto bg-primary `}
       >
-        <BlogBanner item={blogItems[0]} />
+        <div className="w-full flex justify-center items-center">
+          <BlogBanner item={blogItems[0]} />
+        </div>
       </Container>
 
       <Container className="mt-[313px] ">

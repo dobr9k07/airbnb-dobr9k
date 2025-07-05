@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Title } from "@/components/shared";
-import { IAboutItem } from "@/lib/aboutItem";
+import { IAboutItem } from "@/lib/item/aboutItem";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 

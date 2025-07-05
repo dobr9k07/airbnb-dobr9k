@@ -8,8 +8,8 @@ import {
   Title,
 } from "@/components/shared";
 import { CarouselPagination } from "@/components/shared/carousel-pagination";
-import { blogItems } from "@/lib/blogItem";
-import { cartCityItems } from "@/lib/cartCityItem";
+import { blogItems } from "@/lib/item/blogItem";
+import { cartCityItems } from "@/lib/item/cartCityItem";
 
 export default function Home() {
   return (

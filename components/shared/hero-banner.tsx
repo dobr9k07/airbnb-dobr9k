@@ -5,9 +5,9 @@ import { Container } from "./container";
 import Image from "next/image";
 import vector from "@/public/svg/Vector 150.svg";
 import IconPlaceholder from "@/public/svg/IconPlaceholder.svg";
-import { MAXWIDTH } from "@/lib/const-css";
+import { MAXWIDTH } from "@/constans/const-css";
 import { Title } from "./title";
-import { HeroBannerItems } from "@/lib/heroBaner";
+import { HeroBannerItems } from "@/lib/item/heroBaner";
 
 import AboutHero from "@/public/about/aboutHero.png";
 import { ChangeImageTimer } from "./change-image-timer";

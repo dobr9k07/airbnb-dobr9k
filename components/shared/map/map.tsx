@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { cardItem } from "@/lib/cardItem";
+import { cardItem } from "@/lib/item/cardItem";
 import dynamic from "next/dynamic";
 import React from "react";
 import { ICity } from "./map-links";
