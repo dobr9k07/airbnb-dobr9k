@@ -2,33 +2,23 @@
 
 import React from "react";
 import { Container } from "./container";
-import { SearchInputBlog } from "./search-input";
 import { Button } from "../ui/button";
-import { z } from "zod";
-import { Controller, FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { DateRangePicker } from "./date-range-picker";
-import { MoveRight } from "lucide-react";
-import { useCounter } from "@/hooks";
-import { Counter } from "./counter";
-import { GuestsIcon } from "./svg-components";
+import { FormValues, schema } from "./filterHero/filter-form-shema";
+import { CityField, DateRangeField, GuestsField } from "./filterHero";
+import { useSearchSubmit } from "@/hooks/use-search-submit";
 
 interface Props {
   className?: string;
 }
 
+const Divider = () => <div className="h-5 bg-black w-[0.25px]" />;
+
+{
+  /* Доробити відображення помилки валідації */
+}
 export const FilterHero: React.FC<Props> = ({ className }) => {
-  const { count, onClick } = useCounter();
-
-  const schema = z.object({
-    dateRange: z.object({
-      from: z.date({ required_error: "Оберіть початкову дату" }),
-      to: z.date({ required_error: "Оберіть кінцеву дату" }),
-    }),
-  });
-
-  type FormValues = z.infer<typeof schema>;
-
   const methods = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -36,17 +26,12 @@ export const FilterHero: React.FC<Props> = ({ className }) => {
         from: undefined,
         to: undefined,
       },
+      city: "",
+      guests: 1,
     },
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log("Вибрані дати:", data.dateRange);
-  };
-
-  const {
-    control,
-    formState: { errors },
-  } = methods;
+  const onSubmit = useSearchSubmit();
 
   return (
     <Container className={className}>
@@ -55,55 +40,15 @@ export const FilterHero: React.FC<Props> = ({ className }) => {
           onSubmit={methods.handleSubmit(onSubmit)}
           className="w-[1210px] h-[83px] bg-primary-white rounded-full flex items-center justify-between gap-5 px-8"
         >
-          {/* Пошук доопрацювати*/}
-          <SearchInputBlog
-            placeholder="Виберіть місто"
-            className="w-89 h-17"
-            isHover={true}
-          />
+          <CityField />
 
-          <div className="h-5 bg-black w-[0.25px]"></div>
+          <Divider />
 
-          <Controller
-            name="dateRange"
-            control={control}
-            render={({ field }) => (
-              <DateRangePicker
-                className="w-[285px] h-17 hover:bg-primary"
-                value={field.value}
-                onChange={field.onChange}
-                content={
-                  <>
-                    <span className="text-xl font-light text-black group-hover:text-white">
-                      Заїзд
-                    </span>
-                    <MoveRight
-                      width={17}
-                      height={17}
-                      className="text-black group-hover:text-white stroke-current"
-                    />
-                    <span className="text-xl font-light text-black group-hover:text-white">
-                      Виїзд
-                    </span>
-                  </>
-                }
-                error={!!errors.dateRange}
-              />
-            )}
-          />
+          <DateRangeField />
 
-          <div className="h-5 bg-black w-[0.25px]"></div>
+          <Divider />
 
-          <Counter
-            value={count}
-            onChange={onClick}
-            content={
-              <>
-                <GuestsIcon className="mr-0" />
-                <p className="text-xl text-black font-light">Гості</p>
-              </>
-            }
-          />
+          <GuestsField />
 
           <Button
             className="w-34 h-17 text-xl font-light rounded-full"

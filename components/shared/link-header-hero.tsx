@@ -35,6 +35,7 @@ export const LinkHeaderHero: React.FC<Props> = ({ className }) => {
       <SearchInput
         placeholder="Виберіть місто"
         className="w-[280px] h-8"
+        marginTop="top-6"
         value={city}
         onChange={setCity}
       />

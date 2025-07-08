@@ -1,14 +1,19 @@
+"use client";
+
 import React from "react";
 
 import UserDropDown from "../../public/User_alt_light.png";
 import MenuDropDown from "../../public/Variant2.png";
-// import LanguageDropDown from "../../public/svg/IconTranslate.svg";
 import LanguageDropDown from "../../public/Language.png";
 
 import {
   DropdownMenuPrimaryInnerContent,
   DropdownMenuSecondaryInnerContent,
 } from "./dropdown-menu-inner-content";
+import { useSession } from "next-auth/react";
+import { Button } from "../ui/button";
+import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   className?: string;
@@ -147,6 +152,8 @@ const dropdownCurency: ILanguage[] = [
 ];
 
 export const UserNav: React.FC<Props> = ({ className }) => {
+  const { data: session } = useSession();
+  console.log("session", session);
   return (
     <>
       {/*CurencyDropDown*/}
@@ -173,12 +180,23 @@ export const UserNav: React.FC<Props> = ({ className }) => {
         className="rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base font-light w-[350px]"
       />
 
-      {/*UserDropDown*/}
-      <DropdownMenuPrimaryInnerContent
-        menuItems={dropdownUser}
-        srcImage={UserDropDown}
-        className="rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base w-[245px]"
-      />
+      {!session ? (
+        <DropdownMenuPrimaryInnerContent
+          menuItems={dropdownUser}
+          srcImage={UserDropDown}
+          className="rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base font-light w-[350px]"
+        />
+      ) : (
+        <Button
+          asChild
+          variant={"outline"}
+          className="border-none shadow-none rounded-[21px] h-10.5 w-16.5 flex items-center justify-center cursor-pointer hover:bg-primary-white hover:transition-all duration-300"
+        >
+          <Link href={"/account"}>
+            <Image src={UserDropDown} alt="Logo" />
+          </Link>
+        </Button>
+      )}
     </>
   );
 };

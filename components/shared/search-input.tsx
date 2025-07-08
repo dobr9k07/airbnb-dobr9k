@@ -17,12 +17,14 @@ interface Props {
 
 interface SearchInputProps extends Props {
   value: string;
+  marginTop: string;
   onChange: (value: string) => void;
   onSelect?: (city: string) => void;
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({
   value,
+  marginTop,
   onChange,
   onSelect,
   placeholder,
@@ -99,8 +101,9 @@ const SearchInput: React.FC<SearchInputProps> = ({
       {cities.length > 0 && (
         <div
           className={cn(
-            "overflow-y-auto max-h-[200px] absolute left-0 w-full bg-white rounded-[20px] mt-4 shadow-md transition-all duration-200 z-30",
-            focused ? "visible opacity-100 top-6" : "invisible opacity-0 top-6"
+            "custom-scroll overflow-y-auto max-h-[200px] absolute left-0 w-full bg-white rounded-[20px] mt-4 shadow-md transition-all duration-300 z-30",
+            focused ? "visible opacity-100" : "invisible opacity-0",
+            marginTop
           )}
         >
           {cities.map((city) => (
@@ -118,9 +121,6 @@ const SearchInput: React.FC<SearchInputProps> = ({
   );
 };
 
-{
-  /* Переробити список під блог */
-}
 const SearchInputBlog: React.FC<Props> = ({
   placeholder,
   isBlog = false,

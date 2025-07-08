@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 import { Title } from "./title";
 import Link from "next/link";
 
+import slugify from "slugify";
+
 interface Props {
   className?: string;
   items: ICartCityItem[];
@@ -51,7 +53,10 @@ export const CityBanner: React.FC<Props> = ({
               className="relative"
               imageUrl={item.imageUrl}
               name={item.name}
-              link={item.link}
+              link={`/cities/${slugify(item.nameEn, {
+                lower: true,
+                strict: true,
+              })}`}
             />
           </div>
         ))}

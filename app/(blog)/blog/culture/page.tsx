@@ -4,9 +4,10 @@ import {
   HeroBlog,
   NavBlog,
 } from "@/components/shared";
-import { BLOG_CATEGORIES } from "@/components/shared/blog/blog-link";
+
 import { blogItems } from "@/lib/item/blogItem";
 import { MAXWIDTH } from "@/constans/const-css";
+import { BLOG_CATEGORIES } from "@/constans/blog-categories";
 
 export default function CulturePage() {
   const tag = BLOG_CATEGORIES.find((item) => item.id === "culture");

@@ -15,9 +15,9 @@ import { Title } from "../title";
 import { FormInput } from "../form";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { SocialLinks } from "../social-links";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { AuthLink } from "../auth-link";
 
 interface Props {
   className?: string;
@@ -93,10 +93,7 @@ export const LoginForm: React.FC<Props> = ({ className }) => {
           </div>
         </CardContent>
         <CardFooter className="bg-primary h-32.5 rounded-b-xl border border-primary items-center flex justify-center">
-          <SocialLinks
-            className="px-7 bg-primary-hover rounded-xl hover:scale-110 duration-300 transform-all hover:cursor-pointer"
-            wrapingClass={true}
-          />
+          <AuthLink className="flex items-center px-7 bg-primary-hover rounded-xl hover:scale-110 duration-300 transform-all hover:cursor-pointer" />
         </CardFooter>
       </Card>
     </Container>
