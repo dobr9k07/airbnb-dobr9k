@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.Set;
 
 
-public class SqlSetJavaType implements UserType<Set<String>> {
+public class StringSet implements UserType<Set<String>> {
 
   @Override
   public int getSqlType() {

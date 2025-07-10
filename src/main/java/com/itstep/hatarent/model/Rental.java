@@ -1,6 +1,6 @@
 package com.itstep.hatarent.model;
 
-import com.itstep.hatarent.util.SqlSetJavaType;
+import com.itstep.hatarent.util.StringSet;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -22,19 +22,27 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 public class Rental {
-  @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-  @NotNull @Size(max = 20) private String name;
-  @NotNull @Size(max = 200) private String description;
+  @NotNull
+  @Size(max = 20)
+  private String name;
+  @NotNull
+  @Size(max = 200)
+  private String description;
   @NotNull
   @Column(precision = 19, scale = 4)
   private BigDecimal price_per_night;
-  @Type(value = SqlSetJavaType.class)
+  @Type(value = StringSet.class)
   private HashSet<String> features;
   @Column(precision = 9, scale = 6)
-  @NotNull private BigDecimal latitude;
+  @NotNull
+  private BigDecimal latitude;
   @Column(precision = 9, scale = 6)
-  @NotNull private BigDecimal longitude;
+  @NotNull
+  private BigDecimal longitude;
   @Column(columnDefinition = "json")
   private Set<String> images;
 
