@@ -18,28 +18,22 @@ import java.time.LocalDateTime;
 @Builder
 public class Booking {
 
+  @NotNull
+  private final LocalDateTime createdAt = LocalDateTime.now();
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-
   @OneToOne
   @NotNull
   private User user;
-
   @ManyToOne
   @NotNull
   private Rental rental;
-
   @NotNull
   private LocalDate startDate;
-
   @NotNull
   private int duration;
-
   @NotNull
   private LocalDateTime accepted_at;
-
-  @NotNull
-  private final LocalDateTime createdAt = LocalDateTime.now();
 
 }

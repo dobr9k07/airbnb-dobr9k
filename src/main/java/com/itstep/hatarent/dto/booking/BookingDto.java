@@ -18,7 +18,7 @@ public class BookingDto {
   private LocalDateTime accepted_at;
   private LocalDateTime createdAt;
 
-  public BookingDto(Booking entity){
+  public BookingDto(Booking entity) {
     this.id = entity.getId();
     this.guest = entity.getUser().getId();
     this.rental = entity.getRental().getId();

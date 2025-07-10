@@ -18,14 +18,19 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class User {
-  @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
-
+  @NotNull
+  private final LocalDateTime created_at = LocalDateTime.now();
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
   @Column(length = 319)
-  @NotNull private String email;
+  @NotNull
+  private String email;
   @Column(length = 255)
-  @NotNull private String password_hash;
-  @NotNull private LocalDateTime created_at;
-  @NotNull private boolean is_admin;
+  @NotNull
+  private String password_hash;
+  @NotNull
+  private boolean is_admin;
 
 
   @ManyToMany

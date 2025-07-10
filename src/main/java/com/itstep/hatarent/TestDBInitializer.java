@@ -22,15 +22,15 @@ import java.util.Set;
 @Component
 @org.springframework.context.annotation.Profile("dev")
 public class TestDBInitializer implements CommandLineRunner {
-  
+
   @Autowired
   private BookingRepository bookingRepository;
   @Autowired
   private ProfileRepository profileRepository;
   @Autowired
-  private RentalRepository rentalRepository; 
+  private RentalRepository rentalRepository;
   @Autowired
-  private UserRepository userRepository; 
+  private UserRepository userRepository;
 
   @Override
   @Transactional
@@ -42,14 +42,12 @@ public class TestDBInitializer implements CommandLineRunner {
     User user1 = userRepository.save(User.builder()
       .email("test1@example.com")
       .password_hash("hash1")
-      .created_at(LocalDateTime.now())
       .is_admin(false)
       .build());
 
     User user2 = userRepository.save(User.builder()
       .email("admin@example.com")
       .password_hash("hash2")
-      .created_at(LocalDateTime.now())
       .is_admin(true)
       .build());
 
@@ -89,17 +87,17 @@ public class TestDBInitializer implements CommandLineRunner {
       .users(List.of(user1, user2))
       .build());
 
-//    rentalImageRepository.save(RentalImage.builder()
-//      .rental(rental1)
-//      .imagePath("/images/rental1_img1.jpg")
-//      .imagePosition(1)
-//      .build());
-//
-//    rentalImageRepository.save(RentalImage.builder()
-//      .rental(rental2)
-//      .imagePath("/images/rental2_img1.jpg")
-//      .imagePosition(1)
-//      .build());
+    //    rentalImageRepository.save(RentalImage.builder()
+    //      .rental(rental1)
+    //      .imagePath("/images/rental1_img1.jpg")
+    //      .imagePosition(1)
+    //      .build());
+    //
+    //    rentalImageRepository.save(RentalImage.builder()
+    //      .rental(rental2)
+    //      .imagePath("/images/rental2_img1.jpg")
+    //      .imagePosition(1)
+    //      .build());
 
     bookingRepository.save(Booking.builder()
       .user(user1)

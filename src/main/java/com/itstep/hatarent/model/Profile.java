@@ -1,6 +1,6 @@
 package com.itstep.hatarent.model;
 
-import com.itstep.hatarent.util.SqlSetJavaType;
+import com.itstep.hatarent.util.StringSet;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,9 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 public class Profile {
-  @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
   @NotNull
   @OneToOne
   private User user;
@@ -33,6 +35,6 @@ public class Profile {
   @Column(length = 200)
   private String about;
 
-  @Type(value = SqlSetJavaType.class)
+  @Type(value = StringSet.class)
   private Set<String> rewards;
 }

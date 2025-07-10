@@ -16,7 +16,7 @@ public class ProfileService {
   private ProfileRepository profileRepository;
   @Autowired
   private UserRepository userRepository;
-  
+
   public ProfileDto getProfileById(Long id) {
     return new ProfileDto(profileRepository.findById(id).orElseThrow());
   }
