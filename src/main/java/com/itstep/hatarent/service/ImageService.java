@@ -37,11 +37,21 @@ public class ImageService {
       throw new SecurityException("Access denied");
     }
 
-    if(!Objects.requireNonNull(image.getContentType()).startsWith("image/")) {
+    if (!Objects.requireNonNull(image.getContentType()).startsWith("image/")) {
       throw new BadRequestException("Not an image");
     }
 
     Files.write(imagePath, image.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+  }
+
+  public void deleteImage(UUID id) throws IOException {
+    Path imagePath = imagesDirectory.resolve(id.toString()).normalize();
+
+    if (!imagePath.startsWith(imagesDirectory)) {
+      throw new SecurityException("Access denied");
+    }
+
+    Files.delete(imagePath);
   }
 
 }

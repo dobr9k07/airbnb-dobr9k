@@ -33,9 +33,15 @@ public class ImageController {
   }
 
   @PostMapping("")
-  public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile image) throws IOException {
+  public ResponseEntity<String> uploadImage(MultipartFile image) throws IOException {
     UUID id = UUID.randomUUID();
     imageService.saveImage(id, image);
+    return ResponseEntity.ok(id.toString());
+  }
+
+  @DeleteMapping("")
+  public ResponseEntity<String> deleteImage(UUID id) throws IOException {
+    imageService.deleteImage(id);
     return ResponseEntity.ok(id.toString());
   }
 }
