@@ -1,6 +1,8 @@
 package com.itstep.hatarent.service;
 
 import org.apache.coyote.BadRequestException;
+import org.springframework.core.io.PathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,9 +16,9 @@ import java.util.UUID;
 
 @Service
 public class ImageService {
-  public final Path imagesDirectory = Path.of("data/rentalImages");
+  private final Path imagesDirectory = Path.of("data","rentalImages");
 
-  public byte[] getImageByPath(UUID id) throws IOException {
+  public Resource getImageByPath(UUID id) throws IOException {
     Path imagePath = imagesDirectory.resolve(id.toString()).normalize();
 
     if (!imagePath.startsWith(imagesDirectory)) {
@@ -27,18 +29,21 @@ public class ImageService {
       throw new NoSuchFileException("Image not found: " + id);
     }
 
-    return Files.readAllBytes(imagePath);
+    return new PathResource(imagePath);
   }
 
   public void saveImage(UUID id, MultipartFile image) throws IOException {
-    Path imagePath = imagesDirectory.resolve(id.toString()).normalize();
+    String contentType = Objects.requireNonNull(image.getContentType(), "Content type cannot be null");
+    if (!contentType.startsWith("image/")) {
+      throw new IllegalArgumentException("Not an image");
+    }
+
+    String extension = getExtensionFromContentType(contentType);
+    String fileName = id + (extension != null ? "." + extension : "");
+    Path imagePath = imagesDirectory.resolve(fileName).normalize();
 
     if (!imagePath.startsWith(imagesDirectory)) {
       throw new SecurityException("Access denied");
-    }
-
-    if (!Objects.requireNonNull(image.getContentType()).startsWith("image/")) {
-      throw new BadRequestException("Not an image");
     }
 
     Files.write(imagePath, image.getBytes(), StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
@@ -51,7 +56,17 @@ public class ImageService {
       throw new SecurityException("Access denied");
     }
 
-    Files.delete(imagePath);
+    if (!Files.deleteIfExists(imagePath)) {
+      throw new NoSuchFileException("No such image");
+    }
   }
 
+  private String getExtensionFromContentType(String contentType) {
+    return switch (contentType) {
+      case "image/jpeg" -> "jpg";
+      case "image/png" -> "png";
+      case "image/gif" -> "gif";
+      default -> null;
+    };
+  }
 }
