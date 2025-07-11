@@ -42,6 +42,17 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.38")
 }
 
+tasks.register("bootRunDev") {
+    group = "application"
+    description = "Runs the Spring Boot application with the dev profile"
+    doFirst {
+        tasks.bootRun.configure {
+            systemProperty("spring.profiles.active", "dev")
+        }
+    }
+    finalizedBy("bootRun")
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
