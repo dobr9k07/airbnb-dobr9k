@@ -1,6 +1,5 @@
 package com.itstep.hatarent.service;
 
-import org.apache.coyote.BadRequestException;
 import org.springframework.core.io.PathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;

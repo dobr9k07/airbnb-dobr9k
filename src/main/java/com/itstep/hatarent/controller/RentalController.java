@@ -1,6 +1,5 @@
 package com.itstep.hatarent.controller;
 
-import com.itstep.hatarent.dto.Location;
 import com.itstep.hatarent.dto.rental.CreateRentalDto;
 import com.itstep.hatarent.dto.rental.RentalDto;
 import com.itstep.hatarent.dto.rental.UpdateRentalDto;
@@ -22,7 +21,7 @@ public class RentalController {
 
   @GetMapping("")
   public RentalDto getRentalById(Long id) {
-    return rentalService.getRentalById(id);
+    return new RentalDto(rentalService.getRentalById(id));
   }
 
   @PostMapping("")
@@ -48,6 +47,6 @@ public class RentalController {
                                               BigDecimal longitude,
                                               BigDecimal radius,
                                               Pageable page) {
-    return rentalService.getRentalsByCoordinates(latitude, longitude, radius, page);
+    return rentalService.getRentalsByCoordinates(latitude, longitude, radius, page).stream().map(RentalDto::new).toList();
   }
 }

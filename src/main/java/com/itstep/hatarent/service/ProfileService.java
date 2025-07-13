@@ -21,6 +21,14 @@ public class ProfileService {
     return new ProfileDto(profileRepository.findById(id).orElseThrow());
   }
 
+  public ProfileDto getProfileByUserId(Long id) {
+    return new ProfileDto(profileRepository.findByUser_Id(id).orElseThrow());
+  }
+
+  public Long getProfileIdByUserId(Long id) {
+    return profileRepository.findByUser_Id(id).orElseThrow().getId();
+  }
+
   public void addProfile(CreateProfileDto profile) {
     Profile entity = Profile.builder()
       .name(profile.getName())
@@ -38,6 +46,14 @@ public class ProfileService {
     entity.setAbout(profile.getAbout());
     profileRepository.save(entity);
   }
+
+//  public void updateProfileByUserEmail(String email, UpdateProfileDto profile) {
+//    Profile entity = profileRepository.findByUser(userRepository.findByEmail(email).orElseThrow()).orElseThrow();
+//    entity.setName(profile.getName());
+//    entity.setSurname(profile.getSurname());
+//    entity.setAbout(profile.getAbout());
+//    profileRepository.save(entity);
+//  }
 
   public void deleteProfileById(Long id) {
     profileRepository.deleteById(id);

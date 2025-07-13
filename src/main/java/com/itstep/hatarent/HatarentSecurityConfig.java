@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -34,7 +35,8 @@ public class HatarentSecurityConfig {
           "/swagger-ui/**", "/v3/api-docs*/**")
         .permitAll()
         .anyRequest()
-        .authenticated());
+        .authenticated())
+      .logout(LogoutConfigurer::permitAll);
 
     http.csrf(AbstractHttpConfigurer::disable);
 
@@ -58,15 +60,13 @@ public class HatarentSecurityConfig {
   }
 
   @Bean
-  public AuthenticationManager
-  authenticationManager(
+  public AuthenticationManager authenticationManager(
     AuthenticationConfiguration authenticationConfiguration) throws Exception {
     return authenticationConfiguration.getAuthenticationManager();
   }
 
   @Bean
-  public PasswordEncoder
-  passwordEncoder() {
+  public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
   }
 }

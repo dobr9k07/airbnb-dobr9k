@@ -17,7 +17,7 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
 
-  private static final String SECRET_KEY = "your-256-bit-secret-should-be-at-least-32-chars";
+  private static final String SECRET_KEY = "SmMzB0QSPEyDChIYQy0eJ1J9l1bbFPCo5HSqtVW7ZRk=";
 
   private Key getSignKey() {
     return Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
@@ -58,7 +58,7 @@ public class JwtUtil {
       .claims(claims)
       .subject(subject)
       .issuedAt(new Date(System.currentTimeMillis()))
-      .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
+      .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 hours
       .signWith(getSignKey())
       .compact();
   }

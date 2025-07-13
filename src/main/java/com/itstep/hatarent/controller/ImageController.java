@@ -1,8 +1,6 @@
 package com.itstep.hatarent.controller;
 
 import com.itstep.hatarent.service.ImageService;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.core.io.Resource;
@@ -13,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.UUID;
 
 @RestController
@@ -47,7 +44,7 @@ public class ImageController {
       .body(imageBytes);
   }
 
-  @PostMapping(path = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+  @PostMapping(path = "/admin/", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
   public ResponseEntity<String> uploadImage(
     @RequestBody MultipartFile image) throws IOException {
     if (image == null || image.isEmpty()) {
@@ -59,7 +56,7 @@ public class ImageController {
     return ResponseEntity.ok(id.toString());
   }
 
-  @DeleteMapping("")
+  @DeleteMapping("/admin/")
   public ResponseEntity<String> deleteImage(@RequestParam UUID id) throws IOException {
     imageService.deleteImage(id);
     return ResponseEntity.ok(id.toString());

@@ -2,8 +2,8 @@ package com.itstep.hatarent.controller;
 
 import com.itstep.hatarent.dto.credential.AuthenticationRequest;
 import com.itstep.hatarent.model.User;
-import com.itstep.hatarent.repository.UserRepository;
 import com.itstep.hatarent.service.HatarentUserDetailsService;
+import com.itstep.hatarent.service.UserService;
 import com.itstep.hatarent.util.JwtUtil;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
@@ -24,15 +24,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class CredentialController {
 
+  private UserService userService;
 
   @Autowired
   private AuthenticationManager authenticationManager;
 
   @Autowired
   private HatarentUserDetailsService userDetailsService;
-
-  @Autowired
-  private UserRepository userRepository;
 
   @Autowired
   private PasswordEncoder passwordEncoder;
@@ -42,7 +40,7 @@ public class CredentialController {
 
   @PostMapping("register")
   public ResponseEntity<String> register(@RequestBody AuthenticationRequest request) {
-    if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+    if (userService.isEmailTaken(request.getEmail())) {
       return ResponseEntity.badRequest().body("Email is taken");
     }
 
@@ -50,7 +48,7 @@ public class CredentialController {
     user.setEmail(request.getEmail());
     user.setPassword_hash(passwordEncoder.encode(request.getPassword()));
 
-    userRepository.save(user);
+    userService.registerUser(user);
     return ResponseEntity.ok("User is now registered");
   }
 
