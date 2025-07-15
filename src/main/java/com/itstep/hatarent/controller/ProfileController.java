@@ -6,8 +6,14 @@ import com.itstep.hatarent.dto.profile.UpdateProfileDto;
 import com.itstep.hatarent.model.Profile;
 import com.itstep.hatarent.service.ProfileService;
 import com.itstep.hatarent.service.UserService;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
@@ -21,15 +27,27 @@ public class ProfileController {
   private ProfileService profileService;
   private UserService userService;
 
+  @Operation(summary = "Получить профиль пользователя по ID", description = "Возвращяет профиль пользователя по указаному ID профиля (не пользователя)")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Профиль найден"),
+          @ApiResponse(responseCode = "404", description = "Профиль не найдено", content = @Content),
+          @ApiResponse(responseCode = "403", description = "Доступ запрещен", content = @Content)
+      })
   @GetMapping("/by-id")
-  public ProfileDto getProfileById(Long id) {
-    return profileService.getProfileById(id);
+  public ResponseEntity<ProfileDto> getProfileById(@Parameter(description = "ID профиля") Long id) {
+    return ResponseEntity.ok(profileService.getProfileById(id));
   }
 
+  @Operation(summary = "Получить профиль пользователя", description = "Возвращяет профиль текущего пользователя(аутентифицированного пользователя из JWT)")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Профиль найден"),
+          @ApiResponse(responseCode = "404", description = "Профиль не найдено", content = @Content),
+          @ApiResponse(responseCode = "403", description = "Доступ запрещен", content = @Content)
+      })
   @GetMapping("/")
-  public ProfileDto getUserProfile(Authentication authentication) {
+  public ResponseEntity<ProfileDto> getUserProfile(Authentication authentication) {
     User userDetails = (User) authentication.getPrincipal();
-    return profileService.getProfileByUserId(userService.getUserIdByPrincipal(userDetails));
+    return ResponseEntity.ok(profileService.getProfileByUserId(userService.getUserIdByPrincipal(userDetails)));
   }
 
   // @PostMapping("/admin/")
@@ -43,14 +61,19 @@ public class ProfileController {
   //   profileService.updateProfileById(id, profile);
   //   return id;
   // }
-
+  @Operation(summary = "Изменить профиль текущего пользователя", description = "Изменяет профиль текущего пользователя(аутентифицированного пользователя из JWT)")
+  @ApiResponses(value = {
+    @ApiResponse(responseCode = "204", description = "Профиль изменен", content = @Content),
+    @ApiResponse(responseCode = "404", description = "Профиль не найдено", content = @Content),
+    @ApiResponse(responseCode = "403", description = "Доступ запрещен", content = @Content)
+  })
   @PutMapping("")
-  public Long updateUserProfile(@RequestBody UpdateProfileDto profile, Authentication authentication) {
+  public Object updateUserProfile(@RequestBody UpdateProfileDto profile, Authentication authentication) {
     User userDetails = (User) authentication.getPrincipal();
     Long userId = userService.getUserIdByPrincipal(userDetails);
     Long profileId = profileService.getProfileIdByUserId(userId);
     profileService.updateProfileById(profileId, profile);
-    return profileId;
+    return ResponseEntity.noContent().build();
   }
 
   // @DeleteMapping("/admin/")
