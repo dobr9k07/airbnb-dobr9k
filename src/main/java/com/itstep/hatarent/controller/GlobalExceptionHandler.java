@@ -17,17 +17,39 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
   private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
+  @ApiResponse(responseCode = "404", description = "Не найдено", content = @Content)
   @ResponseStatus(HttpStatus.NOT_FOUND)
   @ExceptionHandler({NoSuchElementException.class, NoSuchFileException.class})
   public String handleNotFoundExceptions(Exception ex) {
     return ex.getMessage();
   }
 
+  @ApiResponse(responseCode = "400", 
+    description = "Неправильный запрос", 
+    content = @Content(
+      examples = {
+        @ExampleObject(
+          name = "Ошибка валидации полей",
+          description = "Ошибка возникает при недийствительных данных",
+          value = "{\n  \"name\": \"size must be between 0 and 10\"\n}"
+        ),
+        @ExampleObject(
+          name = "Опибка парсинга JSON",
+          description = "Ошибка возникает при неудачной попытке парсинга JSON формата",
+          value = "JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name"
+        )
+      }
+    )
+  )
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler({BadRequestException.class, HttpMessageNotReadableException.class})
   public String handleBadRequest(final RuntimeException ex) {
@@ -47,12 +69,14 @@ public class GlobalExceptionHandler {
       return errors;
   }
 
+  @ApiResponse(responseCode = "403", description = "Доступ запрещен", content = @Content)
   @ResponseStatus(HttpStatus.FORBIDDEN)
   @ExceptionHandler(AccessDeniedException.class)
   public String handleAccessDenied(final AccessDeniedException ex) {
     return ex.getMessage();
   }
 
+  @ApiResponse(responseCode = "500", description = "Ошибка сервера")
   @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   @ExceptionHandler(RuntimeException.class)
   public String handleGenericRuntimeException(final RuntimeException ex) {
