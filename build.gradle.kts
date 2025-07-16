@@ -23,6 +23,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.4.5")
     implementation("org.springframework.boot:spring-boot-starter-security:3.4.5")
     implementation("org.springframework.boot:spring-boot-starter-web:3.4.5")
+    implementation("org.springframework.boot:spring-boot-starter-validation:3.4.5")
     implementation("io.jsonwebtoken:jjwt:0.12.6")
 
     implementation("org.flywaydb:flyway-core:11.8.0")
