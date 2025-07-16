@@ -29,8 +29,7 @@ public class ProfileController {
   @Operation(summary = "Получить профиль пользователя по ID", description = "Возвращяет профиль пользователя по указаному ID профиля (не пользователя)")
   @ApiResponses(value = {
           @ApiResponse(responseCode = "200", description = "Профиль найден"),
-          @ApiResponse(responseCode = "404", description = "Профиль не найдено", content = @Content),
-          @ApiResponse(responseCode = "403", description = "Доступ запрещен", content = @Content)
+          @ApiResponse(responseCode = "404", description = "Профиль не найдено", content = @Content)
       })
   @GetMapping("/by-id")
   public ResponseEntity<ProfileDto> getProfileById(@Parameter(description = "ID профиля") Long id) {
@@ -40,8 +39,7 @@ public class ProfileController {
   @Operation(summary = "Получить профиль пользователя", description = "Возвращяет профиль текущего пользователя(аутентифицированного пользователя из JWT)")
   @ApiResponses(value = {
           @ApiResponse(responseCode = "200", description = "Профиль найден"),
-          @ApiResponse(responseCode = "404", description = "Профиль не найдено", content = @Content),
-          @ApiResponse(responseCode = "403", description = "Доступ запрещен", content = @Content)
+          @ApiResponse(responseCode = "404", description = "Профиль не найдено", content = @Content)
       })
   @GetMapping("/")
   public ResponseEntity<ProfileDto> getUserProfile(Authentication authentication) {
@@ -63,8 +61,7 @@ public class ProfileController {
   @Operation(summary = "Изменить профиль текущего пользователя", description = "Изменяет профиль текущего пользователя(аутентифицированного пользователя из JWT)")
   @ApiResponses(value = {
     @ApiResponse(responseCode = "200", description = "Профиль изменен", content = @Content),
-    @ApiResponse(responseCode = "404", description = "Профиль не найдено", content = @Content),
-    @ApiResponse(responseCode = "403", description = "Доступ запрещен", content = @Content)
+    @ApiResponse(responseCode = "404", description = "Профиль не найдено", content = @Content)
   })
   @PutMapping("")
   public ResponseEntity<Void> updateUserProfile(@RequestBody @Valid UpdateProfileDto profile, Authentication authentication) {
@@ -80,8 +77,7 @@ public class ProfileController {
   @Operation(summary = "Частично изменить профиль текущего пользователя", description = "Частично изменяет профиль текущего пользователя(аутентифицированного пользователя из JWT)")
   @ApiResponses(value = {
     @ApiResponse(responseCode = "200", description = "Профиль изменен", content = @Content),
-    @ApiResponse(responseCode = "404", description = "Профиль не найдено", content = @Content),
-    @ApiResponse(responseCode = "403", description = "Доступ запрещен", content = @Content)
+    @ApiResponse(responseCode = "404", description = "Профиль не найдено", content = @Content)
   })
   @PatchMapping("")
   public ResponseEntity<Void> patchUserProfile(@RequestBody @Valid UpdateProfileDto profile, Authentication authentication) {

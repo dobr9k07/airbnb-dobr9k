@@ -1,12 +1,10 @@
 package com.itstep.hatarent.service;
 
-import com.itstep.hatarent.dto.user.UserDto;
 import com.itstep.hatarent.model.Profile;
 import com.itstep.hatarent.model.User;
 import com.itstep.hatarent.repository.ProfileRepository;
 import com.itstep.hatarent.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
