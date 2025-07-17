@@ -13,10 +13,10 @@ export default function Page() {
   return (
     <MainLayout>
       <Container>
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-5">
           <div className="w-9/12 flex flex-col gap-5 flex-wrap mb-17.5">
             <FilterCitySlug />
-            <div className="flex gap-5 flex-wrap">
+            <div className="flex gap-6 flex-wrap mr-13">
               {cardItem.map((item) => (
                 <ListingCardWithCarousel
                   key={item.id}

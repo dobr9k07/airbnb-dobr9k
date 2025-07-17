@@ -10,11 +10,12 @@ import {
 } from "../ui/dropdown-menu";
 import Image, { StaticImageData } from "next/image";
 import { cn } from "@/lib/utils";
-import { IContent, ILanguage } from "./user-nav";
+import { IContent, ILanguage, ILink } from "./user-nav";
 import { DropdownMenuLabel } from "@radix-ui/react-dropdown-menu";
+import Link from "next/link";
 
 interface PropsPrimary {
-  menuItems: IContent[];
+  menuItems: (IContent & ILink)[];
   srcImage: StaticImageData;
   className?: string;
 }
@@ -51,8 +52,8 @@ const DropdownMenuPrimaryInnerContent: React.FC<PropsPrimary> = ({
       >
         <DropdownMenuGroup>
           {menuItems.map((item) => (
-            <DropdownMenuItem key={item.id} className="cursor-pointer">
-              {item.title}
+            <DropdownMenuItem asChild key={item.id} className="cursor-pointer">
+              <Link href={item.href}>{item.title}</Link>
             </DropdownMenuItem>
           ))}
         </DropdownMenuGroup>

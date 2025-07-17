@@ -10,10 +10,11 @@ import {
   DropdownMenuPrimaryInnerContent,
   DropdownMenuSecondaryInnerContent,
 } from "./dropdown-menu-inner-content";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 interface Props {
   className?: string;
@@ -24,6 +25,10 @@ export interface IContent {
   title: string;
 }
 
+export interface ILink {
+  href: string;
+}
+
 export interface ILanguage {
   id: number;
   language: string;
@@ -31,45 +36,54 @@ export interface ILanguage {
   cuts: string;
 }
 
-const dropdownBurger: IContent[] = [
+const dropdownBurger: (IContent & ILink)[] = [
   {
     id: 1,
     title: "Повідомлення",
+    href: "#",
   },
   {
     id: 2,
     title: "Налаштування акаунта та повідмлень",
+    href: "#",
   },
   {
     id: 3,
     title: "Запропонувати помешкання на hata",
+    href: "#",
   },
   {
     id: 4,
     title: "Подорожі",
+    href: "#",
   },
   {
     id: 5,
     title: "Обране",
+    href: "#",
   },
 ];
 
-const dropdownUser: IContent[] = [
+const dropdownUser: (IContent & ILink)[] = [
   {
     id: 6,
     title: "Увійти",
+    href: "/auth/login",
   },
   {
     id: 7,
     title: "Зареєструватися",
+    href: "/auth/register",
   },
   {
     id: 8,
     title: "Про нас ",
+    href: "/about",
   },
   {
     id: 9,
     title: "Підтримка",
+    href: "/help",
   },
 ];
 
@@ -162,7 +176,10 @@ export const UserNav: React.FC<Props> = ({ className }) => {
         menuItems={dropdownCurency}
         srcImage={LanguageDropDown}
         isCurency={true}
-        className="rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base font-light w-[525px]"
+        className={cn(
+          "rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base font-light w-[525px]",
+          className
+        )}
       />
 
       {/*LanguageDropDown*/}
@@ -170,21 +187,30 @@ export const UserNav: React.FC<Props> = ({ className }) => {
         title="Виберіть мову"
         menuItems={dropdownLanguage}
         srcImage={LanguageDropDown}
-        className="rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base font-light w-[525px]"
+        className={cn(
+          "rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base font-light w-[525px]",
+          className
+        )}
       />
 
       {/*MenuDropDown*/}
       <DropdownMenuPrimaryInnerContent
         menuItems={dropdownBurger}
         srcImage={MenuDropDown}
-        className="rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base font-light w-[350px]"
+        className={cn(
+          "rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base font-light w-[350px]",
+          className
+        )}
       />
 
       {!session ? (
         <DropdownMenuPrimaryInnerContent
           menuItems={dropdownUser}
           srcImage={UserDropDown}
-          className="rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base font-light w-[350px]"
+          className={cn(
+            "rounded-[20px] pt-[22px] pl-[28px] pb-[23px] text-base font-light w-[350px]",
+            className
+          )}
         />
       ) : (
         <Button
@@ -197,6 +223,7 @@ export const UserNav: React.FC<Props> = ({ className }) => {
           </Link>
         </Button>
       )}
+
     </>
   );
 };

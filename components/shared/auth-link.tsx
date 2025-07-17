@@ -20,7 +20,12 @@ export const AuthLink: React.FC<Props> = ({ className }) => {
         </button>
       </div>
       <div className={className}>
-        <button className="cursor-pointer">
+        <button
+          className="cursor-pointer"
+          onClick={() => {
+            signIn("facebook", { callbackUrl: "/", redirect: true });
+          }}
+        >
           <Image src={IconFacebbok} alt="Facebbok" />
         </button>
       </div>

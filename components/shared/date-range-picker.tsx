@@ -9,6 +9,7 @@ import { Calendar } from "../ui/calendar";
 import { DateRange } from "react-day-picker";
 
 interface Props {
+  formatStr?: string;
   value?: DateRange;
   onChange?: (range: DateRange | undefined) => void;
   content: React.ReactNode;
@@ -18,6 +19,7 @@ interface Props {
 }
 
 export const DateRangePicker: React.FC<Props> = ({
+  formatStr = "dd MMMM yyyy",
   value,
   onChange,
   content,
@@ -50,11 +52,11 @@ export const DateRangePicker: React.FC<Props> = ({
             {value?.from ? (
               value.to ? (
                 <div className="group-hover:text-white">
-                  {format(value.from, "dd MMMM yyyy", { locale: uk })}{" "}
-                  – {format(value.to, "dd MMMM yyyy", { locale: uk })}
+                  {format(value.from, formatStr, { locale: uk })} –{" "}
+                  {format(value.to, formatStr, { locale: uk })}
                 </div>
               ) : (
-                format(value.from, "dd MMMM yyyy", { locale: uk })
+                format(value.from, formatStr, { locale: uk })
               )
             ) : (
               content
