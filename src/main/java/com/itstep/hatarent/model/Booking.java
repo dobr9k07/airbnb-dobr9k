@@ -33,7 +33,6 @@ public class Booking {
   private LocalDate startDate;
   @NotNull
   private int duration;
-  @NotNull
   private LocalDateTime accepted_at;
 
 }

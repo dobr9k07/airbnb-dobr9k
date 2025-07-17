@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @Tag(name = "Review", description = "Запросы связанные с отзывами")
-@RequestMapping("/api/review/reviewByRentalId")
+@RequestMapping("/api/review/by-rental-id")
 public class ReviewController {
   private ReviewService reviewService;
 

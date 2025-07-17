@@ -40,16 +40,6 @@ public class ProfileService {
   }
 
   public void updateProfileById(Long id, UpdateProfileDto profile) {
-    Profile existingProfile = profileRepository.findById(id).orElseThrow();
-
-    existingProfile.setName(profile.getName());
-    existingProfile.setSurname(profile.getSurname());
-    existingProfile.setAbout(profile.getAbout());
-
-    profileRepository.save(existingProfile);
-  }
-
-  public void patchProfileById(Long id, UpdateProfileDto profile) {
     Profile entity = profileRepository.findById(id).orElseThrow();
 
     if (profile.getName() != null) { entity.setName(profile.getName()); };

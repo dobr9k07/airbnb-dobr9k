@@ -7,6 +7,9 @@ import com.itstep.hatarent.service.RentalService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -42,11 +45,11 @@ public class RentalController {
     return id;
   }
 
-  @GetMapping("/by_location")
+  @GetMapping("/by-location")
   public List<RentalDto> getRentalsByLocation(BigDecimal latitude,
                                               BigDecimal longitude,
                                               BigDecimal radius,
-                                              Pageable page) {
+                                              @PageableDefault(page = 0, size = 10, sort = "createdAt", direction = Sort.Direction.DESC) @Nullable Pageable page) {
     return rentalService.getRentalsByCoordinates(latitude, longitude, radius, page).stream().map(RentalDto::new).toList();
   }
 }

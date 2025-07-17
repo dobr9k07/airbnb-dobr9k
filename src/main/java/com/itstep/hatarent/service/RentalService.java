@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class RentalService {
@@ -56,6 +57,12 @@ public class RentalService {
         longitude.subtract(radius),
         longitude.add(radius),
         page).getContent();
+  }
+
+  public boolean isAssociatedWithUser(Long id, Long userId) {
+    return rentalRepository.findById(id).orElseThrow()
+      .getUsers().stream()
+      .anyMatch(user -> Objects.equals(user.getId(), userId));
   }
 
 }

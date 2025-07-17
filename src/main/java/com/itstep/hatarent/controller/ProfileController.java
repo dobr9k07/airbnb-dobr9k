@@ -85,7 +85,7 @@ public class ProfileController {
     Long userId = userService.getUserIdByPrincipal(userDetails);
     Long profileId = profileService.getProfileIdByUserId(userId);
 
-    profileService.patchProfileById(profileId, profile);
+    profileService.updateProfileById(profileId, profile);
     return ResponseEntity.ok().build();
   }
 
