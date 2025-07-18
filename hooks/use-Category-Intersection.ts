@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useCategoryNav } from "@/store/category";
 import { useEffect, useRef } from "react";

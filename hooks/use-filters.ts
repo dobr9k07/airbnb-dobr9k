@@ -1,49 +1,67 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { useMemo } from "react";
+import { DateRange } from "react-day-picker";
 
 interface PriceProps {
   priceFrom?: number;
   priceTo?: number;
 }
 
-interface QueryFilters extends PriceProps {
-  pizzaTypes: string;
-  sizes: string;
-  ingredients: string;
-}
 export interface Filters {
   prices: PriceProps;
+  dateRange: DateRange;
 }
 
 interface ReturnProps extends Filters {
-  setPrices: (name: keyof PriceProps, value: number) => void;
+  setPrices: (prices: number[]) => void;
+  setDateRange: (range: DateRange | undefined) => void;
 }
 
 export const useFilters = (): ReturnProps => {
-  const searchParams = useSearchParams() as unknown as Map<
-    keyof QueryFilters,
-    string
-  >;
+  const searchParams = useSearchParams();
 
+  /*Діапащон ціни */
   const [prices, setPrices] = React.useState<PriceProps>({
-    priceFrom: Number(searchParams.get("priceFrom")) || 0,
-    priceTo: Number(searchParams.get("priceTo")) || 1000,
+    priceFrom:
+      searchParams.get("priceFrom") !== null
+        ? Number(searchParams.get("priceFrom"))
+        : undefined,
+    priceTo:
+      searchParams.get("priceTo") !== null
+        ? Number(searchParams.get("priceTo"))
+        : undefined,
   });
 
-  const updatePrice = (name: keyof PriceProps, value: number) => {
-    setPrices((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const updatePrice = (prices: number[]) => {
+    setPrices({
+      priceFrom: prices[0],
+      priceTo: prices[1],
+    });
   };
 
-  return React.useMemo(
+  /* Діапазон дат */
+  const [dateRange, setDateRange] = React.useState<DateRange>({
+    from: searchParams.get("from")
+      ? new Date(searchParams.get("from")!)
+      : undefined,
+    to: searchParams.get("to") ? new Date(searchParams.get("to")!) : undefined,
+  });
+
+  const updateDateRange = (range: DateRange | undefined) => {
+    if (range?.from || range?.to) {
+      setDateRange(range);
+    }
+  };
+
+  return useMemo(
     () => ({
       prices,
       setPrices: updatePrice,
+      dateRange,
+      setDateRange: updateDateRange,
     }),
-    [prices]
+    [prices, dateRange]
   );
 };

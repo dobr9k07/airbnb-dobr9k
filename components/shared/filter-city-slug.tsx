@@ -1,14 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { SearchSecondInput } from "./search-input";
 import { DateRangePicker } from "./date-range-picker";
 import { MoveRight } from "lucide-react";
-import { DateRange } from "react-day-picker";
 import { cn } from "@/lib/utils";
 import { Counter } from "./counter";
 import { Price } from "./price";
 import { Filters } from "./filters";
-import { useCounter } from "@/hooks";
+import { useCounter, useFilters } from "@/hooks";
 import {
   Select,
   SelectContent,
@@ -17,6 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useQueryFilters } from "@/hooks/use-query-filters";
 
 interface Props {
   className?: string;
@@ -42,8 +42,10 @@ const selectItem = [
 ];
 
 export const FilterCitySlug: React.FC<Props> = ({ className }) => {
-  const [dateRange, setDateRange] = useState<DateRange>();
   const { count, onClick } = useCounter();
+
+  const filters = useFilters();
+  useQueryFilters(filters);
 
   return (
     <div className="flex flex-col gap-7 mr-13">
@@ -59,8 +61,8 @@ export const FilterCitySlug: React.FC<Props> = ({ className }) => {
         />
         <DateRangePicker
           className="w-50 h-8.25 border border-black hover:bg-[#E0E0E0] transition-all duration-200"
-          value={dateRange}
-          onChange={setDateRange}
+          value={filters.dateRange}
+          onChange={filters.setDateRange}
           formatStr="dd MMMM"
           content={
             <>
@@ -109,7 +111,13 @@ export const FilterCitySlug: React.FC<Props> = ({ className }) => {
             </>
           }
         />
-        <Price />
+        <Price
+          prices={[
+            filters.prices.priceFrom ?? 0,
+            filters.prices.priceTo ?? 1000,
+          ]}
+          onValueChange={filters.setPrices}
+        />
         <Filters />
       </div>
       <div className="w-full flex justify-between items-center">

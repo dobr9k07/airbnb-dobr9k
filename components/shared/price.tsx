@@ -1,21 +1,18 @@
+"use client";
+
 import React from "react";
 import { RangeSlider } from "./range-slider";
-import { useFilters } from "@/hooks";
 import { Popover, PopoverTrigger } from "../ui/popover";
 import { Button } from "../ui/button";
 import { PopoverContent } from "@radix-ui/react-popover";
 
 interface Props {
   className?: string;
+  prices?: number[];
+  onValueChange?: (value: number[]) => void;
 }
 
-export const Price: React.FC<Props> = ({}) => {
-  const filters = useFilters();
-
-  const updatePrices = (prices: number[]) => {
-    filters.setPrices("priceFrom", prices[0]);
-    filters.setPrices("priceTo", prices[1]);
-  };
+export const Price: React.FC<Props> = ({ prices, onValueChange }) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -34,15 +31,12 @@ export const Price: React.FC<Props> = ({}) => {
             min={0}
             max={1000}
             step={10}
-            value={[
-              filters.prices.priceFrom || 0,
-              filters.prices.priceTo || 1000,
-            ]}
-            onValueChange={updatePrices}
+            value={prices}
+            onValueChange={onValueChange}
           />
           <div className="flex items-center justify-left text-lg font-normal">
-            <span>{`UAH₴${filters.prices.priceFrom}`}</span> -{" "}
-            <span>{`UAH₴${filters.prices.priceTo}`}</span>
+            <span>{`UAH₴${prices![0] || 0}`}</span> -{" "}
+            <span>{`UAH₴${prices![1] || 1000}`}</span>
           </div>
         </div>
       </PopoverContent>

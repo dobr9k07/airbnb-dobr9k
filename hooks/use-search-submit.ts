@@ -1,3 +1,4 @@
+"use client";
 import { FormValues } from "@/components/shared/filterHero/filter-form-shema";
 import { cartCityItems } from "@/lib/item/cartCityItem";
 import { useRouter } from "next/navigation";
