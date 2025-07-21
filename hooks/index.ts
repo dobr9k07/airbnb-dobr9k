@@ -1,4 +1,5 @@
 export { useCounter } from "./use-counter";
-export { useFilters } from "./use-filters";
+export { useFilters } from "./filter/use-filters";
 export { useSearchSubmit } from "./use-search-submit";
-export { useCategoryIntersection } from './use-Category-Intersection'
+export { useCategoryIntersection } from "./use-Category-Intersection";
+export { useNumericField } from "./filter/use-numeric-field";

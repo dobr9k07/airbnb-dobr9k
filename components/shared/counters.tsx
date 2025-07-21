@@ -1,23 +1,25 @@
 import React from "react";
 import { Counter } from "./counter";
-import { useCounter } from "@/hooks";
 import { cn } from "@/lib/utils";
+import { ReturnProps } from "@/hooks/filter/use-filters";
 
 interface Props {
+  filters: ReturnProps;
   size?: "sm" | "lg";
   className?: string;
 }
 
-export const Counters: React.FC<Props> = ({ size = "sm", className }) => {
-  const bedrooms = useCounter();
-  const beds = useCounter();
-  const bathrooms = useCounter();
+export const Counters: React.FC<Props> = ({
+  filters,
+  size = "sm",
+  className,
+}) => {
   return (
     <div className={cn("flex flex-col justify-center", className)}>
       <Counter
         className="rounded-full justify-between"
-        value={bedrooms.count}
-        onChange={bedrooms.onClick}
+        value={filters.bedroom}
+        onChange={filters.setBedroom}
         size={size}
         content={
           <>
@@ -29,8 +31,8 @@ export const Counters: React.FC<Props> = ({ size = "sm", className }) => {
       />
       <Counter
         className="rounded-full justify-between"
-        value={beds.count}
-        onChange={beds.onClick}
+        value={filters.bed}
+        onChange={filters.setBed}
         size={size}
         content={
           <>
@@ -40,8 +42,8 @@ export const Counters: React.FC<Props> = ({ size = "sm", className }) => {
       />
       <Counter
         className="rounded-full justify-between"
-        value={bathrooms.count}
-        onChange={bathrooms.onClick}
+        value={filters.bathroom}
+        onChange={filters.setBathroom}
         size={size}
         content={
           <>

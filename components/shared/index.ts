@@ -57,4 +57,4 @@ export * from "./footers";
 export * from "./layouts";
 export * from "./svg-components";
 export * from "./reservationPolicyBlock";
-export * from './filterHero';
+export * from "./filterHero";
