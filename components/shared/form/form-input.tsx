@@ -46,7 +46,12 @@ export const FormInput: React.FC<Props> = ({
       )}
       <div className="relative">
         <Label htmlFor={name}></Label>
-        <Input className="h-14 text-2xl" {...register(name)} {...props} />
+        <Input
+          className="h-14 text-2xl"
+          id={name}
+          {...register(name)}
+          {...props}
+        />
 
         {value && <ClearButton onClick={onClickClear} />}
       </div>

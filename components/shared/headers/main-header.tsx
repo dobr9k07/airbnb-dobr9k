@@ -23,7 +23,7 @@ export const MainHeader: React.FC<Props> = ({
             {/* Ліва частина */}
             <LinkHeaderHero />
 
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 max-sm:hidden">
               {/* Права частина */}
               <UserNav />
             </div>

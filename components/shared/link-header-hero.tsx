@@ -28,13 +28,13 @@ export const LinkHeaderHero: React.FC<Props> = ({ className }) => {
         <Image
           src={DesktopLogo}
           alt="DesktopLogo"
-          className="w-25 hidden lg:block"
+          className="w-25 max-sm:ml-5"
         />
       </Link>
 
       <SearchInput
         placeholder="Виберіть місто"
-        className="w-[280px] h-8"
+        className="w-[280px] h-8 max-sm:hidden"
         marginTop="top-6"
         value={city}
         onChange={setCity}
@@ -42,7 +42,7 @@ export const LinkHeaderHero: React.FC<Props> = ({ className }) => {
 
       <Button
         asChild
-        className="text-[16px] font-light rounded-[41.5px] h-[33px] ml-22px"
+        className="text-[16px] font-light rounded-[41.5px] h-[33px] ml-22px max-sm:hidden"
         disabled={!selectedCity} // Заборонити перехід, якщо не знайдено
       >
         <Link href={selectedCity?.link || "#"} scroll={false}>

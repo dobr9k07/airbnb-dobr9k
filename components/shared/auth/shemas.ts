@@ -21,7 +21,6 @@ export const phoneSchema = z.string().refine(
 export const formLoginSchema = z.object({
   email: z.string().email({ message: "Введіть коректну пошту" }),
   password: passwordSchema,
-  phone: phoneSchema,
 });
 
 // Схема для першого кроку
