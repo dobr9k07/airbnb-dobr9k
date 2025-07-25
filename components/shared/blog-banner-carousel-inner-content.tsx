@@ -32,7 +32,9 @@ export const BlogBannerCarouselInnerContent: React.FC<Props> = ({
     };
 
     api.on("select", onSelect);
-    return () => api.off("select", onSelect);
+    return () => {
+      api.off("select", onSelect);
+    };
   }, [api]);
 
   return (

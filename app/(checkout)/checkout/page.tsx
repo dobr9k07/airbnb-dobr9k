@@ -53,7 +53,7 @@ export default function CheckoutPage() {
     <CheckoutLayout>
       {/* Блок опису*/}
       <Container>
-        <DescriptionImageBlock imageUrl={cardItem[1].imageUrl} />
+        <DescriptionImageBlock imageUrl={cardItem[1].imageUrl} title="Огляд" categoryId={1}/>
         <div className="flex items-start justify-between mt-6">
           <RoomInfo room={cardItem[1].rooms[0]} />
           <Title

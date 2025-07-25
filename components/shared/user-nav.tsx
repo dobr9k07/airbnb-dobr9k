@@ -10,7 +10,7 @@ import {
   DropdownMenuPrimaryInnerContent,
   DropdownMenuSecondaryInnerContent,
 } from "./dropdown-menu-inner-content";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -167,7 +167,6 @@ const dropdownCurency: ILanguage[] = [
 
 export const UserNav: React.FC<Props> = ({ className }) => {
   const { data: session } = useSession();
-  console.log("session", session);
   return (
     <>
       {/*CurencyDropDown*/}
@@ -223,7 +222,6 @@ export const UserNav: React.FC<Props> = ({ className }) => {
           </Link>
         </Button>
       )}
-
     </>
   );
 };

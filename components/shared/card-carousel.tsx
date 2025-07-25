@@ -20,7 +20,7 @@ export const CardCarousel: React.FC<Props> = ({
 }) => {
   return (
     <Carousel className="rounded-lg h-[400px] object-cover border border-amber-400">
-      <CarouselInnerContent isCard={isCard} imageUrls={cardItem} id={id} />
+      <CarouselInnerContent imageUrls={cardItem} id={id} />
     </Carousel>
   );
 };

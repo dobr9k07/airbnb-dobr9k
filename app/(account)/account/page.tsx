@@ -1,3 +1,5 @@
+"use client";
+
 import {
   AccountLayout,
   Container,
@@ -16,7 +18,10 @@ import IconTravel from "../../../public/svg/IconTravel.svg";
 
 import { cardItem } from "@/lib/item/cardItem";
 import { Heart } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
+
 export default function AccountPage() {
+  const { data: session } = useSession();
   return (
     <AccountLayout>
       <Container className="flex flex-col mt-9">
@@ -30,6 +35,15 @@ export default function AccountPage() {
               Редагувати
             </Button>
           </Link>
+          <Button
+            onClick={() => {
+              signOut({ callbackUrl: "/" });
+            }}
+            variant={"link"}
+            className="text-2xl font-light text-black underline"
+          >
+            Вийти з аккаунту
+          </Button>
         </div>
 
         <div className="flex items-start justify-start gap-9.25 mb-17.75">
@@ -38,12 +52,13 @@ export default function AccountPage() {
               <div className="flex items-center justify-center flex-col gap-4">
                 <Avatar className="w-29.5 h-29.5">
                   <AvatarFallback className="text-[64px] font-normal text-white">
-                    {"S"}
+                    {session?.user?.name?.charAt(0) ||
+                      session?.user?.email?.charAt(0)}
                   </AvatarFallback>
                 </Avatar>
                 <div className="flex flex-col items-center justify-center">
                   <span className="text-[40px] leading-10 font-normal">
-                    Svetlana
+                    {session?.user?.name || session?.user?.email}
                   </span>
                   <span className="text-xl font-extralight">Гість</span>
                 </div>

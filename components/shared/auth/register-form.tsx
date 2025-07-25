@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -21,12 +21,16 @@ import {
 import { Title } from "../title";
 import { Button } from "@/components/ui/button";
 import { FormInput } from "../form";
+import { axiosInstance } from "@/services/instance";
+import { ApiRoutes } from "@/services/constants";
+import { useRouter } from "next/navigation";
 
 interface Props {
   className?: string;
 }
 
 export const RegisterForm: React.FC<Props> = ({ className }) => {
+  const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
 
   const form = useForm<TFormRegisterValues>({
@@ -97,24 +101,20 @@ export const RegisterForm: React.FC<Props> = ({ className }) => {
   };
 
   const onSubmit = async (data: TFormRegisterValues) => {
-    console.log("Form submitted with data:", data);
-    console.log("Current step:", currentStep);
-
-    // Валідуємо тільки поточний крок
     const isValid = await validateCurrentStep();
-
-    if (!isValid) {
-      console.log("Current step validation failed");
-      return;
-    }
+    if (!isValid) return;
 
     if (currentStep < steps.length - 2) {
-      // Очищуємо помилки перед переходом на наступний крок
       form.clearErrors();
       setCurrentStep((prev) => prev + 1);
     } else {
-      console.log("Final submission:", data);
-      setCurrentStep(steps.length - 1);
+      try {
+        const { email, password } = data;
+        await axiosInstance.post(ApiRoutes.REGISTER, { email, password });
+        setCurrentStep(steps.length - 1);
+      } catch (error) {
+        console.error("Registration error:", error);
+      }
     }
   };
 
@@ -243,7 +243,9 @@ export const RegisterForm: React.FC<Props> = ({ className }) => {
 
             {!steps[currentStep].isSuccess && (
               <Button type="submit" className="h-12 text-base mb-8">
-                Далі
+                {currentStep === 2 && !form.watch("verificationCode")
+                  ? "Пропустити"
+                  : "Далі"}
               </Button>
             )}
           </form>
@@ -252,7 +254,7 @@ export const RegisterForm: React.FC<Props> = ({ className }) => {
       {steps[currentStep].isSuccess && (
         <CardFooter className="flex justify-center mb-8">
           <Button
-            onClick={() => console.log("Done")}
+            onClick={() => router.push("/auth/login")}
             className="text-2xl font-normal px-43"
           >
             Далі

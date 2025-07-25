@@ -32,6 +32,8 @@ import { axiosInstance } from "@/services/instance";
 import { ApiRoutes } from "@/services/constants";
 
 interface LoginResponse {
+  id: string;
+  email: string;
   token: string;
 }
 
@@ -53,22 +55,26 @@ export const authOptions: AuthOptions = {
         },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
+        if (!credentials) {
           return null;
         }
 
         try {
-          const response = await axiosInstance.post<LoginResponse>("/login", {
-            email: credentials.email,
-            password: credentials.password,
-          });
-
-          if (response.data.token) {
-            // Формуємо мінімальний об'єкт користувача
-            return {
-              id: credentials.email, // Використовуємо email як id, якщо бекенд не повертає id
+          const response = await axiosInstance.post<LoginResponse>(
+            ApiRoutes.LOGIN,
+            {
               email: credentials.email,
-              accessToken: response.data.token,
+              password: credentials.password,
+            }
+          );
+
+          const user = response.data;
+
+          if (user) {
+            return {
+              id: user.id,
+              email: user.email,
+              accessToken: user.token,
             };
           }
           return null;
@@ -85,6 +91,13 @@ export const authOptions: AuthOptions = {
     TwitterProvider({
       clientId: process.env.TWITTER_CLIENT_ID || "",
       clientSecret: process.env.TWITTER_CLIENT_SECRET || "",
+      profile(profile) {
+        return {
+          id: profile.id,
+          name: profile.name || profile.login,
+          email: profile.email || null, // Twitter may not provide email
+        };
+      },
     }),
     FacebookProvider({
       clientId: process.env.FACEBOOK_CLIENT_ID || "",
@@ -110,6 +123,7 @@ export const authOptions: AuthOptions = {
       return session;
     },
   },
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
   },

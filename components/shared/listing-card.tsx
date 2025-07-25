@@ -25,13 +25,6 @@ export const ListingCard: React.FC<Props> = ({
   return (
     <div className="flex flex-col border border-amber-950">
       <div className="relative h-72">
-        {/* <Image
-          src={`${imageUrl[0]}`}
-          alt="Image of House"
-          fill
-          className="rounded-lg h-full object-cover"
-        /> */}
-
         <CardCarousel isCard={true} cardItem={imageUrl} id={id} />
 
         <div className="z-10 absolute top-2 right-2">

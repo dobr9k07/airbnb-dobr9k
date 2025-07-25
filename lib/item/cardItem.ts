@@ -316,9 +316,9 @@ export const cardItem: ICardItem[] = [
     location: "Барселона, Іспанія",
     description: "Світла квартира з видом на море",
     imageUrl: [
-      "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1334791218146120509/original/acca3551-66de-4d34-931a-c2bd444cac4d.jpeg?im_w=1200",
-      "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1334791218146120509/original/16a63a68-af2a-4787-96dd-15d4bd457a33.jpeg?im_w=720",
-      "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1334791218146120509/original/ca071441-beb0-43ff-ac50-61b92a8b16cb.jpeg?im_w=720",
+      "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTA1NTc0NTI5NDQ4NzY1MTQ1Mw%3D%3D/original/828408a4-a556-4215-bd23-f9f4f7774023.png?im_w=1200",
+      "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1055745294487651453/original/8fa7b610-be63-4992-965d-5946059aacc3.png?im_w=720",
+      "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1055745294487651453/original/8fa7b610-be63-4992-965d-5946059aacc3.png?im_w=720",
     ],
     stickers: "На відстані 1987 кілометрів",
     date: "15 бер. - 20 бер.",
@@ -343,7 +343,7 @@ export const cardItem: ICardItem[] = [
         price: 4200,
         square: 55,
         imageUrl:
-          "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1334791218146120509/original/16a63a68-af2a-4787-96dd-15d4bd457a33.jpeg?im_w=720",
+          "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1055745294487651453/original/8fa7b610-be63-4992-965d-5946059aacc3.png?im_w=720",
         comfort: [
           "Двоспальне ліжко",
           "Кондиціонер",
@@ -361,7 +361,7 @@ export const cardItem: ICardItem[] = [
         price: 6700,
         square: 95,
         imageUrl:
-          "https://a0.muscache.com/im/pictures/prohost-api/Hosting-1334791218146120509/original/16a63a68-af2a-4787-96dd-15d4bd457a33.jpeg?im_w=720",
+          "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTA1NTc0NTI5NDQ4NzY1MTQ1Mw%3D%3D/original/3d589467-dc99-49b8-a8f8-e64af075b347.jpeg?im_w=1200",
         comfort: [
           "Двоспальне ліжко",
           "Кондиціонер",

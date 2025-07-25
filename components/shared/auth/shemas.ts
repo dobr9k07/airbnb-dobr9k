@@ -45,7 +45,7 @@ export const step2Schema = z
 
 // Схема для третього кроку
 export const step3Schema = z.object({
-  verificationCode: z.string().min(1, { message: "Введіть код підтвердження" }),
+  verificationCode: z.string().optional(),
 });
 
 // Повна схема для фінальної валідації
