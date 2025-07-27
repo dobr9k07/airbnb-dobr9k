@@ -8,6 +8,7 @@ import { Title } from "./title";
 import Link from "next/link";
 
 import slugify from "slugify";
+import Image from "next/image";
 
 interface Props {
   className?: string;
@@ -33,14 +34,19 @@ export const CityBanner: React.FC<Props> = ({
     <Container className={cn("flex flex-col", className)}>
       <Title
         text={"Вибір, що відкриває світ"}
-        size="lg"
-        className="font-normal text-left pl-5.75"
+        size="md"
+        className="w-full flex justify-center font-medium sm:hidden"
       />
-      <p className="w-105 font-light text-[25px] leading-[30px] text-left pl-5.75">
+      <Title
+        text={"Вибір, що відкриває світ"}
+        size="lg"
+        className="font-normal text-left pl-5.75 max-sm:hidden"
+      />
+      <p className="w-105 font-light text-[25px] leading-[30px] text-left pl-5.75 max-sm:hidden">
         Для тебе, для друзів, для родини — апартаменти та бутик-готелі у 60+
         містах по всьому світу.
       </p>
-      <div className="grid grid-cols-3 grid-rows-2 gap-x-18.25 gap-y-13 p-5.75 ">
+      <div className="grid grid-cols-3 grid-rows-2 gap-x-18.25 gap-y-13 p-5.75 max-sm:hidden">
         {items.map((item, index) => (
           <div
             key={item.id}
@@ -61,11 +67,66 @@ export const CityBanner: React.FC<Props> = ({
           </div>
         ))}
       </div>
+
+      <div className="w-full flex flex-col gap-2 p-5 sm:hidden">
+        <div className="flex justify-between items-center w-full">
+          {items.slice(0, 2).map((item) => (
+            <div key={item.id} className={cn("flex flex-col")}>
+              <CardCity
+                className="relative"
+                imageUrl={item.imageUrl}
+                name={item.name}
+                link={`/cities/${slugify(item.nameEn, {
+                  lower: true,
+                  strict: true,
+                })}`}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center justify-center w-full">
+          {cartCityItems[14] && (
+            <>
+              <div className="flex flex-col w-full">
+                <Link href={cartCityItems[14].link} className="cursor-pointer">
+                  <Image
+                    src={cartCityItems[14].imageUrl}
+                    alt={cartCityItems[14].name}
+                    width={487}
+                    height={111}
+                    className="object-cover ml-[-8]"
+                  />
+                </Link>
+
+                <p className="font-normal text-[40px] text-left mt-3.5 max-sm:text-base">
+                  {cartCityItems[14].name}
+                </p>
+              </div>
+            </>
+          )}
+        </div>
+        <div className="flex justify-between items-center w-full">
+          {items.slice(2, 4).map((item) => (
+            <div key={item.id} className={cn("flex flex-col")}>
+              <CardCity
+                className="relative"
+                imageUrl={item.imageUrl}
+                name={item.name}
+                link={`/cities/${slugify(item.nameEn, {
+                  lower: true,
+                  strict: true,
+                })}`}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
       {!isCitiesPage && (
         <div className="w-full flex items-center justify-center">
           <Button
             asChild
-            className="rounded-[38px] mt-[83px] h-17 text-[20px] font-light text-white leading-[24px] pl-[38px] pr-[38px] pt-[22px] pb-[22px]"
+            className="rounded-[38px] mt-[83px] max-sm:mt-0 h-17 max-sm:h-8 max-sm:text-base text-[20px] font-light text-white leading-[24px] pl-[38px] pr-[38px] pt-[22px] pb-[22px]"
           >
             <Link href="/cities">Переглянути всі міста</Link>
           </Button>

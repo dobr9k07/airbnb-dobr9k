@@ -148,10 +148,26 @@ html {
     );
   }
 
-  /* `/`page */
   .comment-gradient {
     border-radius: 0px 110px 0px 110px;
   }
+  @media (max-width: 640px) {
+    .hero-gradient-mobile {
+      background: linear-gradient(
+        rgb(255, 246, 246) 0.114%,
+        rgba(202, 196, 196, 0.48) 29.176%,
+        rgba(153, 148, 148, 0) 99.836%
+      );
+    }
+
+    @media (max-width: 640px) {
+      .comment-gradient-mobile {
+        border-radius: 0px 0px 92px 0px;
+      }
+    }
+  }
+
+  /* `/`page */
 
   .comment-gradient-1 {
     .comment-gradient {

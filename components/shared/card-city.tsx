@@ -18,7 +18,6 @@ export const CardCity: React.FC<Props> = ({
 }) => {
   return (
     <>
-      {/* Обгортка для зображення. Використовуємо flex-1 для заповнення доступного простору */}
       <div className={className}>
         <Link href={link} className="cursor-pointer">
           <Image
@@ -26,12 +25,19 @@ export const CardCity: React.FC<Props> = ({
             alt={name}
             width={354}
             height={248}
-            className="object-cover"
+            className="object-cover max-sm:hidden"
+          />
+          <Image
+            src={imageUrl}
+            alt={name}
+            width={210}
+            height={111}
+            className="object-cover sm:hidden"
           />
         </Link>
       </div>
       {/* Текстова підказка під зображенням */}
-      <p className="font-normal text-[40px] text-left mt-3.5">{name}</p>
+      <p className="font-normal text-[40px] text-left mt-3.5 max-sm:text-base">{name}</p>
     </>
   );
 };

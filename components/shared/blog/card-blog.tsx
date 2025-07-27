@@ -20,24 +20,15 @@ interface Props {
 }
 
 export const CardBlog: React.FC<Props> = ({ items, isBlogPage }) => {
-  // const BLOG_CATEGORIES_MAP = new Map(
-  //   BLOG_CATEGORIES.map((cat) => [cat.name, cat])
-  // );
-
-  // const tag = BLOG_CATEGORIES_MAP.get(items.tag);
-
-  // if (!tag) {
-  //   return notFound();
-  // }
-  // const pathLink = `${tag.href}/${items.id}`;
-
   const pathLink = generateBlogPathLink(items.id, items.tag);
 
   return (
     <Card
       className={cn(
         "w-full flex flex-col border-none shadow-none gap-3 p-0 m-0",
-        isBlogPage ? "max-w-[385px] text-center" : "max-w-[286px] "
+        isBlogPage
+          ? "max-w-[385px] text-center"
+          : "max-w-[286px] max-sm:max-w-[420px]"
       )}
     >
       <div className="w-full aspect-square relative">
@@ -52,12 +43,12 @@ export const CardBlog: React.FC<Props> = ({ items, isBlogPage }) => {
         {isBlogPage && (
           <p className="text-xl font-semibold text-black">{items.tag}</p>
         )}
-        <CardTitle className="text-[25px] font-light text-black">
+        <CardTitle className="text-2xl font-light text-black max-sm:font-medium">
           {items.title}
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
-        <p className="text-base font-extralight text-black">
+        <p className="text-base font-extralight text-black max-sm:hidden">
           {items.description}
         </p>
       </CardContent>

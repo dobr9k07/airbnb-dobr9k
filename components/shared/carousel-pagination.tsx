@@ -11,7 +11,12 @@ import { commentItem } from "@/lib/item/commentItem";
 import { CarouselContentWithPositions } from "./carousel/carousel-content-with-positions";
 import { cn } from "@/lib/utils";
 
-export const CarouselPagination = () => {
+interface Props {
+  content: React.ReactNode;
+  className?: string;
+}
+
+export const CarouselPagination: React.FC<Props> = ({ content, className }) => {
   // Зберігаємо екземпляр API каруселі, поточний індекс та кількість слайдів
   const [api, setApi] = React.useState<CarouselApi>();
   const [current, setCurrent] = React.useState(0);
@@ -29,30 +34,16 @@ export const CarouselPagination = () => {
   }, [api]);
 
   return (
-    <div className="w-full">
+    <div className={cn("w-full", className)}>
       <Carousel setApi={setApi} opts={{ loop: true, align: "center" }}>
-        <CarouselContentWithPositions>
-          {commentItem.map((item) => (
-            <CarouselItem
-              key={item.id}
-              className="flex justify-center items-center basis-1/3"
-            >
-              <div className="w-[354px] h-75 flex flex-col items-start justify-start comment-gradient">
-                <p className="w- text-xl font-light pl-4 pr-4 pt-10.75 pb-5.25">
-                  {item.text}
-                </p>
-                <p className="text-xl font-normal pl-4">{item.author}</p>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContentWithPositions>
+        {content}
         <CarouselPrevious
-          className="absolute left-[-2.5rem] top-1/2 transform -translate-y-1/2"
+          className="absolute left-[-2.5rem] top-1/2 transform -translate-y-1/2 max-sm:hidden"
           size={"icon"}
           variant={"ghost"}
         />
         <CarouselNext
-          className="absolute right-[-2.5rem] top-1/2 transform -translate-y-1/2"
+          className="absolute right-[-2.5rem] top-1/2 transform -translate-y-1/2 max-sm:hidden"
           size={"icon"}
           variant={"ghost"}
         />

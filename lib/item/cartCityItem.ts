@@ -106,4 +106,11 @@ export const cartCityItems: ICartCityItem[] = [
     link: "/cities/milan",
     imageUrl: "/city/image9.png",
   },
+  {
+    id: 15,
+    name: "Нью Йорк",
+    nameEn: "New York",
+    link: "/cities/newyork",
+    imageUrl: "/city/NewYorkMobile.png",
+  },
 ];

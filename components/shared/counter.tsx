@@ -18,7 +18,7 @@ export const Counter: React.FC<Props> = ({
   className,
 }) => {
   return (
-    <div className={cn("h-full flex gap-2.5 items-center", className)}>
+    <div className={cn("h-full flex gap-2.5 items-center max-sm:border max-sm:border-black max-sm:min-w-85 max-sm:rounded-full max-sm:px-5", className)}>
       {content}
       <CountButton size={size} value={value} onClick={onChange} />
     </div>

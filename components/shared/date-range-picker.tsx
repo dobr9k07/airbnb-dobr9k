@@ -85,3 +85,71 @@ export const DateRangePicker: React.FC<Props> = ({
     </div>
   );
 };
+
+export const DateRangePickerMobile: React.FC<Props> = ({
+  formatStr = "dd MMMM yyyy",
+  value,
+  onChange,
+  content,
+  className,
+  disabled = false,
+  error = false,
+}) => {
+  return (
+    <div
+      className={cn(
+        "w-full flex items-center rounded-full group  hover:cursor-pointer duration-300 ease-in-out",
+        {
+          "opacity-50 cursor-not-allowed": disabled,
+          "hover:bg-transparent hover:cursor-not-allowed": disabled,
+        },
+        className
+      )}
+    >
+      <Popover>
+        <PopoverTrigger asChild disabled={disabled}>
+          <div
+            className={cn(
+              "w-full h-full flex justify-center items-center gap-5",
+              {
+                "text-muted-foreground": !value?.from,
+                "border-red-500": error,
+              }
+            )}
+          >
+            {value?.from ? (
+              value.to ? (
+                <div className="group-hover:text-white">
+                  {format(value.from, formatStr, { locale: uk })} –{" "}
+                  {format(value.to, formatStr, { locale: uk })}
+                </div>
+              ) : (
+                format(value.from, formatStr, { locale: uk })
+              )
+            ) : (
+              content
+            )}
+          </div>
+        </PopoverTrigger>
+
+        <PopoverContent
+          className="w-auto p-0"
+          align="start"
+          side="bottom"
+          sideOffset={8}
+        >
+          <Calendar
+            autoFocus
+            mode="range"
+            defaultMonth={value?.from}
+            selected={value}
+            onSelect={onChange}
+            numberOfMonths={1}
+            locale={uk}
+            disabled={{ before: new Date() }}
+          />
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+};

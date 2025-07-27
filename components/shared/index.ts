@@ -48,6 +48,8 @@ export { BlogBannerCarousel } from "./blog-banner-carousel";
 export { BlogBannerCarouselInnerContent } from "./blog-banner-carousel-inner-content";
 export { LinkHeaderHero } from "./link-header-hero";
 export { AuthLink } from "./auth-link";
+export { NavigationSheet } from "./navigation-sheet";
+export { NavMenu } from "./nav-menu";
 export * from "./carousel";
 export * from "./blog";
 export * from "./room";

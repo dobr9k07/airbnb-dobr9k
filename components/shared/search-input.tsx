@@ -68,7 +68,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
       className={cn(
         "relative z-30 flex items-center px-5 rounded-full group",
         "hover:cursor-pointer focus-within:ring-2 focus-within:bg-primary",
-        isBlog ? "bg-transparent" : "bg-[#E0E0E0]",
+        isBlog ? "bg-transparent" : "bg-[#E0E0E0] max-sm:bg-white max-sm:border max-sm:border-black",
         isHover && "hover:bg-primary",
         className
       )}
@@ -101,7 +101,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
       {cities.length > 0 && (
         <div
           className={cn(
-            "custom-scroll overflow-y-auto max-h-[200px] absolute left-0 w-full bg-white rounded-[20px] mt-4 shadow-md transition-all duration-300 z-30",
+            "custom-scroll overflow-y-auto max-h-[200px] absolute left-0 w-full bg-white rounded-[20px] mt-4 max-sm:mt-[-12] shadow-md transition-all duration-300 z-30",
             focused ? "visible opacity-100" : "invisible opacity-0",
             marginTop
           )}

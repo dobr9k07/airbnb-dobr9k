@@ -24,13 +24,13 @@ export const HeroBanner: React.FC<Props> = ({
   return (
     <Container className={cn(`${MAXWIDTH}`, className)}>
       {!isAboutPage ? (
-        <div className="w-full h-[769px] relative hero-gradient z-1">
+        <div className="w-full h-[769px] relative z-1 max-sm:h-[300px] hero-gradient-mobile hero-gradient">
           <ChangeImageTimer
             imageUrls={HeroBannerItems.map((item) => item.imageUrl)}
             time={5000}
           />
 
-          <div className="absolute ml-65 w-82.5 h-full flex flex-col justify-center">
+          <div className="absolute ml-65 w-82.5 h-full flex flex-col justify-center max-sm:hidden">
             <Title
               text={"Cучасне житло з готельним комфортом"}
               size="xl"
@@ -40,7 +40,11 @@ export const HeroBanner: React.FC<Props> = ({
               де б ти не був. Тепер разом із <b>hata</b>
             </p>
           </div>
-          <div className="absolute bottom-18 left-65 flex items-center gap-2">
+
+          <div
+            className="absolute bottom-18 left-65 flex items-center gap-2
+  max-sm:top-0 max-sm:left-1/2 max-sm:h-10 max-sm:w-full max-sm:justify-center max-sm:-translate-x-1/2 max-sm:flex"
+          >
             <Image src={IconPlaceholder} alt="star" width={33} height={33} />
             <p className="font-normal text-xs">
               Sonder The Winfield | Лос-Анджелес
