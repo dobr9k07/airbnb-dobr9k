@@ -1,130 +1,150 @@
-// import { AuthOptions } from "next-auth";
-// import GitHubProvider from "next-auth/providers/github";
-// import TwitterProvider from "next-auth/providers/twitter";
-// import FacebookProvider from "next-auth/providers/facebook";
-
-// export const authOptions: AuthOptions = {
-//   providers: [
-//     GitHubProvider({
-//       clientId: process.env.GITHUB_ID || "",
-//       clientSecret: process.env.GITHUB_SECRET || "",
-//     }),
-//     TwitterProvider({
-//       clientId: process.env.TWITTER_CLIENT_ID || "",
-//       clientSecret: process.env.TWITTER_CLIENT_SECRET || "",
-//     }),
-//     FacebookProvider({
-//       clientId: process.env.FACEBOOK_CLIENT_ID || "",
-//       clientSecret: process.env.FACEBOOK_CLIENT_SECRET || "",
-//     }),
-//   ],
-//   pages: {
-//     signIn: "/auth/login",
-//   },
-// };
-
-import { AuthOptions } from "next-auth";
-import GitHubProvider from "next-auth/providers/github";
-import TwitterProvider from "next-auth/providers/twitter";
-import FacebookProvider from "next-auth/providers/facebook";
+import { signIn } from "next-auth/react";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { axiosInstance } from "@/services/instance";
-import { ApiRoutes } from "@/services/constants";
-
-interface LoginResponse {
-  id: string;
-  email: string;
-  token: string;
-}
+import GitHubProvider from "next-auth/providers/github";
+import { AuthOptions } from "next-auth";
+import { UserRole } from "@prisma/client";
+import { prisma } from "@/prisma/prisma-client";
+import { compare, hashSync } from "bcryptjs";
 
 export const authOptions: AuthOptions = {
   providers: [
-    // Кастомний провайдер для логіну через ваш API
+    GitHubProvider({
+      clientId: process.env.GITHUB_ID || "",
+      clientSecret: process.env.GITHUB_SECRET || "",
+
+      profile(profile) {
+        return {
+          id: profile.id,
+          name: profile.name || profile.login,
+          email: profile.email,
+          image: profile.avatar_url,
+          role: "USER" as UserRole,
+        };
+      },
+    }),
+
     CredentialsProvider({
-      id: "credentials",
-      name: "credentials",
+      name: "Credentials",
       credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "your-email@example.com",
-        },
-        password: {
-          label: "Password",
-          type: "password",
-        },
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         if (!credentials) {
           return null;
         }
 
-        try {
-          const response = await axiosInstance.post<LoginResponse>(
-            ApiRoutes.LOGIN,
-            {
-              email: credentials.email,
-              password: credentials.password,
-            }
-          );
-
-          const user = response.data;
-
-          if (user) {
-            return {
-              id: user.id,
-              email: user.email,
-              accessToken: user.token,
-            };
-          }
-          return null;
-        } catch (error) {
-          console.error("Login error:", error);
+        const values = {
+          email: credentials.email,
+        };
+        const findUserByEnmail = await prisma.user.findUnique({
+          where: values,
+        });
+        if (!findUserByEnmail) {
           return null;
         }
-      },
-    }),
-    GitHubProvider({
-      clientId: process.env.GITHUB_ID || "",
-      clientSecret: process.env.GITHUB_SECRET || "",
-    }),
-    TwitterProvider({
-      clientId: process.env.TWITTER_CLIENT_ID || "",
-      clientSecret: process.env.TWITTER_CLIENT_SECRET || "",
-      profile(profile) {
+
+        const isPasswordValid = await compare(
+          credentials.password,
+          findUserByEnmail.password
+        );
+        if (!isPasswordValid) {
+          return null;
+        }
+        if (!findUserByEnmail.verified) {
+          return null;
+        }
+
         return {
-          id: profile.id,
-          name: profile.name || profile.login,
-          email: profile.email || null, // Twitter may not provide email
+          id: findUserByEnmail.id,
+          email: findUserByEnmail.email,
+          name: findUserByEnmail.fullName,
+          role: findUserByEnmail.role,
         };
       },
     }),
-    FacebookProvider({
-      clientId: process.env.FACEBOOK_CLIENT_ID || "",
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET || "",
-    }),
   ],
-  pages: {
-    signIn: "/auth/login",
-  },
-  callbacks: {
-    // JWT callback - додаємо access token до JWT
-    async jwt({ token, user }) {
-      if (user?.accessToken) {
-        token.accessToken = user.accessToken;
-      }
-      return token;
-    },
-    // Session callback - додаємо access token до сесії
-    async session({ session, token }) {
-      if (token.accessToken) {
-        session.accessToken = token.accessToken as string;
-      }
-      return session;
-    },
-  },
   secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
+  },
+  callbacks: {
+    async signIn({ user, account }) {
+      try {
+        if (account?.provider === "credentials") {
+          return true;
+        }
+
+        if (!user.email) {
+          return false;
+        }
+
+        const findUser = await prisma.user.findFirst({
+          where: {
+            OR: [
+              {
+                provider: account?.provider,
+                providerId: account?.providerAccountId,
+              },
+              {
+                email: user.email,
+              },
+            ],
+          },
+        });
+
+        if (findUser) {
+          await prisma.user.update({
+            where: { id: findUser.id },
+            data: {
+              provider: account?.provider,
+              providerId: account?.providerAccountId,
+            },
+          });
+          return true;
+        }
+
+        await prisma.user.create({
+          data: {
+            email: user.email,
+            fullName: user.name || "User #" + user.id,
+            password: hashSync(user.id.toString(), 10), //небезпечно, не варто цього робити
+            verified: new Date(),
+            provider: account?.provider,
+            providerId: account?.providerAccountId,
+          },
+        });
+        return true;
+      } catch (error) {
+        console.log("SIGNIN ERROR", error);
+        return false;
+      }
+    },
+
+    async jwt({ token }) {
+      if (!token.email) {
+        return token;
+      }
+
+      const findUser = await prisma.user.findFirst({
+        where: { email: token.email },
+      });
+
+      if (findUser) {
+        token.id = String(findUser.id);
+        token.email = findUser.email;
+        token.name = findUser.fullName;
+        token.role = findUser.role;
+      }
+      return token;
+    },
+
+    session({ session, token }) {
+      if (session?.user) {
+        session.user.id = token.id;
+        session.user.role = token.role;
+      }
+      return session;
+    },
   },
 };

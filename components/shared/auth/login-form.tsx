@@ -40,69 +40,23 @@ export const LoginForm: React.FC<Props> = ({ className }) => {
 
   const onSubmit = async (data: TFormLoginValues) => {
     setIsLoading(true);
-    setError("");
-
     try {
-      // Використовуємо NextAuth signIn з credentials провайдером
-      const result = await signIn("credentials", {
-        email: data.email,
-        password: data.password,
-        redirect: false, // Не робимо автоматичний редирект
+      const res = await signIn("credentials", {
+        ...data,
+        redirect: false,
       });
 
-      if (result?.error) {
-        // Обробляємо помилки логіну
-        switch (result.error) {
-          case "CredentialsSignin":
-            setError("1111Невірний email або пароль");
-            break;
-          default:
-            setError("Помилка при вході в систему. Спробуйте пізніше.");
-        }
-      } else if (result?.ok) {
-        // Успішний логін - перенаправляємо
-        router.push("/"); // Або куди потрібно
-        router.refresh(); // Оновлюємо сторінку для оновлення сесії
+      if (!res?.ok) {
+        throw Error("Response not OK");
       }
-    } catch (err) {
-      console.error("Login error:", err);
-      setError("Помилка при вході в систему. Спробуйте пізніше.");
+      router.push("/");
+    } catch (error) {
+      console.log("LOGIN ERROR", error);
+      setError("Не вдалося увійти в аккаунт!");
     } finally {
       setIsLoading(false);
     }
   };
-
-  // const onSubmit = async (data: TFormLoginValues) => {
-  //   setIsLoading(true);
-  //   setError("");
-
-  //   try {
-  //     const response = await axiosInstance.post("/login", {
-  //       email: data.email,
-  //       password: data.password,
-  //     });
-
-  //     console.log("999999999999Submitting login with data:", response);
-
-  //     const token = response.data.token;
-
-  //     console.log("Login successful, token:", token);
-
-  //     if (token) {
-  //       // Збережи токен куди потрібно, наприклад в localStorage
-  //       localStorage.setItem("accessToken", token);
-
-  //       // Можеш вручну перенаправити користувача
-  //       router.push("/");
-  //     } else {
-  //       setError("Не отримано токен. Спробуйте ще раз.");
-  //     }
-  //   } catch (error) {
-  //     setError(`Невірний email або пароль ${error}`);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
 
   return (
     <Container
@@ -127,7 +81,7 @@ export const LoginForm: React.FC<Props> = ({ className }) => {
             >
               <FormInput
                 name="email"
-                label="Введіть свій номер телефону або email:"
+                label="Введіть свій email:"
                 className="text-sm font-extralight"
                 autoComplete="email"
                 required
@@ -157,11 +111,18 @@ export const LoginForm: React.FC<Props> = ({ className }) => {
             </form>
           </FormProvider>
           <p className="text-sm font-extralight text-center mt-4">
-            Ще не маєте акаунта?
-            <Link href="/auth/register">
-              <span> Зареєструйтеся!</span>
+            Забули пароль?
+            <Link href="/auth/reset-email">
+              <span className="hover:underline"> Відновіть!</span>
             </Link>
           </p>
+          <p className="text-sm font-extralight text-center mt-4">
+            Ще не маєте акаунта?
+            <Link href="/auth/register">
+              <span className="hover:underline"> Зареєструйтеся!</span>
+            </Link>
+          </p>
+
           <div className="my-7 relative items-center flex">
             <Separator className="bg-black" />
             <span className="absolute inset-x-0 flex justify-center">

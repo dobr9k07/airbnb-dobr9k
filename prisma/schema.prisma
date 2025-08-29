@@ -1,0 +1,153 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int               @id @default(autoincrement())
+  fullName         String
+  email            String            @unique
+  phone            String?
+  password         String
+  createAt         DateTime          @default(now())
+  updateAt         DateTime          @updatedAt
+  provider         String?
+  providerId       String?
+  role             UserRole          @default(USER)
+  verified         DateTime?
+  orders           Order[]
+  verificationCode VerificationCode?
+}
+
+model City {
+  id        Int      @id @default(autoincrement())
+  name      String   // example Київ, Львів ...
+  nameEn    String   // example Kyiv, Lviv ...
+  link      String   // example /kyiv, /lviv ...
+  imageUrl  String  
+  createAt  DateTime @default(now())
+  updateAt  DateTime @updatedAt
+
+  hotels    Hotel[]
+}
+
+model Room {
+  id          Int      @id @default(autoincrement())
+  hotel       Hotel @relation(fields: [hotelId], references: [id])
+  hotelId     Int
+  type        RoomType
+  bedrooms    Int   // спальнi
+  bathrooms   Int   // ваннi
+  maxGuests   Int   // макс. кiлькiсть гостей
+  price       Decimal  @db.Decimal(10, 2) // ціна за ніч
+  square      Int   // площа в м²
+  ImageUrl    String
+  comfort     String[] // зручності
+  createAt    DateTime @default(now())
+  updateAt    DateTime @updatedAt
+}
+
+model Rate {
+  id        Int      @id @default(autoincrement())
+  rating    Decimal  @db.Decimal(2, 1)  // рейтинг
+  reviews   Int      // кількість відгуків
+  Star1     Int      // кількість 1-зіркових відгуків від 0 до 100
+  Star2     Int      // кількість 2-зіркових відгуків від 0 до 100
+  Star3     Int      // кількість 3-зіркових відгуків від 0 до 100
+  Star4     Int      // кількість 4-зіркових відгуків від 0 до 100
+  Star5     Int      // кількість 5-зіркових відгуків від 0 до 100
+  cleanliness Decimal  @db.Decimal(2, 1)  // чистота 
+  accuracy    Decimal  @db.Decimal(2, 1)  // точність 
+  arrival Decimal  @db.Decimal(2, 1)  // прибуття
+  priceQuality Decimal  @db.Decimal(2, 1)  // співвідношення ціни та якості
+  createAt  DateTime @default(now())
+  updateAt  DateTime @updatedAt
+  hotel Hotel @relation(fields: [hotelId], references: [id])
+  hotelId Int @unique
+}
+
+model Raview {
+  id        Int      @id @default(autoincrement())
+  userName  String
+  date      String   // дата відгуку
+  comment   String
+  rate      Int      // від 1 до 5
+  dateRegistration String  // дата реєстрації користувача
+  createAt  DateTime @default(now())
+  updateAt  DateTime @updatedAt
+  
+  hotel Hotel @relation(fields: [hotelId], references: [id])
+  hotelId Int
+}
+
+model Hotel {
+  id          Int      @id @default(autoincrement())
+  rate        Rate?
+  description String
+  imageUrl    String[]
+  price       Decimal  @db.Decimal(10, 2) // ціна за ніч
+  owner       String
+  comfort     String[] // зручності
+  latitude    Decimal  @db.Decimal(10, 7)
+  longitude   Decimal  @db.Decimal(10, 7)
+  createAt    DateTime @default(now())
+  updateAt    DateTime @updatedAt
+
+
+  rooms Room[]
+  city        City     @relation(fields: [cityId], references: [id])
+  cityId      Int
+  raviews Raview[]
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  userId      Int?
+  token       String
+  totalAmount Int
+  status      OrderStatus
+  paymentId   String?
+  items       Json
+  fullName    String
+  address     String
+  email       String
+  phone       String
+  comment     String?
+  createAt    DateTime    @default(now())
+  updateAt    DateTime    @updatedAt
+  user        User?       @relation(fields: [userId], references: [id])
+}
+
+model VerificationCode {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  code      String
+  expiresAt DateTime @default(now())
+  createAt  DateTime @default(now())
+  updateAt  DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, code])
+}
+
+enum RoomType {
+  SINGLE
+  DOUBLE
+  SUITE
+  KING
+}
+
+enum OrderStatus {
+  PENDING
+  SUCCEEDED
+  CANCELLED
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}

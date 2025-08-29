@@ -21,9 +21,8 @@ import {
 import { Title } from "../title";
 import { Button } from "@/components/ui/button";
 import { FormInput } from "../form";
-import { axiosInstance } from "@/services/instance";
-import { ApiRoutes } from "@/services/constants";
 import { useRouter } from "next/navigation";
+import { registerUser, verifyUser } from "@/app/actions";
 
 interface Props {
   className?: string;
@@ -104,17 +103,38 @@ export const RegisterForm: React.FC<Props> = ({ className }) => {
     const isValid = await validateCurrentStep();
     if (!isValid) return;
 
-    if (currentStep < steps.length - 2) {
+    // Якщо ще не дійшли до email/password (кроки 0 і 1)
+    if (currentStep < 1) {
       form.clearErrors();
       setCurrentStep((prev) => prev + 1);
-    } else {
+      return;
+    }
+
+    // Крок 2: реєстрація (email + password)
+    if (currentStep === 1) {
       try {
-        const { email, password } = data;
-        await axiosInstance.post(ApiRoutes.REGISTER, { email, password });
-        setCurrentStep(steps.length - 1);
+        await registerUser({
+          fullName: data.fullName,
+          phone: data.phone,
+          email: data.email,
+          password: data.password,
+        });
+        setCurrentStep((prev) => prev + 1); // переходимо на крок з кодом
       } catch (error) {
-        console.error("Registration error:", error);
+        console.log("REGISTER ERROR", error);
       }
+      return;
+    }
+
+    // Крок 3: підтвердження коду
+    if (currentStep === 2) {
+      try {
+        await verifyUser(data.verificationCode);
+        setCurrentStep(steps.length - 1); // успіх
+      } catch (error) {
+        console.log("VERIFY ERROR", error);
+      }
+      return;
     }
   };
 
@@ -243,9 +263,7 @@ export const RegisterForm: React.FC<Props> = ({ className }) => {
 
             {!steps[currentStep].isSuccess && (
               <Button type="submit" className="h-12 text-base mb-8">
-                {currentStep === 2 && !form.watch("verificationCode")
-                  ? "Пропустити"
-                  : "Далі"}
+                Далі
               </Button>
             )}
           </form>
